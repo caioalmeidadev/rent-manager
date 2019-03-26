@@ -1,0 +1,5 @@
+*.dproj.local
+*.identcache
+__recovery
+__history
+
