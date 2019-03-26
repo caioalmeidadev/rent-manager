@@ -4,8 +4,8 @@ interface
 
 Const
 
- SYSTEM_NAME           = 'SISLOC';
- SYSTEM_VERSION        = '1.0';
+ SYSTEM_NAME           = 'VITAL RENT MANAGER';
+ SYSTEM_VERSION        = '1.3';
  DB_NAME               = 'sisloc';
  DB_HOST               = 'localhost';
  DB_USER               = 'root';

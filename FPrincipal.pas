@@ -226,6 +226,7 @@ end;
 procedure TFrmPrincipal.FormShow(Sender: TObject);
 begin
  dxRibbon1.ActiveTab := dxRibbon1Tab1;
+ FrmPrincipal.Caption := FrmPrincipal.Caption + ' ' + SYSTEM_VERSION;
  if USUARIO_LOGADO then
  begin
    dxStatusBar1.Panels.Items[0].Text := 'Usuário: ' + DM.qrUsuariologin.AsString;

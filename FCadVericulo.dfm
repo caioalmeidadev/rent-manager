@@ -46,7 +46,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
     Height = 487
     Align = alClient
     TabOrder = 1
-    Properties.ActivePage = cxTabSheet2
+    Properties.ActivePage = cxTabSheet1
     Properties.CustomButtons.Buttons = <>
     ClientRectBottom = 483
     ClientRectLeft = 4
@@ -269,6 +269,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
       object cxDBTextEdit6: TcxDBTextEdit
         Left = 323
         Top = 117
+        DataBinding.DataField = 'modelo_veiculo'
         DataBinding.DataSource = dsVeiculos
         Properties.CharCase = ecUpperCase
         TabOrder = 14
@@ -425,7 +426,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
         Properties.DropDownListStyle = lsFixedList
         Properties.Items.Strings = (
           'CARRO'
-          'MOTO')
+          'MOTOCICLETA')
         TabOrder = 27
         Width = 121
       end
@@ -705,6 +706,12 @@ object FrmCadVeiculo: TFrmCadVeiculo
       Origin = 'vl_diaria'
       Precision = 10
       Size = 2
+    end
+    object qrVeiculosmodelo_veiculo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'modelo_veiculo'
+      Origin = 'modelo_veiculo'
+      Size = 40
     end
   end
   object dsVeiculos: TDataSource

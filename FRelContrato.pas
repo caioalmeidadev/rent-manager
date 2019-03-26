@@ -52,6 +52,7 @@ type
     qrContratohora_entrega: TStringField;
     qrContratobairro: TStringField;
     frxPDFExport1: TfrxPDFExport;
+    qrContratofl_tipo_veiculo: TStringField;
     procedure FormShow(Sender: TObject);
     procedure cxButton1Click(Sender: TObject);
     procedure cxButton2Click(Sender: TObject);

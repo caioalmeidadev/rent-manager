@@ -123,8 +123,7 @@ begin
 end;
 
 procedure TDM.load_parametros(xIdEmpresa: Integer);
-var
-MS:TMemoryStream;
+
 begin
  try
   qrParametros.Close;
@@ -161,8 +160,8 @@ arqIni:TIniFile;
 begin
 
   try
-    if FileExists(ExtractFilePath(Application.exename) + '\sisloc.ini') then
-      arqIni := TIniFile.Create(ExtractFilePath(Application.exename) + '\sisloc.ini');
+    if FileExists(ExtractFilePath(Application.exename) + '\vital_rent_manager.ini') then
+      arqIni := TIniFile.Create(ExtractFilePath(Application.exename) + '\vital_rent_manager.ini');
     Result := arqIni.ReadString(xSecao,xChave,xPadrao);
   finally
     FreeAndNil(arqIni);
