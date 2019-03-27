@@ -89,6 +89,7 @@ type
     cxLabel19: TcxLabel;
     cxDBCurrencyEdit2: TcxDBCurrencyEdit;
     qrVeiculosvl_diaria: TBCDField;
+    qrVeiculosmodelo_veiculo: TStringField;
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);

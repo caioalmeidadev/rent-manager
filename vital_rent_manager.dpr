@@ -1,4 +1,4 @@
-program SisLoc;
+program vital_rent_manager;
 
 uses
   Vcl.Forms,
@@ -30,14 +30,16 @@ uses
   FCadUsuario in 'FCadUsuario.pas' {FrmCadUsuario},
   FAlteraSenha in 'FAlteraSenha.pas' {FrmAlteraSenha},
   FAcessoUsuarios in 'FAcessoUsuarios.pas' {FrmAcessoUsuarios},
-  FParametros in 'FParametros.pas' {FrmParametros};
+  FParametros in 'FParametros.pas' {FrmParametros},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Windows10');
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
-  Application.CreateForm(TFrmParametros, FrmParametros);
   Application.Run;
 end.

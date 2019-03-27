@@ -70,6 +70,7 @@ type
     procedure limparControles;
     procedure btnCancelarClick(Sender: TObject);
     procedure ed_data_prev_retornoPropertiesChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -272,6 +273,11 @@ procedure TFrmLocacao.ed_vl_diariaPropertiesChange(Sender: TObject);
 begin
   if (ed_vl_diaria.Value > 0) then
   ed_vl_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+end;
+
+procedure TFrmLocacao.FormShow(Sender: TObject);
+begin
+ btnNovoClick(Self);
 end;
 
 procedure TFrmLocacao.limparControles;
