@@ -110,6 +110,7 @@ object FrmCadCliente: TFrmCadCliente
         09780317BC94605C2D41B50000000049454E44AE426082}
       OptionsImage.Layout = blGlyphTop
       TabOrder = 2
+      OnClick = btnCancelarClick
     end
     object btnEditar: TcxButton
       Left = 254
@@ -273,11 +274,11 @@ object FrmCadCliente: TFrmCadCliente
       end
       object cxPageControl2: TcxPageControl
         Left = 24
-        Top = 168
+        Top = 147
         Width = 619
         Height = 257
         TabOrder = 6
-        Properties.ActivePage = cxTabSheet4
+        Properties.ActivePage = cxTabSheet3
         Properties.CustomButtons.Buttons = <>
         ClientRectBottom = 253
         ClientRectLeft = 4
@@ -475,7 +476,7 @@ object FrmCadCliente: TFrmCadCliente
               end>
             Properties.ListOptions.ShowHeader = False
             Properties.ListSource = dsEstado
-            Properties.OnCloseUp = cxDBLookupComboBox1PropertiesCloseUp
+            Properties.OnChange = cxDBLookupComboBox1PropertiesChange
             TabOrder = 9
             Width = 179
           end
@@ -491,7 +492,7 @@ object FrmCadCliente: TFrmCadCliente
               end>
             Properties.ListOptions.ShowHeader = False
             Properties.ListSource = dsMunicipio
-            Properties.OnCloseUp = cxDBLookupComboBox2PropertiesCloseUp
+            Properties.OnChange = cxDBLookupComboBox2PropertiesChange
             TabOrder = 10
             Width = 179
           end

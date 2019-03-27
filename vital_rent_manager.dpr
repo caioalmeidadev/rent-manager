@@ -39,6 +39,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Windows10');
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
   Application.Run;
 end.

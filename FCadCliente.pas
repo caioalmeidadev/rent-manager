@@ -137,9 +137,10 @@ type
     procedure btnNovoClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure bttnSalvarClick(Sender: TObject);
-    procedure cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
-    procedure cxDBLookupComboBox2PropertiesCloseUp(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure cxDBLookupComboBox1PropertiesChange(Sender: TObject);
+    procedure cxDBLookupComboBox2PropertiesChange(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -154,6 +155,14 @@ implementation
 {$R *.dfm}
 
 uses FDM;
+
+procedure TFrmCadCliente.btnCancelarClick(Sender: TObject);
+begin
+ if qrCliente.State in [dsInsert,dsEdit] then
+  qrCliente.Cancel;
+ qrCliente.Refresh;
+ cxPageControl1.ActivePageIndex := 0;
+end;
 
 procedure TFrmCadCliente.btnEditarClick(Sender: TObject);
 begin
@@ -184,19 +193,24 @@ begin
  cxPageControl1.ActivePageIndex := 0;
 end;
 
-procedure TFrmCadCliente.cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
+procedure TFrmCadCliente.cxDBLookupComboBox1PropertiesChange(Sender: TObject);
 begin
- qrMunicipio.Close;
- qrMunicipio.ParamByName('id_estado').AsInteger := qrEstadoid_estado.AsInteger;
- qrMunicipio.Open;
+ if qrCliente.State in [dsInsert,dsEdit] then
+ begin
+   qrMunicipio.Close;
+   qrMunicipio.ParamByName('id_estado').AsInteger := qrEstadoid_estado.AsInteger;
+   qrMunicipio.Open;
+ end;
 end;
 
-procedure TFrmCadCliente.cxDBLookupComboBox2PropertiesCloseUp(Sender: TObject);
+procedure TFrmCadCliente.cxDBLookupComboBox2PropertiesChange(Sender: TObject);
 begin
+ if qrCliente.State in [dsInsert,dsEdit] then
+ begin
   qrBairro.Close;
   qrBairro.ParamByName('id_municipio').AsInteger := qrMunicipioid_municipio.AsInteger;
   qrBairro.Open;
-
+ end;
 end;
 
 procedure TFrmCadCliente.FormCreate(Sender: TObject);
