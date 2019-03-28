@@ -10,7 +10,6 @@ object DM: TDM
       'Password=vital123'
       'Server=localhost'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
     Left = 32
     Top = 32

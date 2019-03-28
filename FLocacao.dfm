@@ -3,7 +3,7 @@ object FrmLocacao: TFrmLocacao
   Top = 0
   BorderStyle = bsNone
   Caption = 'Loca'#231#227'o'
-  ClientHeight = 525
+  ClientHeight = 432
   ClientWidth = 862
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,11 +13,14 @@ object FrmLocacao: TFrmLocacao
   Font.Style = []
   OldCreateOrder = False
   OnShow = FormShow
+  DesignSize = (
+    862
+    432)
   PixelsPerInch = 96
   TextHeight = 13
   object Cliente: TcxGroupBox
     Left = 8
-    Top = 104
+    Top = 8
     Caption = 'Cliente'
     TabOrder = 0
     Height = 129
@@ -79,7 +82,7 @@ object FrmLocacao: TFrmLocacao
   end
   object cxGroupBox1: TcxGroupBox
     Left = 431
-    Top = 104
+    Top = 8
     Caption = 'Ve'#237'culo'
     TabOrder = 1
     Height = 129
@@ -159,11 +162,11 @@ object FrmLocacao: TFrmLocacao
   end
   object cxGroupBox2: TcxGroupBox
     Left = 8
-    Top = 239
+    Top = 143
     Caption = 'Informa'#231#245'es Adicionais'
     TabOrder = 2
     Height = 202
-    Width = 840
+    Width = 417
     object cxLabel1: TcxLabel
       Left = 16
       Top = 24
@@ -174,44 +177,16 @@ object FrmLocacao: TFrmLocacao
       Top = 47
       Properties.CharCase = ecUpperCase
       TabOrder = 1
-      Height = 89
-      Width = 809
-    end
-    object cxLabel16: TcxLabel
-      Left = 16
-      Top = 160
-      Caption = 'Valor Total:'
-    end
-    object ed_vl_total: TcxCurrencyEdit
-      Left = 81
-      Top = 159
-      Properties.Alignment.Horz = taRightJustify
-      Properties.Nullable = False
-      Properties.ReadOnly = True
-      Properties.UseDisplayFormatWhenEditing = True
-      TabOrder = 3
-      Width = 116
-    end
-    object cxLabel17: TcxLabel
-      Left = 203
-      Top = 160
-      Caption = 'Qtde de Dias'
-    end
-    object ed_qtde_dias: TcxTextEdit
-      Left = 275
-      Top = 159
-      Properties.ReadOnly = True
-      Properties.OnChange = ed_qtde_diasPropertiesChange
-      TabOrder = 5
-      Width = 82
+      Height = 138
+      Width = 377
     end
   end
   object cxGroupBox3: TcxGroupBox
-    Left = 8
-    Top = 8
+    Left = 431
+    Top = 143
     Caption = 'Ve'#237'culo'
     TabOrder = 3
-    Height = 81
+    Height = 202
     Width = 417
     object ed_data_locacao: TcxDateEdit
       Left = 104
@@ -256,12 +231,42 @@ object FrmLocacao: TFrmLocacao
       Top = 14
       Caption = 'Previs'#227'o de Retorno'
     end
+    object ed_qtde_dias: TcxTextEdit
+      Left = 275
+      Top = 95
+      Properties.ReadOnly = True
+      Properties.OnChange = ed_qtde_diasPropertiesChange
+      Properties.OnEditValueChanged = ed_qtde_diasPropertiesEditValueChanged
+      TabOrder = 6
+      Width = 82
+    end
+    object cxLabel17: TcxLabel
+      Left = 203
+      Top = 96
+      Caption = 'Qtde de Dias'
+    end
+    object ed_vl_total: TcxCurrencyEdit
+      Left = 81
+      Top = 95
+      Properties.Alignment.Horz = taRightJustify
+      Properties.Nullable = False
+      Properties.ReadOnly = True
+      Properties.UseDisplayFormatWhenEditing = True
+      TabOrder = 8
+      Width = 116
+    end
+    object cxLabel16: TcxLabel
+      Left = 16
+      Top = 96
+      Caption = 'Valor Total:'
+    end
   end
   object btnNovo: TcxButton
-    Left = 8
-    Top = 451
+    Left = 279
+    Top = 351
     Width = 70
     Height = 66
+    Anchors = [akLeft, akBottom]
     Caption = 'Novo'
     OptionsImage.ImageIndex = 29
     OptionsImage.Images = FrmPrincipal.imgs32x32
@@ -270,10 +275,11 @@ object FrmLocacao: TFrmLocacao
     OnClick = btnNovoClick
   end
   object btnSalvar: TcxButton
-    Left = 83
-    Top = 450
+    Left = 355
+    Top = 351
     Width = 70
     Height = 66
+    Anchors = [akLeft, akBottom]
     Caption = 'Salvar'
     Enabled = False
     OptionsImage.ImageIndex = 30
@@ -284,10 +290,11 @@ object FrmLocacao: TFrmLocacao
     OnClick = btnSalvarClick
   end
   object btnCancelar: TcxButton
-    Left = 159
-    Top = 450
+    Left = 431
+    Top = 351
     Width = 70
     Height = 66
+    Anchors = [akLeft, akBottom]
     Caption = 'Cancelar'
     Enabled = False
     OptionsImage.ImageIndex = 31

@@ -46,15 +46,15 @@ type
     ed_fone: TcxTextEdit;
     cxLabel15: TcxLabel;
     ed_obs: TcxMemo;
-    cxLabel16: TcxLabel;
-    ed_vl_total: TcxCurrencyEdit;
-    cxLabel17: TcxLabel;
-    ed_qtde_dias: TcxTextEdit;
     btnSalvar: TcxButton;
     btnCancelar: TcxButton;
     qrLocacao: TFDQuery;
     qrCliente: TFDQuery;
     qrVeiculo: TFDQuery;
+    ed_qtde_dias: TcxTextEdit;
+    cxLabel17: TcxLabel;
+    ed_vl_total: TcxCurrencyEdit;
+    cxLabel16: TcxLabel;
     procedure novaLocacao;
     procedure btnNovoClick(Sender: TObject);
     procedure ed_cod_veiculoPropertiesButtonClick(Sender: TObject;
@@ -71,6 +71,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure ed_data_prev_retornoPropertiesChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure ed_qtde_diasPropertiesEditValueChanged(Sender: TObject);
   private
     { Private declarations }
   public
@@ -98,7 +99,7 @@ end;
 
 procedure TFrmLocacao.btnSalvarClick(Sender: TObject);
 var
-iCliente,iVeiculo:Integer;
+iCliente,iVeiculo,iLocacao:Integer;
 begin
 
   iCliente := StrToIntDef(ed_cod_cliente.Text,0);
@@ -138,6 +139,8 @@ begin
     qrLocacao.Post;
     qrLocacao.Last;
 
+    iLocacao := qrLocacao.FieldByName('id_locacao').AsInteger;
+
 
     DM.sp_altera_status_veiculo.Prepare;
     DM.sp_altera_status_veiculo.ParamByName('id_veiculo_att').AsInteger := iVeiculo;
@@ -151,7 +154,7 @@ begin
     if MessageDlg('Deseja imprimir o contrato dessa locação?',mtConfirmation,[mbYes,mbNo],0,mbYes) = mrYes then
     begin
       if not Assigned(FrmRelContrato) then
-       FrmRelContrato := TFrmRelContrato.Create(Self,IntToStr(qrLocacao.FieldByName('id_locacao').AsInteger));
+       FrmRelContrato := TFrmRelContrato.Create(Self,IntToStr(iLocacao));
       FrmRelContrato.ShowModal;
       FreeAndNil(FrmRelContrato);
     end;
@@ -159,8 +162,8 @@ begin
      if MessageDlg('Deseja imprimir o recibo dessa locação?',mtConfirmation,[mbYes,mbNo],0,mbYes) = mrYes then
     begin
       if not Assigned(FrmRelRecibo) then
-       FrmRelRecibo := TFrmRelRecibo.Create(Self,qrLocacao.FieldByName('id_locacao').AsInteger);
-      FrmRelRecibo.Show;
+       FrmRelRecibo := TFrmRelRecibo.Create(Self,iLocacao);
+      FrmRelRecibo.ShowModal;
       FreeAndNil(FrmRelRecibo);
     end;
 
@@ -231,6 +234,9 @@ begin
      ed_placa.Text        := qrVeiculo.FieldByName('placa').AsString;
      ed_km_inicial.Text   := qrVeiculo.FieldByName('km_atual').AsString;
      ed_vl_diaria.Value   := qrVeiculo.FieldByName('vl_diaria').AsFloat;
+     if (ed_qtde_dias.Text <> '0') and (ed_vl_diaria.Value > 0) then
+        ed_vl_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+
 
      ed_obs.SetFocus;
    end
@@ -255,17 +261,23 @@ end;
 
 procedure TFrmLocacao.ed_data_prev_retornoExit(Sender: TObject);
 begin
- ed_qtde_dias.Text := IntToStr(DaysBetween(ed_data_locacao.Date,ed_data_prev_retorno.Date));
+ ed_qtde_dias.Text := IntToStr(DaysBetween(ed_data_locacao.Date,ed_data_prev_retorno.Date) + 1 );
 end;
 
 procedure TFrmLocacao.ed_data_prev_retornoPropertiesChange(Sender: TObject);
 begin
- ed_qtde_dias.Text := IntToStr(DaysBetween(ed_data_locacao.Date,ed_data_prev_retorno.Date));
+ ed_qtde_dias.Text := IntToStr(DaysBetween(ed_data_locacao.Date,ed_data_prev_retorno.Date) + 1);
 end;
 
 procedure TFrmLocacao.ed_qtde_diasPropertiesChange(Sender: TObject);
 begin
  if (ed_qtde_dias.Text <> '0') and (ed_vl_diaria.Value > 0) then
+  ed_vl_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+end;
+
+procedure TFrmLocacao.ed_qtde_diasPropertiesEditValueChanged(Sender: TObject);
+begin
+ if (ed_vl_diaria.Value > 0) then
   ed_vl_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
 end;
 
@@ -304,7 +316,7 @@ begin
 
  ed_cod_locacao.Text       := '-1';
  ed_data_locacao.Date      := Now;
- ed_data_prev_retorno.Date := Now;
+ ed_data_prev_retorno.Date := Now + 1;
 
  ed_data_prev_retorno.SetFocus;
 end;
