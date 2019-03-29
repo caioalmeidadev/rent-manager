@@ -15,7 +15,7 @@ uses
   cxClasses, cxGridCustomView, cxGrid, cxGroupBox, dxBarBuiltInMenu,
   cxDBLookupComboBox, Vcl.Menus, Vcl.StdCtrls, cxButtons, Vcl.ExtCtrls,
   cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxLabel, cxTextEdit,
-  cxDBEdit, cxPC;
+  cxDBEdit, cxPC, ACBrBase, ACBrEnterTab;
 
 type
   TFrmCadUsuario = class(TForm)
@@ -54,6 +54,7 @@ type
     dsAcesso: TDataSource;
     cxButton4: TcxButton;
     cxButton5: TcxButton;
+    ACBrEnterTab1: TACBrEnterTab;
     procedure FormShow(Sender: TObject);
     procedure cxButton4Click(Sender: TObject);
     procedure cxButton5Click(Sender: TObject);

@@ -10,12 +10,13 @@ object DM: TDM
       'Password=vital123'
       'Server=localhost'
       'DriverID=MySQL')
+    Connected = True
     LoginPrompt = False
     Left = 32
     Top = 32
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    VendorLib = '.\libmysql.dll'
+    VendorLib = 'C:\Program Files (x86)\MySQL\MySQL Server 5.7\lib\libmysql.dll'
     Left = 32
     Top = 80
   end
@@ -353,6 +354,41 @@ object DM: TDM
       AutoGenerateValue = arDefault
       FieldName = 'cad_acesso_usuario'
       Origin = 'cad_acesso_usuario'
+      FixedChar = True
+      Size = 1
+    end
+    object qrUsuarioAcessorel_veiculos: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rel_veiculos'
+      Origin = 'rel_veiculos'
+      FixedChar = True
+      Size = 1
+    end
+    object qrUsuarioAcessorel_locacoes: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rel_locacoes'
+      Origin = 'rel_locacoes'
+      FixedChar = True
+      Size = 1
+    end
+    object qrUsuarioAcessodar_desconto_locacao: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'dar_desconto_locacao'
+      Origin = 'dar_desconto_locacao'
+      FixedChar = True
+      Size = 1
+    end
+    object qrUsuarioAcessoprc_desconto_locacao: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_desconto_locacao'
+      Origin = 'prc_desconto_locacao'
+      Precision = 10
+      Size = 2
+    end
+    object qrUsuarioAcessoaltera_vl_diaria: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'altera_vl_diaria'
+      Origin = 'altera_vl_diaria'
       FixedChar = True
       Size = 1
     end

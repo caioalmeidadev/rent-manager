@@ -64,6 +64,11 @@ type
     frxDBDsEmpresa: TfrxDBDataset;
     frxDBDsParametros: TfrxDBDataset;
     qrUsuarioAcessocad_acesso_usuario: TStringField;
+    qrUsuarioAcessorel_veiculos: TStringField;
+    qrUsuarioAcessorel_locacoes: TStringField;
+    qrUsuarioAcessodar_desconto_locacao: TStringField;
+    qrUsuarioAcessoprc_desconto_locacao: TBCDField;
+    qrUsuarioAcessoaltera_vl_diaria: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     function readIni(xSecao:string; xChave:string; xPadrao:string):string;
   private
@@ -73,6 +78,8 @@ type
     procedure checkEmpresa;
     function login(xUsuario:string; xSenha:string):Boolean;
     procedure load_parametros(xIdEmpresa:Integer);
+    procedure atualizaBanco;
+
 
   end;
 
@@ -86,6 +93,24 @@ implementation
 uses App.Funcoes, FPrincipal;
 
 {$R *.dfm}
+
+procedure TDM.atualizaBanco;
+begin
+
+ if not checkColuna('tb_usuario_acesso','rel_locacoes') then
+ begin
+    try
+     Conn.ExecSQL('ALTER TABLE `sisloc`.`tb_usuario_acesso`'+
+                  ' ADD COLUMN `rel_veiculos` CHAR(1) NULL DEFAULT ''N'' ,' +
+                  ' ADD COLUMN `rel_locacoes` CHAR(1) NULL DEFAULT ''N'' ,' +
+                  ' ADD COLUMN `altera_vl_desconto` CHAR(1) NULL DEFAULT ''N'', ' +
+                  ' ADD COLUMN `dar_desconto_locacao` CHAR(1) NULL DEFAULT ''N'',' +
+                  ' ADD COLUMN `prc_desconto_locacao` DECIMAL(10,2) NULL DEFAULT 0');
+    except
+     raise Exception.Create('Ocorreu um erro ao criar as colunas da versão 1.5');
+    end;
+ end;
+end;
 
 procedure TDM.checkEmpresa;
 begin
@@ -116,8 +141,7 @@ begin
   end;
 
 
-  checkEmpresa;
-  load_parametros(qrEmpresaid_empresa.AsInteger);
+  
 
 
 end;

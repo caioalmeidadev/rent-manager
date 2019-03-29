@@ -78,7 +78,6 @@ type
     cxLabel14: TcxLabel;
     qrLocacoesveiculo_id: TIntegerField;
     qrLocacoescliente_id: TIntegerField;
-    qrLocacoesqtde_dias: TLargeintField;
     qrCliente: TFDQuery;
     qrVeiculo: TFDQuery;
     dsCliente: TDataSource;
@@ -89,6 +88,9 @@ type
     cxButton3: TcxButton;
     cxButton5: TcxButton;
     cxButton6: TcxButton;
+    ed_km_retorno: TcxTextEdit;
+    cxLabel2: TcxLabel;
+    qrLocacoesqtde_dias: TIntegerField;
     procedure FormShow(Sender: TObject);
     procedure qrLocacoesAfterScroll(DataSet: TDataSet);
 
@@ -132,6 +134,14 @@ end;
 
 procedure TFrmRetorno.cxButton3Click(Sender: TObject);
 begin
+
+ if (ed_km_retorno.Text = '') and (StrToInt(ed_km_retorno.Text) > 0) then
+ begin
+   ShowMessage('O KM de retorno do veículo está zerado.');
+   ed_km_retorno.SetFocus;
+   Exit;
+ end;
+
  try
    with DM do
    begin
@@ -146,10 +156,16 @@ begin
     sp_altera_status_veiculo.ParamByName('fl_loc').AsString          := 'N';
     sp_altera_status_veiculo.ExecProc;
 
+    sp_atualiza_km.Prepare;
+    sp_atualiza_km.ParamByName('id_veiculo_att').AsInteger := qrLocacoesveiculo_id.AsInteger;
+    sp_atualiza_km.ParamByName('km_novo').AsString         := ed_km_retorno.Text;
+    sp_atualiza_km.ExecProc;
+
    end;
 
    ShowMessage('Locação finalizada com sucesso!');
    qrLocacoes.Refresh;
+   cxPageControl1.ActivePageIndex := 0;
  except
    ShowMessage('Ocorreu um erro ao finalizar a locação');
  end;
@@ -196,9 +212,14 @@ end;
 
 procedure TFrmRetorno.FormShow(Sender: TObject);
 begin
+ cxButton6.Visible := DM.qrUsuarioAcesso.FieldByName('cancela_locacao').AsString = 'X';
+
  qrLocacoes.Open;
  qrCliente.Open;
  qrVeiculo.Open;
+
+ cxPageControl1.ActivePageIndex := 0;
+
 end;
 
 procedure TFrmRetorno.qrLocacoesAfterScroll(DataSet: TDataSet);

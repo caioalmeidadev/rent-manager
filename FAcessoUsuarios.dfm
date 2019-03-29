@@ -2,8 +2,8 @@ object FrmAcessoUsuarios: TFrmAcessoUsuarios
   Left = 0
   Top = 0
   Caption = 'Cadastro de Acessos'
-  ClientHeight = 271
-  ClientWidth = 866
+  ClientHeight = 523
+  ClientWidth = 840
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +17,8 @@ object FrmAcessoUsuarios: TFrmAcessoUsuarios
   object cxGrid1: TcxGrid
     Left = 8
     Top = 79
-    Width = 345
-    Height = 148
+    Width = 409
+    Height = 391
     TabOrder = 0
     object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
@@ -50,11 +50,10 @@ object FrmAcessoUsuarios: TFrmAcessoUsuarios
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 866
+    Width = 840
     Height = 73
     Align = alTop
     TabOrder = 1
-    ExplicitWidth = 1173
     object cxLabel1: TcxLabel
       Left = 312
       Top = 12
@@ -69,131 +68,12 @@ object FrmAcessoUsuarios: TFrmAcessoUsuarios
     end
   end
   object cxGroupBox1: TcxGroupBox
-    Left = 359
+    Left = 423
     Top = 79
     Caption = 'Acessos'
     TabOrder = 2
-    Height = 179
-    Width = 497
-    object cxDBCheckBox1: TcxDBCheckBox
-      Left = 20
-      Top = 104
-      Caption = 'Cadastro de Municipios'
-      DataBinding.DataField = 'cad_municipio'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 0
-    end
-    object cxDBCheckBox2: TcxDBCheckBox
-      Left = 176
-      Top = 50
-      Caption = 'Cadastro de Ve'#237'culos'
-      DataBinding.DataField = 'cad_veiculo'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 1
-    end
-    object cxDBCheckBox3: TcxDBCheckBox
-      Left = 20
-      Top = 50
-      Caption = 'Cadastro de Clientes'
-      DataBinding.DataField = 'cad_cliente'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 2
-    end
-    object cxDBCheckBox4: TcxDBCheckBox
-      Left = 20
-      Top = 77
-      Caption = 'Cadastrro de Estados'
-      DataBinding.DataField = 'cad_estado'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 3
-    end
-    object cxDBCheckBox5: TcxDBCheckBox
-      Left = 20
-      Top = 131
-      Caption = 'Cadastro de Bairros'
-      DataBinding.DataField = 'cad_bairro'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 4
-    end
-    object cxDBCheckBox8: TcxDBCheckBox
-      Left = 176
-      Top = 77
-      Caption = 'Realizar Loca'#231#227'o'
-      DataBinding.DataField = 'nova_locacao'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 5
-    end
-    object cxDBCheckBox9: TcxDBCheckBox
-      Left = 176
-      Top = 104
-      Caption = 'Devolu'#231#227'o de Loca'#231#227'o'
-      DataBinding.DataField = 'cancela_locacao'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 6
-    end
-    object cxDBCheckBox6: TcxDBCheckBox
-      Left = 176
-      Top = 131
-      Caption = 'Retorno de Loca'#231#227'o'
-      DataBinding.DataField = 'finaliza_locacao'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 7
-    end
-    object cxDBCheckBox7: TcxDBCheckBox
-      Left = 336
-      Top = 50
-      Caption = 'Cadastro de Usu'#225'rios'
-      DataBinding.DataField = 'cad_usuario'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 8
-    end
-    object cxDBCheckBox10: TcxDBCheckBox
-      Left = 336
-      Top = 77
-      Caption = 'Cadsatro de Acessos'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 9
-    end
-    object cxDBCheckBox11: TcxDBCheckBox
-      Left = 336
-      Top = 104
-      Caption = 'Cadastro da Empresa'
-      DataBinding.DataField = 'cad_empresa'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 10
-    end
-    object cxDBCheckBox12: TcxDBCheckBox
-      Left = 336
-      Top = 131
-      Caption = 'Parametros dos Sistema'
-      DataBinding.DataField = 'cad_parametros'
-      DataBinding.DataSource = dsAcessos
-      Properties.ValueChecked = 'X'
-      Properties.ValueUnchecked = 'N'
-      TabOrder = 11
-    end
+    Height = 434
+    Width = 402
     object cxLabel2: TcxLabel
       Left = 20
       Top = 24
@@ -204,13 +84,238 @@ object FrmAcessoUsuarios: TFrmAcessoUsuarios
       Top = 23
       DataBinding.DataField = 'nome_acesso'
       DataBinding.DataSource = dsAcessos
-      TabOrder = 13
-      Width = 289
+      TabOrder = 1
+      Width = 257
+    end
+    object cxGroupBox2: TcxGroupBox
+      Left = 20
+      Top = 56
+      Caption = 'Cadastros'
+      TabOrder = 2
+      Height = 169
+      Width = 177
+      object cxDBCheckBox3: TcxDBCheckBox
+        Left = 12
+        Top = 26
+        Caption = 'Cadastro de Clientes'
+        DataBinding.DataField = 'cad_cliente'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 0
+      end
+      object cxDBCheckBox4: TcxDBCheckBox
+        Left = 12
+        Top = 53
+        Caption = 'Cadastrro de Estados'
+        DataBinding.DataField = 'cad_estado'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 1
+      end
+      object cxDBCheckBox1: TcxDBCheckBox
+        Left = 12
+        Top = 80
+        Caption = 'Cadastro de Municipios'
+        DataBinding.DataField = 'cad_municipio'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 2
+      end
+      object cxDBCheckBox5: TcxDBCheckBox
+        Left = 12
+        Top = 107
+        Caption = 'Cadastro de Bairros'
+        DataBinding.DataField = 'cad_bairro'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 3
+      end
+      object cxDBCheckBox2: TcxDBCheckBox
+        Left = 12
+        Top = 134
+        Caption = 'Cadastro de Ve'#237'culos'
+        DataBinding.DataField = 'cad_veiculo'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 4
+      end
+    end
+    object cxGroupBox3: TcxGroupBox
+      Left = 20
+      Top = 231
+      Caption = 'Loca'#231#227'o'
+      TabOrder = 4
+      Height = 183
+      Width = 177
+      object cxDBCheckBox6: TcxDBCheckBox
+        Left = 10
+        Top = 75
+        Caption = 'Retorno de Loca'#231#227'o'
+        DataBinding.DataField = 'finaliza_locacao'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 2
+      end
+      object cxDBCheckBox9: TcxDBCheckBox
+        Left = 10
+        Top = 48
+        Caption = 'Devolu'#231#227'o de Loca'#231#227'o'
+        DataBinding.DataField = 'cancela_locacao'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 1
+      end
+      object cxDBCheckBox8: TcxDBCheckBox
+        Left = 10
+        Top = 21
+        Caption = 'Realizar Loca'#231#227'o'
+        DataBinding.DataField = 'nova_locacao'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 0
+      end
+      object cxDBCheckBox13: TcxDBCheckBox
+        Left = 10
+        Top = 102
+        Caption = 'Desconto na Loca'#231#227'o'
+        DataBinding.DataField = 'dar_desconto_locacao'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 3
+      end
+      object cxLabel3: TcxLabel
+        Left = 36
+        Top = 120
+        Caption = 'Valor m'#225'ximo (%)'
+      end
+      object cxDBCurrencyEdit1: TcxDBCurrencyEdit
+        Left = 41
+        Top = 139
+        DataBinding.DataField = 'prc_desconto_locacao'
+        DataBinding.DataSource = dsAcessos
+        TabOrder = 4
+        Width = 78
+      end
+    end
+    object cxGroupBox4: TcxGroupBox
+      Left = 203
+      Top = 56
+      Caption = 'Relat'#243'rios'
+      TabOrder = 3
+      Height = 169
+      Width = 158
+      object cxDBCheckBox14: TcxDBCheckBox
+        Left = 11
+        Top = 26
+        Caption = 'Loca'#231#245'es'
+        DataBinding.DataField = 'rel_locacoes'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 0
+      end
+      object cxDBCheckBox15: TcxDBCheckBox
+        Left = 11
+        Top = 53
+        Caption = 'Clientes'
+        DataBinding.DataField = 'rel_clientes'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 1
+      end
+      object cxDBCheckBox16: TcxDBCheckBox
+        Left = 11
+        Top = 80
+        Caption = 'Ve'#237'culos'
+        DataBinding.DataField = 'rel_veiculos'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 2
+      end
+      object cxDBCheckBox17: TcxDBCheckBox
+        Left = 11
+        Top = 107
+        Caption = 'Contrato'
+        DataBinding.DataField = 'rel_contrato'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 3
+      end
+      object cxDBCheckBox18: TcxDBCheckBox
+        Left = 11
+        Top = 134
+        Caption = 'Recibo'
+        DataBinding.DataField = 'rel_recibo'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 4
+      end
+    end
+    object cxGroupBox5: TcxGroupBox
+      Left = 203
+      Top = 231
+      Caption = 'Configura'#231#245'es'
+      TabOrder = 5
+      Height = 183
+      Width = 158
+      object cxDBCheckBox7: TcxDBCheckBox
+        Left = 3
+        Top = 18
+        Caption = 'Cadastro de Usu'#225'rios'
+        DataBinding.DataField = 'cad_usuario'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 0
+      end
+      object cxDBCheckBox10: TcxDBCheckBox
+        Left = 3
+        Top = 45
+        Caption = 'Cadsatro de Acessos'
+        DataBinding.DataField = 'cad_acesso_usuario'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 1
+      end
+      object cxDBCheckBox11: TcxDBCheckBox
+        Left = 3
+        Top = 72
+        Caption = 'Cadastro da Empresa'
+        DataBinding.DataField = 'cad_empresa'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 2
+      end
+      object cxDBCheckBox12: TcxDBCheckBox
+        Left = 3
+        Top = 99
+        Caption = 'Parametros dos Sistema'
+        DataBinding.DataField = 'cad_parametros'
+        DataBinding.DataSource = dsAcessos
+        Properties.ValueChecked = 'X'
+        Properties.ValueUnchecked = 'N'
+        TabOrder = 3
+      end
     end
   end
   object btnNovo: TcxButton
-    Left = 197
-    Top = 233
+    Left = 261
+    Top = 488
     Width = 75
     Height = 25
     Caption = 'Novo'
@@ -220,8 +325,8 @@ object FrmAcessoUsuarios: TFrmAcessoUsuarios
     OnClick = btnNovoClick
   end
   object btnGravar: TcxButton
-    Left = 278
-    Top = 233
+    Left = 342
+    Top = 488
     Width = 75
     Height = 25
     Caption = 'Gravar'
@@ -240,6 +345,7 @@ object FrmAcessoUsuarios: TFrmAcessoUsuarios
       FieldName = 'id_acesso'
       Origin = 'id_acesso'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrAcessosnome_acesso: TStringField
       AutoGenerateValue = arDefault
@@ -352,10 +458,50 @@ object FrmAcessoUsuarios: TFrmAcessoUsuarios
       FixedChar = True
       Size = 1
     end
+    object qrAcessoscad_acesso_usuario: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cad_acesso_usuario'
+      Origin = 'cad_acesso_usuario'
+      FixedChar = True
+      Size = 1
+    end
+    object qrAcessosrel_veiculos: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rel_veiculos'
+      Origin = 'rel_veiculos'
+      FixedChar = True
+      Size = 1
+    end
+    object qrAcessosrel_locacoes: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'rel_locacoes'
+      Origin = 'rel_locacoes'
+      FixedChar = True
+      Size = 1
+    end
+    object qrAcessosdar_desconto_locacao: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'dar_desconto_locacao'
+      Origin = 'dar_desconto_locacao'
+      FixedChar = True
+      Size = 1
+    end
+    object qrAcessosprc_desconto_locacao: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'prc_desconto_locacao'
+      Origin = 'prc_desconto_locacao'
+      Precision = 10
+      Size = 2
+    end
   end
   object dsAcessos: TDataSource
     DataSet = qrAcessos
     Left = 712
     Top = 32
+  end
+  object ACBrEnterTab1: TACBrEnterTab
+    EnterAsTab = True
+    Left = 472
+    Top = 56
   end
 end

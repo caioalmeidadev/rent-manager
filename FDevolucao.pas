@@ -116,15 +116,17 @@ begin
  try
   with DM do
   begin
+
     sp_devolucao.Prepare;
     sp_devolucao.ParamByName('id_loc').AsInteger           := qrCancelarid_locacao.AsInteger;
-    sp_devolucao.ParamByName('mot_cancelamento').AsString  := ed_motivo_dev.Text;
+    sp_devolucao.ParamByName('mot_cancelamento').AsString  :=  qrCancelarobs.AsString + 'MOTIVO DE CANCELAMENTO: ' + ed_motivo_dev.Text;
     sp_devolucao.ExecProc;
 
     sp_altera_status_veiculo.Prepare;
     sp_altera_status_veiculo.ParamByName('id_veiculo_att').AsInteger := qrCancelarveiculo_id.AsInteger;
     sp_altera_status_veiculo.ParamByName('fl_loc').AsString          := 'N';
     sp_altera_status_veiculo.ExecProc;
+
   end;
 
   ShowMessage('Devolução realizada com sucesso!');

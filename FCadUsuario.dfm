@@ -110,7 +110,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'id_usuario'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 0
+        TabOrder = 5
         Width = 46
       end
       object cxDBTextEdit2: TcxDBTextEdit
@@ -119,7 +119,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'nome_usuario'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 1
+        TabOrder = 6
         Width = 178
       end
       object cxDBTextEdit3: TcxDBTextEdit
@@ -129,7 +129,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
         Properties.EchoMode = eemPassword
-        TabOrder = 2
+        TabOrder = 8
         Width = 121
       end
       object cxDBTextEdit4: TcxDBTextEdit
@@ -138,7 +138,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'login'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 3
+        TabOrder = 7
         Width = 121
       end
       object cxLabel1: TcxLabel
@@ -174,7 +174,7 @@ object FrmCadUsuario: TFrmCadUsuario
           end>
         Properties.ListOptions.ShowHeader = False
         Properties.ListSource = dsAcesso
-        TabOrder = 8
+        TabOrder = 9
         Width = 248
       end
       object cxLabel6: TcxLabel
@@ -290,5 +290,10 @@ object FrmCadUsuario: TFrmCadUsuario
     DataSet = qrAcesso
     Left = 252
     Top = 80
+  end
+  object ACBrEnterTab1: TACBrEnterTab
+    EnterAsTab = True
+    Left = 292
+    Top = 160
   end
 end

@@ -86,7 +86,7 @@ object FrmLocacao: TFrmLocacao
     Caption = 'Ve'#237'culo'
     TabOrder = 1
     Height = 129
-    Width = 417
+    Width = 378
     object ed_cod_veiculo: TcxButtonEdit
       Left = 16
       Top = 39
@@ -149,10 +149,10 @@ object FrmLocacao: TFrmLocacao
       Top = 89
       Properties.Alignment.Horz = taRightJustify
       Properties.Nullable = False
-      Properties.ReadOnly = True
+      Properties.ReadOnly = False
       Properties.OnChange = ed_vl_diariaPropertiesChange
       TabOrder = 8
-      Width = 89
+      Width = 70
     end
     object cxLabel10: TcxLabel
       Left = 283
@@ -177,6 +177,7 @@ object FrmLocacao: TFrmLocacao
       Top = 47
       Properties.CharCase = ecUpperCase
       TabOrder = 1
+      OnKeyPress = ed_obsKeyPress
       Height = 138
       Width = 377
     end
@@ -187,7 +188,7 @@ object FrmLocacao: TFrmLocacao
     Caption = 'Ve'#237'culo'
     TabOrder = 3
     Height = 202
-    Width = 417
+    Width = 378
     object ed_data_locacao: TcxDateEdit
       Left = 104
       Top = 32
@@ -207,11 +208,13 @@ object FrmLocacao: TFrmLocacao
       Properties.OnChange = ed_data_prev_retornoPropertiesChange
       TabOrder = 1
       OnExit = ed_data_prev_retornoExit
+      OnKeyPress = ed_data_prev_retornoKeyPress
       Width = 121
     end
     object ed_cod_locacao: TcxTextEdit
       Left = 16
       Top = 32
+      Enabled = False
       Properties.ReadOnly = True
       TabOrder = 2
       Width = 82
@@ -232,8 +235,8 @@ object FrmLocacao: TFrmLocacao
       Caption = 'Previs'#227'o de Retorno'
     end
     object ed_qtde_dias: TcxTextEdit
-      Left = 275
-      Top = 95
+      Left = 270
+      Top = 67
       Properties.ReadOnly = True
       Properties.OnChange = ed_qtde_diasPropertiesChange
       Properties.OnEditValueChanged = ed_qtde_diasPropertiesEditValueChanged
@@ -241,24 +244,69 @@ object FrmLocacao: TFrmLocacao
       Width = 82
     end
     object cxLabel17: TcxLabel
-      Left = 203
-      Top = 96
+      Left = 198
+      Top = 68
       Caption = 'Qtde de Dias'
     end
     object ed_vl_total: TcxCurrencyEdit
-      Left = 81
-      Top = 95
+      Left = 270
+      Top = 173
+      Enabled = False
       Properties.Alignment.Horz = taRightJustify
       Properties.Nullable = False
       Properties.ReadOnly = True
       Properties.UseDisplayFormatWhenEditing = True
       TabOrder = 8
-      Width = 116
+      Width = 82
     end
     object cxLabel16: TcxLabel
-      Left = 16
-      Top = 96
+      Left = 200
+      Top = 174
       Caption = 'Valor Total:'
+    end
+    object cxLabel9: TcxLabel
+      Left = 157
+      Top = 134
+      Caption = 'Desconto:'
+    end
+    object ed_vl_desconto: TcxCurrencyEdit
+      Left = 288
+      Top = 133
+      Properties.Alignment.Horz = taRightJustify
+      Properties.Nullable = False
+      Properties.ReadOnly = False
+      Properties.UseDisplayFormatWhenEditing = True
+      TabOrder = 11
+      OnKeyPress = ed_vl_descontoKeyPress
+      Width = 65
+    end
+    object ed_pc_desconto: TcxCurrencyEdit
+      Left = 216
+      Top = 133
+      Properties.Alignment.Horz = taRightJustify
+      Properties.AssignedValues.DisplayFormat = True
+      Properties.Nullable = False
+      Properties.ReadOnly = False
+      Properties.UseDisplayFormatWhenEditing = True
+      TabOrder = 12
+      OnKeyPress = ed_pc_descontoKeyPress
+      Width = 66
+    end
+    object ed_vl_sub_total: TcxCurrencyEdit
+      Left = 270
+      Top = 99
+      Enabled = False
+      Properties.Alignment.Horz = taRightJustify
+      Properties.Nullable = False
+      Properties.ReadOnly = True
+      Properties.UseDisplayFormatWhenEditing = True
+      TabOrder = 13
+      Width = 82
+    end
+    object cxLabel14: TcxLabel
+      Left = 200
+      Top = 100
+      Caption = 'Sub Total:'
     end
   end
   object btnNovo: TcxButton
