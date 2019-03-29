@@ -46,15 +46,20 @@ type
     ed_fone: TcxTextEdit;
     cxLabel15: TcxLabel;
     ed_obs: TcxMemo;
-    cxLabel16: TcxLabel;
-    ed_vl_total: TcxCurrencyEdit;
-    cxLabel17: TcxLabel;
-    ed_qtde_dias: TcxTextEdit;
     btnSalvar: TcxButton;
     btnCancelar: TcxButton;
     qrLocacao: TFDQuery;
     qrCliente: TFDQuery;
     qrVeiculo: TFDQuery;
+    ed_qtde_dias: TcxTextEdit;
+    cxLabel17: TcxLabel;
+    ed_vl_total: TcxCurrencyEdit;
+    cxLabel16: TcxLabel;
+    cxLabel9: TcxLabel;
+    ed_vl_desconto: TcxCurrencyEdit;
+    ed_pc_desconto: TcxCurrencyEdit;
+    ed_vl_sub_total: TcxCurrencyEdit;
+    cxLabel14: TcxLabel;
     procedure novaLocacao;
     procedure btnNovoClick(Sender: TObject);
     procedure ed_cod_veiculoPropertiesButtonClick(Sender: TObject;
@@ -71,10 +76,21 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure ed_data_prev_retornoPropertiesChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure ed_qtde_diasPropertiesEditValueChanged(Sender: TObject);
+    procedure ed_pc_descontoKeyPress(Sender: TObject; var Key: Char);
+    procedure ed_vl_descontoKeyPress(Sender: TObject; var Key: Char);
+    procedure ed_obsKeyPress(Sender: TObject; var Key: Char);
+    procedure ed_data_prev_retornoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
+    bDesconto,bAltera_Valor_Diaria    : Boolean;
+    cDescontoMax : Double;
+    procedure calculaDesconto(xTipo:Integer);
   public
     { Public declarations }
+  const
+    DESCONTO_VALOR = 1;
+    DESCONTO_PRC   = 2;
   end;
 
 var
@@ -98,7 +114,7 @@ end;
 
 procedure TFrmLocacao.btnSalvarClick(Sender: TObject);
 var
-iCliente,iVeiculo:Integer;
+iCliente,iVeiculo,iLocacao:Integer;
 begin
 
   iCliente := StrToIntDef(ed_cod_cliente.Text,0);
@@ -135,8 +151,14 @@ begin
     qrLocacao.FieldByName('vl_diaria').AsFloat        := ed_vl_diaria.Value;
     qrLocacao.FieldByName('vl_total').AsFloat         := ed_vl_total.Value;
     qrLocacao.FieldByName('obs').AsString             := ed_obs.Lines.Text;
+    qrLocacao.FieldByName('vl_desconto').AsFloat      := ed_vl_desconto.Value;
+    qrLocacao.FieldByName('pc_desconto').AsFloat      := ed_pc_desconto.Value;
+    qrLocacao.FieldByName('vl_subtotal').AsFloat      := ed_vl_sub_total.Value;
+
     qrLocacao.Post;
     qrLocacao.Last;
+
+    iLocacao := qrLocacao.FieldByName('id_locacao').AsInteger;
 
 
     DM.sp_altera_status_veiculo.Prepare;
@@ -151,7 +173,7 @@ begin
     if MessageDlg('Deseja imprimir o contrato dessa locação?',mtConfirmation,[mbYes,mbNo],0,mbYes) = mrYes then
     begin
       if not Assigned(FrmRelContrato) then
-       FrmRelContrato := TFrmRelContrato.Create(Self,IntToStr(qrLocacao.FieldByName('id_locacao').AsInteger));
+       FrmRelContrato := TFrmRelContrato.Create(Self,IntToStr(iLocacao));
       FrmRelContrato.ShowModal;
       FreeAndNil(FrmRelContrato);
     end;
@@ -159,8 +181,8 @@ begin
      if MessageDlg('Deseja imprimir o recibo dessa locação?',mtConfirmation,[mbYes,mbNo],0,mbYes) = mrYes then
     begin
       if not Assigned(FrmRelRecibo) then
-       FrmRelRecibo := TFrmRelRecibo.Create(Self,qrLocacao.FieldByName('id_locacao').AsInteger);
-      FrmRelRecibo.Show;
+       FrmRelRecibo := TFrmRelRecibo.Create(Self,iLocacao);
+      FrmRelRecibo.ShowModal;
       FreeAndNil(FrmRelRecibo);
     end;
 
@@ -173,6 +195,25 @@ begin
   btnCancelar.Enabled := False;
 
 
+end;
+
+procedure TFrmLocacao.calculaDesconto(xTipo: Integer);
+var
+vl_total : Double;
+begin
+  case xTipo of
+   DESCONTO_VALOR :
+    begin
+       ed_pc_desconto.Value := (ed_vl_desconto.Value / ed_vl_sub_total.Value) * 100;
+       ed_vl_total.Value    := ed_vl_sub_total.Value -  (ed_vl_sub_total.Value * (ed_pc_desconto.Value / 100));
+    end;
+
+   DESCONTO_PRC :
+   begin
+      ed_vl_desconto.Value     := ed_vl_sub_total.Value * (ed_pc_desconto.Value / 100);
+      ed_vl_total.Value        := ed_vl_sub_total.Value - ed_vl_desconto.Value;
+   end;
+  end;
 end;
 
 procedure TFrmLocacao.btnCancelarClick(Sender: TObject);
@@ -231,6 +272,9 @@ begin
      ed_placa.Text        := qrVeiculo.FieldByName('placa').AsString;
      ed_km_inicial.Text   := qrVeiculo.FieldByName('km_atual').AsString;
      ed_vl_diaria.Value   := qrVeiculo.FieldByName('vl_diaria').AsFloat;
+     if (ed_qtde_dias.Text <> '0') and (ed_vl_diaria.Value > 0) then
+        ed_vl_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+
 
      ed_obs.SetFocus;
    end
@@ -255,28 +299,94 @@ end;
 
 procedure TFrmLocacao.ed_data_prev_retornoExit(Sender: TObject);
 begin
- ed_qtde_dias.Text := IntToStr(DaysBetween(ed_data_locacao.Date,ed_data_prev_retorno.Date));
+ ed_qtde_dias.Text := IntToStr(DaysBetween(ed_data_locacao.Date,ed_data_prev_retorno.Date) + 1 );
+end;
+
+procedure TFrmLocacao.ed_data_prev_retornoKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+ if Key = Char(VK_RETURN) then
+ begin
+   if bDesconto then
+    ed_pc_desconto.SetFocus
+   else
+   btnSalvar.SetFocus;
+ end;
 end;
 
 procedure TFrmLocacao.ed_data_prev_retornoPropertiesChange(Sender: TObject);
 begin
- ed_qtde_dias.Text := IntToStr(DaysBetween(ed_data_locacao.Date,ed_data_prev_retorno.Date));
+ ed_qtde_dias.Text := IntToStr(DaysBetween(ed_data_locacao.Date,ed_data_prev_retorno.Date) + 1);
+end;
+
+procedure TFrmLocacao.ed_obsKeyPress(Sender: TObject; var Key: Char);
+begin
+ if Key = Char(VK_TAB) then
+ begin
+   if bDesconto then
+    ed_pc_desconto.SetFocus
+   else
+   btnSalvar.SetFocus;
+ end;
+end;
+
+procedure TFrmLocacao.ed_pc_descontoKeyPress(Sender: TObject; var Key: Char);
+begin
+ if Key = Char(VK_RETURN) then
+ begin
+  if ed_pc_desconto.Value > 0 then
+    calculaDesconto(DESCONTO_PRC);
+
+  ed_vl_desconto.SetFocus;
+ end;
 end;
 
 procedure TFrmLocacao.ed_qtde_diasPropertiesChange(Sender: TObject);
 begin
  if (ed_qtde_dias.Text <> '0') and (ed_vl_diaria.Value > 0) then
-  ed_vl_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+  ed_vl_sub_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+end;
+
+procedure TFrmLocacao.ed_qtde_diasPropertiesEditValueChanged(Sender: TObject);
+begin
+ if (ed_vl_diaria.Value > 0) then
+  ed_vl_sub_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+end;
+
+procedure TFrmLocacao.ed_vl_descontoKeyPress(Sender: TObject; var Key: Char);
+begin
+ if Key = Char(VK_RETURN) then
+ begin
+   if ed_vl_desconto.Value > 0 then
+    calculaDesconto(DESCONTO_VALOR);
+   btnSalvar.SetFocus;
+ end;
 end;
 
 procedure TFrmLocacao.ed_vl_diariaPropertiesChange(Sender: TObject);
 begin
   if (ed_vl_diaria.Value > 0) then
-  ed_vl_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+  ed_vl_sub_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
 end;
 
 procedure TFrmLocacao.FormShow(Sender: TObject);
 begin
+ with DM do
+ begin
+  bDesconto := qrUsuarioAcessodar_desconto_locacao.AsString = 'X';
+  if bDesconto then
+   cDescontoMax := qrUsuarioAcessoprc_desconto_locacao.AsFloat
+  else
+   cDescontoMax := 0;
+
+  bAltera_Valor_Diaria := qrUsuarioAcessoaltera_vl_diaria.AsString = 'X';
+
+
+  ed_vl_diaria.Properties.ReadOnly := bAltera_Valor_Diaria;
+  ed_vl_desconto.Enabled := bDesconto;
+  ed_pc_desconto.Enabled := bDesconto;
+ end;
+
  btnNovoClick(Self);
 end;
 
@@ -304,7 +414,7 @@ begin
 
  ed_cod_locacao.Text       := '-1';
  ed_data_locacao.Date      := Now;
- ed_data_prev_retorno.Date := Now;
+ ed_data_prev_retorno.Date := Now + 1;
 
  ed_data_prev_retorno.SetFocus;
 end;

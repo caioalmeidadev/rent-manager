@@ -21,7 +21,7 @@
     Height = 432
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet1
+    Properties.ActivePage = cxTabSheet2
     Properties.CustomButtons.Buttons = <>
     ClientRectBottom = 428
     ClientRectLeft = 4
@@ -222,6 +222,7 @@
         Top = 39
         DataBinding.DataField = 'data_retorno'
         DataBinding.DataSource = dsLocacoes
+        Enabled = False
         Properties.SaveTime = False
         Properties.ShowTime = False
         Properties.OnChange = cxDBDateEdit2PropertiesChange
@@ -234,7 +235,7 @@
         Caption = 'Data Retorno'
       end
       object cxDBCurrencyEdit2: TcxDBCurrencyEdit
-        Left = 628
+        Left = 804
         Top = 39
         DataBinding.DataField = 'vl_total'
         DataBinding.DataSource = dsLocacoes
@@ -315,7 +316,7 @@
         Caption = 'Valor Di'#225'ria'
       end
       object cxLabel14: TcxLabel
-        Left = 628
+        Left = 804
         Top = 16
         Caption = 'Valor a Pagar'
       end
@@ -329,7 +330,7 @@
         Width = 66
       end
       object cxButton1: TcxButton
-        Left = 15
+        Left = 446
         Top = 352
         Width = 89
         Height = 37
@@ -337,6 +338,7 @@
         OptionsImage.ImageIndex = 3
         OptionsImage.Images = FrmPrincipal.imgs16x16
         TabOrder = 26
+        Visible = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -346,7 +348,7 @@
         OnClick = cxButton1Click
       end
       object cxButton2: TcxButton
-        Left = 110
+        Left = 16
         Top = 352
         Width = 89
         Height = 37
@@ -363,11 +365,11 @@
         OnClick = cxButton2Click
       end
       object cxButton3: TcxButton
-        Left = 205
+        Left = 111
         Top = 352
         Width = 150
         Height = 37
-        Caption = 'Finalizar Loca'#231#227'o'
+        Caption = 'Faturar'
         OptionsImage.ImageIndex = 9
         OptionsImage.Images = FrmPrincipal.imgs16x16
         TabOrder = 28
@@ -378,6 +380,17 @@
         Font.Style = [fsBold]
         ParentFont = False
         OnClick = cxButton3Click
+      end
+      object ed_km_retorno: TcxTextEdit
+        Left = 397
+        Top = 167
+        TabOrder = 29
+        Width = 121
+      end
+      object cxLabel2: TcxLabel
+        Left = 397
+        Top = 144
+        Caption = 'KM de Retorno'
       end
     end
   end
@@ -414,24 +427,38 @@
     SQL.Strings = (
       
         ' SELECT '#10'        `l`.`id_locacao` AS `id_locacao`,'#10'        `l`.`' +
-        'data_abertura` AS `data_abertura`,'#10'        `l`.`data_retorno` AS' +
-        ' `data_retorno`,'#10'        `l`.`cliente_fone` AS `cliente_fone`,'#10' ' +
-        '       `l`.`vl_diaria` AS `vl_diaria`,'#10'        `l`.`vl_total` AS' +
-        ' `vl_total`,'#10'        `l`.`km_abertura` AS `km_abertura`,'#10'       ' +
-        ' `l`.`km_fechamento` AS `km_fechamento`,'#10'        `l`.`obs` AS `o' +
-        'bs`,'#10'        `l`.`fl_situacao` AS `fl_situacao`,'#10'        (CASE'#10' ' +
-        '           WHEN (`l`.`fl_situacao` = 0) THEN '#39'ABERTA'#39#10'          ' +
-        '  WHEN (`l`.`fl_situacao` = 1) THEN '#39'CANCELADA'#39#10'            WHEN' +
-        ' (`l`.`fl_situacao` = 2) THEN '#39'FECHADA'#39#10'        END) AS `fl_situ' +
-        'acao_nome`,'#10'        `v`.`placa` AS `placa`,'#10'        `v`.`descric' +
-        'ao` AS `veiculo_descricao`,'#10'        `c`.`nome_razao` AS `cliente' +
-        '_nome`,'#10'        `l`.`veiculo_id` AS `veiculo_id`,'#10'        `l`.`c' +
-        'liente_id` AS `cliente_id`,'#10'        (TO_DAYS(`l`.`data_retorno`)' +
-        ' - TO_DAYS(`l`.`data_abertura`)) AS `qtde_dias`'#10'    FROM'#10'       ' +
-        ' ((`tb_locacao` `l`'#10'        LEFT JOIN `tb_clientes` `c` ON ((`l`'
+        'data_abertura` AS `data_abertura`,'#10'  '
+      
+        '      `l`.`data_retorno` AS `data_retorno`,'#10'        `l`.`cliente' +
+        '_fone` AS `cliente_fone`,'#10'    '
+      
+        '    `l`.`vl_diaria` AS `vl_diaria`,'#10'        `l`.`vl_total` AS `v' +
+        'l_total`,'#10'        `l`.`km_abertura` AS `km_abertura`,'#10'  '
+      
+        '      `l`.`km_fechamento` AS `km_fechamento`,'#10'        `l`.`obs` ' +
+        'AS `obs`,'#10'        `l`.`fl_situacao` AS `fl_situacao`,'#10'   '
+      
+        '     (CASE'#10'            WHEN (`l`.`fl_situacao` = 0) THEN '#39'ABERTA' +
+        #39#10'            '
+      'WHEN (`l`.`fl_situacao` = 1) THEN '#39'CANCELADA'#39#10'           '
+      
+        ' WHEN (`l`.`fl_situacao` = 2) THEN '#39'FECHADA'#39#10'        END) AS `fl' +
+        '_situacao_nome`,'#10
+      
+        '        `v`.`placa` AS `placa`,'#10'        `v`.`descricao` AS `veic' +
+        'ulo_descricao`,'#10
+      
+        '        `c`.`nome_razao` AS `cliente_nome`,'#10'        `l`.`veiculo' +
+        '_id` AS `veiculo_id`,'#10'    '
+      
+        '    `l`.`cliente_id` AS `cliente_id`,'#10'        ((TO_DAYS(`l`.`dat' +
+        'a_retorno`) - TO_DAYS(`l`.`data_abertura`)) + 1) AS `qtde_dias`'#10 +
+        '    FROM'#10'        ((`tb_locacao` `l`'#10'        LEFT JOIN `tb_client' +
+        'es` `c` ON ((`l`'
       
         '.`cliente_id` = `c`.`id_cliente`)))'#10'        LEFT JOIN `tb_veicul' +
-        'os` `v` ON ((`l`.`veiculo_id` = `v`.`id_veiculo`)))')
+        'os` `v` ON ((`l`.`veiculo_id` = `v`.`id_veiculo`)))'
+      'order by `l`.`id_locacao` asc')
     Left = 460
     Top = 19
     object qrLocacoesid_locacao: TFDAutoIncField
@@ -528,7 +555,7 @@
       FieldName = 'cliente_id'
       Origin = 'cliente_id'
     end
-    object qrLocacoesqtde_dias: TLargeintField
+    object qrLocacoesqtde_dias: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'qtde_dias'
       Origin = 'qtde_dias'

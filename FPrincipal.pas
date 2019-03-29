@@ -54,9 +54,6 @@ type
     btn_config: TdxBarLargeButton;
     rel_contrato: TAction;
     rel_recibo: TAction;
-    btn_rel_contrato: TdxBarButton;
-    btn_rel_recibo: TdxBarButton;
-    btn_rel_clientes: TdxBarButton;
     rel_clientes: TAction;
     dxBarManager1Bar6: TdxBar;
     cad_usuarios: TAction;
@@ -65,6 +62,12 @@ type
     btn_cad_usuario: TdxBarLargeButton;
     btn_cad_acesso: TdxBarLargeButton;
     btn_altera_senha: TdxBarLargeButton;
+    dxRibbon1Tab3: TdxRibbonTab;
+    btn_rel_contrato: TdxBarLargeButton;
+    btn_rel_recibo: TdxBarLargeButton;
+    btn_rel_locacoes: TdxBarLargeButton;
+    btn_rel_clientes: TdxBarLargeButton;
+    rel_locacoes: TAction;
     procedure FormCreate(Sender: TObject);
     procedure cad_veiculoExecute(Sender: TObject);
     procedure cad_estadosExecute(Sender: TObject);
@@ -171,18 +174,23 @@ begin
 
      btn_cad_clientes.Enabled      := qrUsuarioAcesso.FieldByName('cad_cliente').AsString = 'X';
      btn_cad_veiculos.Enabled      := qrUsuarioAcesso.FieldByName('cad_veiculo').AsString = 'X';
-     btn_locar.Enabled             := qrUsuarioAcesso.FieldByName('nova_locacao').AsString = 'X';
-     btn_devolver.Enabled          := qrUsuarioAcesso.FieldByName('cancela_locacao').AsString = 'X';
-     btn_lista_veiculos.Enabled    := True; //qrUsuarioAcesso.FieldByName('').AsString = 'X';
-     btn_cad_estados.Enabled       := qrUsuarioAcesso.FieldByName('cad_estado').AsString = 'X';
-     btn_cad_municipios.Enabled    := qrUsuarioAcesso.FieldByName('cad_municipio').AsString = 'X';
-     btn_cad_bairros.Enabled       := qrUsuarioAcesso.FieldByName('cad_bairro').AsString = 'X';
-     btn_rel_contrato.Enabled      := qrUsuarioAcesso.FieldByName('rel_contrato').AsString = 'X';
-     btn_rel_recibo.Enabled        := qrUsuarioAcesso.FieldByName('rel_recibo').AsString = 'X';
-     btn_rel_clientes.Enabled      := qrUsuarioAcesso.FieldByName('rel_clientes').AsString = 'X';
      btn_cad_usuario.Enabled       := qrUsuarioAcesso.FieldByName('cad_usuario').AsString = 'X';
      btn_cad_empresa.Enabled       := qrUsuarioAcesso.FieldByName('cad_empresa').AsString = 'X';
      btn_cad_acesso.Enabled        := qrUsuarioAcesso.FieldByName('cad_acesso_usuario').AsString = 'X';
+     btn_cad_estados.Enabled       := qrUsuarioAcesso.FieldByName('cad_estado').AsString = 'X';
+     btn_cad_municipios.Enabled    := qrUsuarioAcesso.FieldByName('cad_municipio').AsString = 'X';
+     btn_cad_bairros.Enabled       := qrUsuarioAcesso.FieldByName('cad_bairro').AsString = 'X';
+
+     btn_locar.Enabled             := qrUsuarioAcesso.FieldByName('nova_locacao').AsString = 'X';
+     btn_devolver.Enabled          := qrUsuarioAcesso.FieldByName('cancela_locacao').AsString = 'X';
+     btn_lista_veiculos.Enabled    := True; //qrUsuarioAcesso.FieldByName('').AsString = 'X';
+
+
+     btn_rel_contrato.Enabled      := qrUsuarioAcesso.FieldByName('rel_contrato').AsString = 'X';
+     btn_rel_recibo.Enabled        := qrUsuarioAcesso.FieldByName('rel_recibo').AsString = 'X';
+     btn_rel_clientes.Enabled      := qrUsuarioAcesso.FieldByName('rel_clientes').AsString = 'X';
+     btn_rel_locacoes.Enabled      := qrUsuarioAcesso.FieldByName('rel_locacoes').AsString = 'X';
+
      btn_config.Enabled            := qrUsuarioAcesso.FieldByName('config').AsString = 'X';
      btn_altera_senha.Enabled      := True;
     end;
@@ -205,6 +213,10 @@ begin
 
   if not Assigned(DM) then
     DM := TDM.Create(Self);
+
+  DM.atualizaBanco;
+  DM.checkEmpresa;
+  DM.load_parametros(DM.qrEmpresaid_empresa.AsInteger);
 
   USUARIO_LOGADO := False;
 

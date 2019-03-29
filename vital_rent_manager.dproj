@@ -81,6 +81,7 @@
         <UWP_DelphiLogo150>Imagens\icone-png.png</UWP_DelphiLogo150>
         <Icon_MainIcon>vital_rent_manager_Icon.ico</Icon_MainIcon>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <DCC_DcuOutput>C:\VitalCompiler</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
