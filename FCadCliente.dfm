@@ -172,6 +172,8 @@ object FrmCadCliente: TFrmCadCliente
           OptionsData.DeletingConfirmation = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
+          OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
+          OptionsView.GroupByBox = False
           object cxGrid1DBTableView1Column1: TcxGridDBColumn
             Caption = 'C'#243'digo'
             DataBinding.FieldName = 'id_cliente'
@@ -231,6 +233,10 @@ object FrmCadCliente: TFrmCadCliente
     object cxTabSheet2: TcxTabSheet
       Caption = 'Dados'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cxDBTextEdit1: TcxDBTextEdit
         Left = 24
         Top = 70

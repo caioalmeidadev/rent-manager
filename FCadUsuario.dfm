@@ -46,6 +46,7 @@ object FrmCadUsuario: TFrmCadUsuario
           OptionsData.DeletingConfirmation = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
+          OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
           OptionsView.GroupByBox = False
           object cxGridDBColumn1: TcxGridDBColumn
             Caption = 'C'#243'digo'
@@ -110,7 +111,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'id_usuario'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 5
+        TabOrder = 2
         Width = 46
       end
       object cxDBTextEdit2: TcxDBTextEdit
@@ -119,7 +120,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'nome_usuario'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 6
+        TabOrder = 4
         Width = 178
       end
       object cxDBTextEdit3: TcxDBTextEdit
@@ -129,7 +130,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
         Properties.EchoMode = eemPassword
-        TabOrder = 8
+        TabOrder = 7
         Width = 121
       end
       object cxDBTextEdit4: TcxDBTextEdit
@@ -138,7 +139,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'login'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 7
+        TabOrder = 6
         Width = 121
       end
       object cxLabel1: TcxLabel

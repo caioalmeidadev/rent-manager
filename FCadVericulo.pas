@@ -81,7 +81,7 @@ type
     qrVeiculosfl_status_veiculo: TStringField;
     cxLabel18: TcxLabel;
     btnNovo: TcxButton;
-    cxButton2: TcxButton;
+    btnSalvar: TcxButton;
     btnCancelar: TcxButton;
     btnEditar: TcxButton;
     tvTipo: TcxGridDBColumn;
@@ -90,10 +90,13 @@ type
     cxDBCurrencyEdit2: TcxDBCurrencyEdit;
     qrVeiculosvl_diaria: TBCDField;
     qrVeiculosmodelo_veiculo: TStringField;
+    btnFechar: TcxButton;
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
+    procedure dsVeiculosStateChange(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -117,6 +120,11 @@ begin
  cxPageControl1.ActivePageIndex := 1;
 end;
 
+procedure TFrmCadVeiculo.btnFecharClick(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TFrmCadVeiculo.btnNovoClick(Sender: TObject);
 begin
  qrVeiculos.Append;
@@ -134,6 +142,15 @@ end;
 
 
 
+procedure TFrmCadVeiculo.dsVeiculosStateChange(Sender: TObject);
+begin
+  btnNovo.Enabled := (Sender as TDataSource).State in [dsBrowse];
+  btnSalvar.Enabled := (Sender as TDataSource).State in [dsEdit, dsInsert];
+  btnCancelar.Enabled := btnSalvar.Enabled;
+  btnEditar.Enabled := (btnNovo.Enabled) and not ((Sender as TDataSource).DataSet.IsEmpty);
+  btnFechar.Enabled := btnNovo.Enabled;
+end;
+
 procedure TFrmCadVeiculo.FormCreate(Sender: TObject);
 begin
  qrVeiculos.Close;
@@ -145,7 +162,7 @@ end;
 procedure TFrmCadVeiculo.habilitaBotoes(xEstado: Boolean);
 begin
   if dsVeiculos.State = dsInsert then
-   //todo
+
 
 end;
 
