@@ -37,6 +37,8 @@ object FrmCadEstado: TFrmCadEstado
         OptionsData.DeletingConfirmation = False
         OptionsData.Editing = False
         OptionsData.Inserting = False
+        OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
+        OptionsView.GroupByBox = False
         object cxGrid1DBTableView1Column1: TcxGridDBColumn
           Caption = 'C'#243'digo'
           DataBinding.FieldName = 'id_estado'
@@ -158,6 +160,7 @@ object FrmCadEstado: TFrmCadEstado
       FieldName = 'id_estado'
       Origin = 'id_estado'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrEstadonome: TStringField
       AutoGenerateValue = arDefault

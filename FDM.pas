@@ -97,15 +97,11 @@ uses App.Funcoes, FPrincipal;
 procedure TDM.atualizaBanco;
 begin
 
- if not checkColuna('tb_usuario_acesso','rel_locacoes') then
+ if checkColuna('tb_usuario_acesso','altera_vl_diaria') then
  begin
     try
      Conn.ExecSQL('ALTER TABLE `sisloc`.`tb_usuario_acesso`'+
-                  ' ADD COLUMN `rel_veiculos` CHAR(1) NULL DEFAULT ''N'' ,' +
-                  ' ADD COLUMN `rel_locacoes` CHAR(1) NULL DEFAULT ''N'' ,' +
-                  ' ADD COLUMN `altera_vl_desconto` CHAR(1) NULL DEFAULT ''N'', ' +
-                  ' ADD COLUMN `dar_desconto_locacao` CHAR(1) NULL DEFAULT ''N'',' +
-                  ' ADD COLUMN `prc_desconto_locacao` DECIMAL(10,2) NULL DEFAULT 0');
+                  ' ADD COLUMN `altera_vl_diaria` CHAR(1) NULL DEFAULT ''N''');
     except
      raise Exception.Create('Ocorreu um erro ao criar as colunas da versão 1.5');
     end;

@@ -61,6 +61,7 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
       OptionsData.Editing = False
       OptionsData.Inserting = False
       OptionsSelection.CellSelect = False
+      OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
       OptionsView.GroupByBox = False
       object cxGrid1DBTableView1Column1: TcxGridDBColumn
         Caption = 'Placa'

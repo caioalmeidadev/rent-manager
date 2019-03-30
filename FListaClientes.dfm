@@ -22,8 +22,6 @@ object FrmListaClientes: TFrmListaClientes
     Height = 310
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 35
-    ExplicitWidth = 646
     object cxGrid1DBTableView1: TcxGridDBTableView
       OnDblClick = cxGrid1DBTableView1DblClick
       OnKeyPress = cxGrid1DBTableView1KeyPress
@@ -38,6 +36,7 @@ object FrmListaClientes: TFrmListaClientes
       OptionsData.Editing = False
       OptionsData.Inserting = False
       OptionsSelection.CellSelect = False
+      OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
       OptionsView.GroupByBox = False
       object cxGrid1DBTableView1Column1: TcxGridDBColumn
         Caption = 'C'#243'digo'
@@ -77,7 +76,6 @@ object FrmListaClientes: TFrmListaClientes
     Style.IsFontAssigned = True
     Properties.Alignment.Horz = taCenter
     Properties.Alignment.Vert = taVCenter
-    ExplicitWidth = 636
     AnchorX = 409
     AnchorY = 15
   end
@@ -91,6 +89,7 @@ object FrmListaClientes: TFrmListaClientes
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrClientesnome_razao: TStringField
       AutoGenerateValue = arDefault
