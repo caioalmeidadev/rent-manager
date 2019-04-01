@@ -20,7 +20,7 @@ object FrmCadUsuario: TFrmCadUsuario
     Width = 505
     Height = 297
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet1
+    Properties.ActivePage = cxTabSheet2
     Properties.CustomButtons.Buttons = <>
     ClientRectBottom = 293
     ClientRectLeft = 4
@@ -111,7 +111,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'id_usuario'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 2
+        TabOrder = 0
         Width = 46
       end
       object cxDBTextEdit2: TcxDBTextEdit
@@ -120,7 +120,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'nome_usuario'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 4
+        TabOrder = 2
         Width = 178
       end
       object cxDBTextEdit3: TcxDBTextEdit
@@ -139,7 +139,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'login'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 6
+        TabOrder = 5
         Width = 121
       end
       object cxLabel1: TcxLabel
@@ -268,6 +268,7 @@ object FrmCadUsuario: TFrmCadUsuario
   end
   object dsUsuarios: TDataSource
     DataSet = qrUsuarios
+    OnStateChange = dsUsuariosStateChange
     Left = 464
     Top = 88
   end

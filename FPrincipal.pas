@@ -89,6 +89,7 @@ type
     procedure cad_empresaExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure sys_configExecute(Sender: TObject);
+    procedure rel_locacoesExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -107,7 +108,7 @@ implementation
 uses FCadVericulo,FDM, App.Constantes, App.Funcoes, FCadCliente, FCadEstado,
   FLocacao,FCadMunicipio,FCadBairro, FVeiculosDisponivel, FRetorno, FDevolucao,
   FRelClientes, FRelContrato, FRelRecibo, Flogin, FCadEmpresa, FAlteraSenha,
-  FCadUsuario, FAcessoUsuarios, FParametros;
+  FCadUsuario, FAcessoUsuarios, FParametros, FRelLocacoes;
 
 
 procedure TFrmPrincipal.btn_cad_empresaClick(Sender: TObject);
@@ -266,6 +267,11 @@ begin
   FrmRelContrato := TFrmRelContrato.Create(Self);
  FrmRelContrato.ShowModal;
  FreeAndNil(FrmRelContrato);
+end;
+
+procedure TFrmPrincipal.rel_locacoesExecute(Sender: TObject);
+begin
+  FTDI.MostrarFormulario(TFrmRelLocacoes,False);
 end;
 
 procedure TFrmPrincipal.rel_reciboExecute(Sender: TObject);

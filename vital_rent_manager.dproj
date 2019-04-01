@@ -193,6 +193,10 @@
             <Form>FrmParametros</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="FRelLocacoes.pas">
+            <Form>FrmRelLocacoes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

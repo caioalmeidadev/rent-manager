@@ -61,6 +61,7 @@ type
     procedure cxButton1Click(Sender: TObject);
     procedure cxButton2Click(Sender: TObject);
     procedure qrUsuariosAfterScroll(DataSet: TDataSet);
+    procedure dsUsuariosStateChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -109,6 +110,15 @@ begin
 
  qrUsuarios.Refresh;
  cxPageControl1.ActivePageIndex := 0;
+end;
+
+procedure TFrmCadUsuario.dsUsuariosStateChange(Sender: TObject);
+begin
+  cxButton1.Enabled := (Sender as TDataSource).State in [dsBrowse];
+  cxButton4.Enabled := (Sender as TDataSource).State in [dsEdit, dsInsert];
+  cxButton5.Enabled := cxButton4.Enabled;
+  cxButton2.Enabled := (cxButton1.Enabled) and not ((Sender as TDataSource).DataSet.IsEmpty);
+
 end;
 
 procedure TFrmCadUsuario.FormShow(Sender: TObject);

@@ -32,7 +32,8 @@ uses
   FAcessoUsuarios in 'FAcessoUsuarios.pas' {FrmAcessoUsuarios},
   FParametros in 'FParametros.pas' {FrmParametros},
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  FRelLocacoes in 'FRelLocacoes.pas' {FrmRelLocacoes};
 
 {$R *.res}
 
@@ -41,5 +42,6 @@ begin
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Windows10');
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
+  Application.CreateForm(TFrmRelLocacoes, FrmRelLocacoes);
   Application.Run;
 end.
