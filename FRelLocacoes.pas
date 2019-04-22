@@ -11,7 +11,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, frxClass,
   frxExportBaseDialog, frxExportPDF, frxDBSet, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.StdCtrls, cxButtons, cxCalendar;
+  FireDAC.Comp.Client, Vcl.StdCtrls, cxButtons, cxCalendar,DateUtils;
 
 type
   TFrmRelLocacoes = class(TForm)
@@ -50,8 +50,10 @@ type
     qrLocacoesvl_total: TBCDField;
     qrLocacoesobs: TMemoField;
     qrLocacoespc_desconto: TBCDField;
+    qrLocacoesqtde_dias: TIntegerField;
     procedure cxButton1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure qrLocacoesCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -100,6 +102,11 @@ begin
  ed_dt_inicial.Date := dxGetStartDateOfMonth(Now);
  ed_dt_final.Date   := dxGetEndDateOfMonth(Now,true);
  cb_tp_veiculo.SetFocus;
+end;
+
+procedure TFrmRelLocacoes.qrLocacoesCalcFields(DataSet: TDataSet);
+begin
+qrLocacoesqtde_dias.AsInteger := DaysBetween(qrLocacoesdata_abertura.AsDateTime,qrLocacoesdata_retorno.AsDateTime);
 end;
 
 end.

@@ -300,6 +300,8 @@ object FrmLocacao: TFrmLocacao
       Properties.Nullable = False
       Properties.ReadOnly = True
       Properties.UseDisplayFormatWhenEditing = True
+      Properties.OnChange = ed_vl_sub_totalPropertiesChange
+      Properties.OnEditValueChanged = ed_vl_sub_totalPropertiesEditValueChanged
       TabOrder = 13
       Width = 82
     end
@@ -334,6 +336,7 @@ object FrmLocacao: TFrmLocacao
     OptionsImage.Images = FrmPrincipal.imgs32x32
     OptionsImage.Layout = blGlyphTop
     TabOrder = 5
+    OnEnter = btnSalvarEnter
     WordWrap = True
     OnClick = btnSalvarClick
   end

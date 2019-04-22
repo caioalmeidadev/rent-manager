@@ -233,10 +233,6 @@ object FrmCadCliente: TFrmCadCliente
     object cxTabSheet2: TcxTabSheet
       Caption = 'Dados'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object cxDBTextEdit1: TcxDBTextEdit
         Left = 24
         Top = 70
@@ -271,6 +267,7 @@ object FrmCadCliente: TFrmCadCliente
         DataBinding.DataSource = dsCliente
         Properties.CharCase = ecUpperCase
         TabOrder = 4
+        OnKeyPress = cxDBTextEdit3KeyPress
         Width = 137
       end
       object cxLabel4: TcxLabel
@@ -361,6 +358,7 @@ object FrmCadCliente: TFrmCadCliente
             DataBinding.DataSource = dsCliente
             Properties.CharCase = ecUpperCase
             TabOrder = 9
+            OnKeyPress = cxDBTextEdit13KeyPress
             Width = 81
           end
           object cxDBTextEdit19: TcxDBTextEdit
@@ -370,6 +368,7 @@ object FrmCadCliente: TFrmCadCliente
             DataBinding.DataSource = dsCliente
             Properties.CharCase = ecUpperCase
             TabOrder = 10
+            OnKeyPress = cxDBTextEdit19KeyPress
             Width = 81
           end
           object cxLabel20: TcxLabel
@@ -384,6 +383,7 @@ object FrmCadCliente: TFrmCadCliente
             DataBinding.DataSource = dsCliente
             Properties.CharCase = ecUpperCase
             TabOrder = 12
+            OnKeyPress = cxDBTextEdit20KeyPress
             Width = 115
           end
           object cxLabel21: TcxLabel
@@ -398,6 +398,7 @@ object FrmCadCliente: TFrmCadCliente
             DataBinding.DataSource = dsCliente
             Properties.CharCase = ecUpperCase
             TabOrder = 14
+            OnKeyPress = cxDBTextEdit21KeyPress
             Width = 115
           end
           object cxLabel22: TcxLabel

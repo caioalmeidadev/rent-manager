@@ -119,7 +119,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
     OnClick = cxButton1Click
   end
   object qrLocacoes: TFDQuery
-    Active = True
+    OnCalcFields = qrLocacoesCalcFields
     Connection = DM.Conn
     SQL.Strings = (
       
@@ -249,6 +249,11 @@ object FrmRelLocacoes: TFrmRelLocacoes
       Precision = 12
       Size = 2
     end
+    object qrLocacoesqtde_dias: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'qtde_dias'
+      Calculated = True
+    end
   end
   object dsLocacoes: TDataSource
     DataSet = qrLocacoes
@@ -292,8 +297,9 @@ object FrmRelLocacoes: TFrmRelLocacoes
       Width = 1000.000000000000000000
     end
     object Page1: TfrxReportPage
-      PaperWidth = 210.000000000000000000
-      PaperHeight = 297.000000000000000000
+      Orientation = poLandscape
+      PaperWidth = 297.000000000000000000
+      PaperHeight = 210.000000000000000000
       PaperSize = 9
       LeftMargin = 10.000000000000000000
       RightMargin = 10.000000000000000000
@@ -306,12 +312,12 @@ object FrmRelLocacoes: TFrmRelLocacoes
         Frame.Typ = []
         Height = 119.271137140000000000
         Top = 18.897650000000000000
-        Width = 718.110700000000000000
+        Width = 1046.929810000000000000
         object Shape1: TfrxShapeView
           Align = baWidth
           AllowVectorExport = True
           Top = 86.929190000000000000
-          Width = 718.110700000000000000
+          Width = 1046.929810000000000000
           Height = 30.236240000000000000
           Fill.BackColor = clScrollBar
           Fill.ForeColor = clGray
@@ -320,7 +326,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         object Memo1: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Width = 718.110700000000000000
+          Width = 1046.929810000000000000
           Height = 36.175501430000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -369,7 +375,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         end
         object Memo4: TfrxMemoView
           AllowVectorExport = True
-          Left = 219.212740000000000000
+          Left = 373.212740000000000000
           Top = 93.625497140000000000
           Width = 120.944960000000000000
           Height = 18.897650000000000000
@@ -386,7 +392,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         end
         object Memo5: TfrxMemoView
           AllowVectorExport = True
-          Left = 340.157700000000000000
+          Left = 494.157700000000000000
           Top = 93.625497140000000000
           Width = 102.047310000000000000
           Height = 18.897650000000000000
@@ -403,7 +409,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         end
         object Memo6: TfrxMemoView
           AllowVectorExport = True
-          Left = 442.205010000000000000
+          Left = 596.205010000000000000
           Top = 93.625497140000000000
           Width = 68.031540000000000000
           Height = 18.897650000000000000
@@ -420,8 +426,8 @@ object FrmRelLocacoes: TFrmRelLocacoes
         end
         object Memo7: TfrxMemoView
           AllowVectorExport = True
-          Left = 618.401980000000000000
-          Top = 93.625497140000000000
+          Left = 943.441560000000000000
+          Top = 97.405027140000000000
           Width = 94.488250000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -439,11 +445,28 @@ object FrmRelLocacoes: TFrmRelLocacoes
           Align = baWidth
           AllowVectorExport = True
           Top = 119.271137140000000000
-          Width = 718.110700000000000000
+          Width = 1046.929810000000000000
           Color = clBlack
           Frame.Typ = []
           Frame.Width = 2.000000000000000000
           Diagonal = True
+        end
+        object Memo17: TfrxMemoView
+          AllowVectorExport = True
+          Left = 680.315400000000000000
+          Top = 93.488250000000000000
+          Width = 68.031540000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Vl Di'#225'ria')
+          ParentFont = False
         end
       end
       object MasterData1: TfrxMasterData
@@ -451,7 +474,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         Frame.Typ = []
         Height = 22.897650000000000000
         Top = 200.315090000000000000
-        Width = 718.110700000000000000
+        Width = 1046.929810000000000000
         DataSet = frxDBLocacoes
         DataSetName = 'frxDBLocacoes'
         RowCount = 0
@@ -480,7 +503,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
           AllowVectorExport = True
           Left = 64.252010000000000000
           Top = 0.220470000000000000
-          Width = 154.960730000000000000
+          Width = 294.803340000000000000
           Height = 18.897650000000000000
           DataField = 'nome_razao'
           DataSet = frxDBLocacoes
@@ -491,7 +514,6 @@ object FrmRelLocacoes: TFrmRelLocacoes
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = []
-          HAlign = haCenter
           Memo.UTF8W = (
             '[frxDBLocacoes."nome_razao"]')
           ParentFont = False
@@ -499,7 +521,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         object Memo10: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 219.212740000000000000
+          Left = 373.212740000000000000
           Top = 0.220470000000000000
           Width = 120.944960000000000000
           Height = 18.897650000000000000
@@ -520,7 +542,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         object Memo11: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 340.157700000000000000
+          Left = 494.157700000000000000
           Top = 0.220470000000000000
           Width = 94.488250000000000000
           Height = 18.897650000000000000
@@ -541,7 +563,8 @@ object FrmRelLocacoes: TFrmRelLocacoes
         object Memo13: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 610.842920000000000000
+          Left = 935.882500000000000000
+          Top = 3.779530000000000000
           Width = 102.047310000000000000
           Height = 18.897650000000000000
           DataField = 'vl_total'
@@ -564,7 +587,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         object Memo12: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 434.645950000000000000
+          Left = 588.645950000000000000
           Top = 0.220470000000000000
           Width = 75.590600000000000000
           Height = 18.897650000000000000
@@ -588,12 +611,12 @@ object FrmRelLocacoes: TFrmRelLocacoes
       object Footer1: TfrxFooter
         FillType = ftBrush
         Frame.Typ = []
-        Height = 64.252010000000000000
+        Height = 37.795300000000000000
         Top = 245.669450000000000000
-        Width = 718.110700000000000000
+        Width = 1046.929810000000000000
         object Memo14: TfrxMemoView
           AllowVectorExport = True
-          Left = 438.425480000000000000
+          Left = 763.465060000000000000
           Top = 7.559060000000000000
           Width = 132.283550000000000000
           Height = 18.897650000000000000
@@ -610,7 +633,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         end
         object Memo15: TfrxMemoView
           AllowVectorExport = True
-          Left = 584.386210000000000000
+          Left = 909.425790000000000000
           Top = 7.559060000000000000
           Width = 128.504020000000000000
           Height = 18.897650000000000000
@@ -629,7 +652,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
         end
         object Line3: TfrxLineView
           AllowVectorExport = True
-          Left = 557.811380000000000000
+          Left = 882.850960000000000000
           Top = 3.779530000000000000
           Width = 158.740260000000000000
           Color = clBlack
@@ -642,13 +665,13 @@ object FrmRelLocacoes: TFrmRelLocacoes
         FillType = ftBrush
         Frame.Typ = []
         Height = 26.456710000000000000
-        Top = 370.393940000000000000
-        Width = 718.110700000000000000
+        Top = 343.937230000000000000
+        Width = 1046.929810000000000000
         object Line1: TfrxLineView
           Align = baWidth
           AllowVectorExport = True
           Top = 3.779530000000000000
-          Width = 718.110700000000000000
+          Width = 1046.929810000000000000
           Color = clBlack
           Frame.Typ = []
           Frame.Width = 2.000000000000000000
@@ -658,7 +681,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
           Align = baWidth
           AllowVectorExport = True
           Top = 7.559060000000000000
-          Width = 718.110700000000000000
+          Width = 1046.929810000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack

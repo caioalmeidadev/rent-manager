@@ -81,6 +81,9 @@ type
     procedure ed_vl_descontoKeyPress(Sender: TObject; var Key: Char);
     procedure ed_obsKeyPress(Sender: TObject; var Key: Char);
     procedure ed_data_prev_retornoKeyPress(Sender: TObject; var Key: Char);
+    procedure btnSalvarEnter(Sender: TObject);
+    procedure ed_vl_sub_totalPropertiesChange(Sender: TObject);
+    procedure ed_vl_sub_totalPropertiesEditValueChanged(Sender: TObject);
   private
     { Private declarations }
     bDesconto,bAltera_Valor_Diaria    : Boolean;
@@ -197,6 +200,12 @@ begin
 
 end;
 
+procedure TFrmLocacao.btnSalvarEnter(Sender: TObject);
+begin
+ if (ed_qtde_dias.Text <> '0') and (ed_vl_diaria.Value > 0) then
+  ed_vl_sub_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+end;
+
 procedure TFrmLocacao.calculaDesconto(xTipo: Integer);
 var
 vl_total : Double;
@@ -238,7 +247,10 @@ begin
      begin
        ed_nome_cliente.Text := qrCliente.FieldByName('nome_razao').AsString;
        ed_doc.Text := qrCliente.FieldByName('cpf_cnpj').AsString;
-       ed_fone.Text := qrCliente.FieldByName('telefone2').AsString;
+       if qrCliente.FieldByName('telefone1').AsString <> '' then
+        ed_fone.Text := qrCliente.FieldByName('telefone1').AsString
+       else
+        ed_fone.Text := qrCliente.FieldByName('telefone2').AsString;
 
        ed_cod_veiculo.SetFocus;
      end
@@ -367,6 +379,17 @@ procedure TFrmLocacao.ed_vl_diariaPropertiesChange(Sender: TObject);
 begin
   if (ed_vl_diaria.Value > 0) then
   ed_vl_sub_total.Value := ed_vl_diaria.Value * StrToInt(ed_qtde_dias.Text);
+end;
+
+procedure TFrmLocacao.ed_vl_sub_totalPropertiesChange(Sender: TObject);
+begin
+ ed_vl_total.Value := ed_vl_sub_total.Value;
+end;
+
+procedure TFrmLocacao.ed_vl_sub_totalPropertiesEditValueChanged(
+  Sender: TObject);
+begin
+  ed_vl_total.Value := ed_vl_sub_total.Value;
 end;
 
 procedure TFrmLocacao.FormShow(Sender: TObject);

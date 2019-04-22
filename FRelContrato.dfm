@@ -3,8 +3,8 @@ object FrmRelContrato: TFrmRelContrato
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Impress'#227'o de Contrato'
-  ClientHeight = 229
-  ClientWidth = 534
+  ClientHeight = 189
+  ClientWidth = 536
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -41,8 +41,8 @@ object FrmRelContrato: TFrmRelContrato
     Style.IsFontAssigned = True
   end
   object cxLabel3: TcxLabel
-    Left = 16
-    Top = 120
+    Left = 184
+    Top = 61
     Caption = 'Hor'#225'rio de Retirada'
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
@@ -66,14 +66,21 @@ object FrmRelContrato: TFrmRelContrato
     Width = 137
   end
   object ed_hora_retirada: TcxTimeEdit
-    Left = 16
-    Top = 147
+    Left = 184
+    Top = 87
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -16
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
     TabOrder = 4
     Width = 121
   end
   object cxLabel5: TcxLabel
-    Left = 16
-    Top = 174
+    Left = 317
+    Top = 61
     Caption = 'Hor'#225'rio de Entrega'
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
@@ -84,14 +91,21 @@ object FrmRelContrato: TFrmRelContrato
     Style.IsFontAssigned = True
   end
   object ed_hora_entrega: TcxTimeEdit
-    Left = 16
-    Top = 199
+    Left = 311
+    Top = 87
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -16
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
     TabOrder = 6
     Width = 121
   end
   object cxButton1: TcxButton
-    Left = 445
-    Top = 73
+    Left = 364
+    Top = 121
     Width = 75
     Height = 59
     Caption = 'Imprimir'
@@ -109,7 +123,7 @@ object FrmRelContrato: TFrmRelContrato
   end
   object cxButton2: TcxButton
     Left = 445
-    Top = 161
+    Top = 121
     Width = 75
     Height = 59
     Caption = 'Cancelar'
@@ -124,8 +138,8 @@ object FrmRelContrato: TFrmRelContrato
     Connection = DM.Conn
     SQL.Strings = (
       'select * from vw_contrato where id_locacao like :ID_')
-    Left = 192
-    Top = 64
+    Left = 40
+    Top = 120
     ParamData = <
       item
         Name = 'ID_'
@@ -283,8 +297,8 @@ object FrmRelContrato: TFrmRelContrato
   end
   object dsContrato: TDataSource
     DataSet = qrContrato
-    Left = 240
-    Top = 64
+    Left = 88
+    Top = 120
   end
   object frxdbContrato: TfrxDBDataset
     UserName = 'frxdbContrato'
@@ -317,8 +331,8 @@ object FrmRelContrato: TFrmRelContrato
       'fl_tipo_veiculo=fl_tipo_veiculo')
     DataSource = dsContrato
     BCDToCurrency = False
-    Left = 312
-    Top = 64
+    Left = 160
+    Top = 120
   end
   object frxReport1: TfrxReport
     Version = '6.3.1'
@@ -341,8 +355,8 @@ object FrmRelContrato: TFrmRelContrato
       'begin'
       ''
       'end.')
-    Left = 384
-    Top = 64
+    Left = 232
+    Top = 120
     Datasets = <
       item
         DataSet = frxdbContrato
@@ -383,7 +397,7 @@ object FrmRelContrato: TFrmRelContrato
           AllowVectorExport = True
           Left = 98.267780000000000000
           Top = 11.338590000000000000
-          Width = 619.842919999999900000
+          Width = 619.842920000000000000
           Height = 37.795300000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -474,7 +488,7 @@ object FrmRelContrato: TFrmRelContrato
         object Memo4: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Top = 706.772109999999900000
+          Top = 706.772110000000000000
           Width = 718.110700000000000000
           Height = 26.456710000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -506,7 +520,7 @@ object FrmRelContrato: TFrmRelContrato
         object Memo5: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Top = 3.779529999999994000
+          Top = 3.779530000000000000
           Width = 718.110700000000000000
           Height = 79.370130000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -604,7 +618,7 @@ object FrmRelContrato: TFrmRelContrato
           AllowVectorExport = True
           Top = 211.653680000000000000
           Width = 718.110700000000000000
-          Height = 68.031540000000010000
+          Height = 68.031540000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -654,7 +668,7 @@ object FrmRelContrato: TFrmRelContrato
           AllowVectorExport = True
           Top = 308.141930000000000000
           Width = 718.110700000000000000
-          Height = 56.692950000000010000
+          Height = 56.692950000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -698,7 +712,7 @@ object FrmRelContrato: TFrmRelContrato
         end
         object Memo12: TfrxMemoView
           AllowVectorExport = True
-          Top = 404.409709999999900000
+          Top = 404.409710000000000000
           Width = 718.110700000000000000
           Height = 71.811070000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -755,7 +769,7 @@ object FrmRelContrato: TFrmRelContrato
         object Memo15: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Top = 634.961039999999900000
+          Top = 634.961040000000000000
           Width = 718.110700000000000000
           Height = 64.252010000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -864,7 +878,7 @@ object FrmRelContrato: TFrmRelContrato
     PdfA = False
     PDFStandard = psNone
     PDFVersion = pv17
-    Left = 384
+    Left = 280
     Top = 120
   end
 end

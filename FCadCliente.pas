@@ -141,6 +141,11 @@ type
     procedure cxDBLookupComboBox1PropertiesChange(Sender: TObject);
     procedure cxDBLookupComboBox2PropertiesChange(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure cxDBTextEdit20KeyPress(Sender: TObject; var Key: Char);
+    procedure cxDBTextEdit21KeyPress(Sender: TObject; var Key: Char);
+    procedure cxDBTextEdit13KeyPress(Sender: TObject; var Key: Char);
+    procedure cxDBTextEdit19KeyPress(Sender: TObject; var Key: Char);
+    procedure cxDBTextEdit3KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -211,6 +216,36 @@ begin
   qrBairro.ParamByName('id_municipio').AsInteger := qrMunicipioid_municipio.AsInteger;
   qrBairro.Open;
  end;
+end;
+
+procedure TFrmCadCliente.cxDBTextEdit13KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+   Key := #0;
+end;
+
+procedure TFrmCadCliente.cxDBTextEdit19KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+   Key := #0;
+end;
+
+procedure TFrmCadCliente.cxDBTextEdit20KeyPress(Sender: TObject; var Key: Char);
+begin
+ if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+  Key := #0;
+end;
+
+procedure TFrmCadCliente.cxDBTextEdit21KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+   Key := #0;
+end;
+
+procedure TFrmCadCliente.cxDBTextEdit3KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+   Key := #0;
 end;
 
 procedure TFrmCadCliente.FormCreate(Sender: TObject);

@@ -15,7 +15,7 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, cxGridLevel, cxClasses,
   cxGridCustomView, cxGrid, cxPC, cxLabel, Vcl.ExtCtrls, cxTextEdit, cxMemo,
   cxDBEdit, cxCurrencyEdit, cxCalendar,DateUtils, Vcl.Menus, Vcl.StdCtrls,
-  cxButtons;
+  cxButtons, Vcl.ComCtrls, dxCore, cxDateUtils, cxGroupBox;
 
 type
   TFrmRetorno = class(TForm)
@@ -37,20 +37,6 @@ type
     cxGrid1DBTableView1Column6: TcxGridDBColumn;
     cxGrid1DBTableView1Column7: TcxGridDBColumn;
     cxGrid1DBTableView1Column8: TcxGridDBColumn;
-    qrLocacoesid_locacao: TFDAutoIncField;
-    qrLocacoesdata_abertura: TDateField;
-    qrLocacoesdata_retorno: TDateField;
-    qrLocacoescliente_fone: TStringField;
-    qrLocacoesvl_diaria: TBCDField;
-    qrLocacoesvl_total: TBCDField;
-    qrLocacoeskm_abertura: TStringField;
-    qrLocacoeskm_fechamento: TStringField;
-    qrLocacoesobs: TMemoField;
-    qrLocacoesfl_situacao: TIntegerField;
-    qrLocacoesfl_situacao_nome: TStringField;
-    qrLocacoesplaca: TStringField;
-    qrLocacoesveiculo_descricao: TStringField;
-    qrLocacoescliente_nome: TStringField;
     Código: TcxLabel;
     cxDBTextEdit1: TcxDBTextEdit;
     cxDBTextEdit2: TcxDBTextEdit;
@@ -76,8 +62,6 @@ type
     cxLabel12: TcxLabel;
     cxLabel13: TcxLabel;
     cxLabel14: TcxLabel;
-    qrLocacoesveiculo_id: TIntegerField;
-    qrLocacoescliente_id: TIntegerField;
     qrCliente: TFDQuery;
     qrVeiculo: TFDQuery;
     dsCliente: TDataSource;
@@ -90,7 +74,28 @@ type
     cxButton6: TcxButton;
     ed_km_retorno: TcxTextEdit;
     cxLabel2: TcxLabel;
+    qrLocacoesid_locacao: TIntegerField;
+    qrLocacoesdata_abertura: TDateField;
+    qrLocacoesdata_retorno: TDateField;
+    qrLocacoescliente_fone: TStringField;
+    qrLocacoesvl_diaria: TBCDField;
+    qrLocacoesvl_total: TBCDField;
+    qrLocacoeskm_abertura: TStringField;
+    qrLocacoeskm_fechamento: TStringField;
+    qrLocacoesobs: TMemoField;
+    qrLocacoesfl_situacao: TIntegerField;
+    qrLocacoesfl_situacao_nome: TStringField;
+    qrLocacoesplaca: TStringField;
+    qrLocacoesveiculo_descricao: TStringField;
+    qrLocacoescliente_nome: TStringField;
+    qrLocacoesveiculo_id: TIntegerField;
+    qrLocacoescliente_id: TIntegerField;
     qrLocacoesqtde_dias: TIntegerField;
+    cxGroupBox1: TcxGroupBox;
+    ed_filtro_inicio: TcxDateEdit;
+    cxLabel15: TcxLabel;
+    ed_filtro_fim: TcxDateEdit;
+    btn_filtrar: TcxButton;
     procedure FormShow(Sender: TObject);
     procedure qrLocacoesAfterScroll(DataSet: TDataSet);
 
@@ -101,6 +106,9 @@ type
     procedure cxButton5Click(Sender: TObject);
     procedure cxButton6Click(Sender: TObject);
     procedure cxButton3Click(Sender: TObject);
+    procedure qrLocacoesCalcFields(DataSet: TDataSet);
+    procedure busca_locacoes(xDT_INICIO:TDateTime;xDT_FIM:TDateTime);
+    procedure btn_filtrarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -115,6 +123,23 @@ implementation
 {$R *.dfm}
 
 uses FDM, FPrincipal, FDevolucao;
+
+procedure TFrmRetorno.btn_filtrarClick(Sender: TObject);
+begin
+ busca_locacoes(ed_filtro_inicio.Date,ed_filtro_fim.Date);
+end;
+
+procedure TFrmRetorno.busca_locacoes(xDT_INICIO, xDT_FIM: TDateTime);
+begin
+  qrVeiculo.Close;
+  qrCliente.Close;
+  qrLocacoes.Close;
+  qrLocacoes.ParamByName('DT_INICIO_').AsDate := xDT_INICIO;
+  qrLocacoes.ParamByName('DT_FINAL_').AsDate  := xDT_FIM;
+  qrLocacoes.Open;
+  qrCliente.Open;
+  qrVeiculo.Open;
+end;
 
 procedure TFrmRetorno.cxButton1Click(Sender: TObject);
 begin
@@ -214,10 +239,11 @@ procedure TFrmRetorno.FormShow(Sender: TObject);
 begin
  cxButton6.Visible := DM.qrUsuarioAcesso.FieldByName('cancela_locacao').AsString = 'X';
 
- qrLocacoes.Open;
- qrCliente.Open;
- qrVeiculo.Open;
+ ed_filtro_inicio.Date := NOW;
+ ed_filtro_fim.Date    := NOW;
 
+ busca_locacoes(NOW,NOW);
+ cxPageControl1.HideTabs := True;
  cxPageControl1.ActivePageIndex := 0;
 
 end;
@@ -225,6 +251,12 @@ end;
 procedure TFrmRetorno.qrLocacoesAfterScroll(DataSet: TDataSet);
 begin
    ed_qtde_dias.Text := qrLocacoesqtde_dias.AsString;
+end;
+
+procedure TFrmRetorno.qrLocacoesCalcFields(DataSet: TDataSet);
+begin
+ //if (cxPageControl1.ActivePageIndex = 1) and (qrLocacoes.State in [dsEdit,dsInsert]) then
+  qrLocacoesqtde_dias.AsVariant := DaysBetween(qrLocacoesdata_retorno.AsDateTime,qrLocacoesdata_abertura.AsDateTime);
 end;
 
 end.

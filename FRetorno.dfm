@@ -2,7 +2,7 @@
   Left = 0
   Top = 0
   Caption = 'Retorno de Loca'#231#227'o'
-  ClientHeight = 489
+  ClientHeight = 469
   ClientWidth = 1090
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,24 +18,27 @@
     Left = 0
     Top = 57
     Width = 1090
-    Height = 432
+    Height = 412
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet2
+    Properties.ActivePage = cxTabSheet1
     Properties.CustomButtons.Buttons = <>
-    ClientRectBottom = 428
+    ClientRectBottom = 408
     ClientRectLeft = 4
     ClientRectRight = 1086
     ClientRectTop = 24
     object cxTabSheet1: TcxTabSheet
       Caption = 'Lista de Loca'#231#245'es'
       ImageIndex = 0
+      DesignSize = (
+        1082
+        384)
       object cxGrid1: TcxGrid
-        Left = 0
-        Top = 0
-        Width = 1082
-        Height = 345
-        Align = alTop
+        Left = 3
+        Top = 63
+        Width = 1062
+        Height = 262
+        Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 0
         object cxGrid1DBTableView1: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
@@ -43,12 +46,14 @@
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Sem Filtro'
           OptionsData.CancelOnExit = False
           OptionsData.Deleting = False
           OptionsData.DeletingConfirmation = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
           OptionsSelection.CellSelect = False
+          OptionsView.NoDataToDisplayInfoText = 'Vital Solutions'
           object cxGrid1DBTableView1Column1: TcxGridDBColumn
             Caption = 'C'#243'digo'
             DataBinding.FieldName = 'id_locacao'
@@ -72,13 +77,13 @@
             Caption = 'Data Loca'#231#227'o'
             DataBinding.FieldName = 'data_abertura'
             HeaderAlignmentHorz = taCenter
-            Width = 81
+            Width = 103
           end
           object cxGrid1DBTableView1Column4: TcxGridDBColumn
             Caption = 'Data de Retorno'
             DataBinding.FieldName = 'data_retorno'
             HeaderAlignmentHorz = taCenter
-            Width = 74
+            Width = 106
           end
           object cxGrid1DBTableView1Column5: TcxGridDBColumn
             Caption = 'Placa'
@@ -92,13 +97,15 @@
             Caption = 'Status'
             DataBinding.FieldName = 'fl_situacao_nome'
             PropertiesClassName = 'TcxTextEditProperties'
+            Visible = False
+            GroupIndex = 0
             HeaderAlignmentHorz = taCenter
           end
           object cxGrid1DBTableView1Column8: TcxGridDBColumn
             Caption = 'Observa'#231#245'es'
             DataBinding.FieldName = 'obs'
             HeaderAlignmentHorz = taCenter
-            Width = 404
+            Width = 381
           end
         end
         object cxGrid1Level1: TcxGridLevel
@@ -107,9 +114,10 @@
       end
       object cxButton5: TcxButton
         Left = 0
-        Top = 351
+        Top = 331
         Width = 106
         Height = 50
+        Anchors = [akLeft, akBottom]
         Caption = 'Finalizar'
         OptionsImage.ImageIndex = 48
         OptionsImage.Images = FrmPrincipal.imgs32x32
@@ -118,15 +126,56 @@
       end
       object cxButton6: TcxButton
         Left = 112
-        Top = 351
+        Top = 331
         Width = 106
         Height = 50
+        Anchors = [akLeft, akBottom]
         Caption = 'Cancelar Loca'#231#227'o'
         OptionsImage.ImageIndex = 31
         OptionsImage.Images = FrmPrincipal.imgs32x32
         TabOrder = 2
         WordWrap = True
         OnClick = cxButton6Click
+      end
+      object cxGroupBox1: TcxGroupBox
+        Left = 3
+        Top = 3
+        Caption = 'Per'#237'odo'
+        TabOrder = 3
+        Height = 54
+        Width = 382
+        object ed_filtro_inicio: TcxDateEdit
+          Left = 3
+          Top = 24
+          Properties.SaveTime = False
+          Properties.ShowTime = False
+          TabOrder = 0
+          Width = 121
+        end
+        object cxLabel15: TcxLabel
+          Left = 130
+          Top = 24
+          Caption = #224
+        end
+        object ed_filtro_fim: TcxDateEdit
+          Left = 146
+          Top = 24
+          Properties.SaveTime = False
+          Properties.ShowTime = False
+          TabOrder = 2
+          Width = 121
+        end
+        object btn_filtrar: TcxButton
+          Left = 280
+          Top = 21
+          Width = 92
+          Height = 25
+          Caption = 'Filtrar'
+          OptionsImage.ImageIndex = 13
+          OptionsImage.Images = FrmPrincipal.imgs16x16
+          TabOrder = 3
+          OnClick = btn_filtrarClick
+        end
       end
     end
     object cxTabSheet2: TcxTabSheet
@@ -423,6 +472,7 @@
   end
   object qrLocacoes: TFDQuery
     AfterScroll = qrLocacoesAfterScroll
+    OnCalcFields = qrLocacoesCalcFields
     Connection = DM.Conn
     SQL.Strings = (
       
@@ -458,13 +508,29 @@
       
         '.`cliente_id` = `c`.`id_cliente`)))'#10'        LEFT JOIN `tb_veicul' +
         'os` `v` ON ((`l`.`veiculo_id` = `v`.`id_veiculo`)))'
+      ''
+      'where `l`.`data_abertura` between :DT_INICIO_ and :DT_FINAL_'
+      ''
       'order by `l`.`id_locacao` asc')
     Left = 460
     Top = 19
-    object qrLocacoesid_locacao: TFDAutoIncField
+    ParamData = <
+      item
+        Name = 'DT_INICIO_'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DT_FINAL_'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qrLocacoesid_locacao: TIntegerField
+      AutoGenerateValue = arDefault
       FieldName = 'id_locacao'
       Origin = 'id_locacao'
-      ReadOnly = True
     end
     object qrLocacoesdata_abertura: TDateField
       AutoGenerateValue = arDefault
@@ -531,18 +597,24 @@
       AutoGenerateValue = arDefault
       FieldName = 'placa'
       Origin = 'placa'
+      ProviderFlags = []
+      ReadOnly = True
       Size = 8
     end
     object qrLocacoesveiculo_descricao: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'veiculo_descricao'
-      Origin = 'veiculo_descricao'
+      Origin = 'descricao'
+      ProviderFlags = []
+      ReadOnly = True
       Size = 150
     end
     object qrLocacoescliente_nome: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'cliente_nome'
-      Origin = 'cliente_nome'
+      Origin = 'nome_razao'
+      ProviderFlags = []
+      ReadOnly = True
       Size = 120
     end
     object qrLocacoesveiculo_id: TIntegerField
@@ -556,11 +628,9 @@
       Origin = 'cliente_id'
     end
     object qrLocacoesqtde_dias: TIntegerField
-      AutoGenerateValue = arDefault
+      FieldKind = fkCalculated
       FieldName = 'qtde_dias'
-      Origin = 'qtde_dias'
-      ProviderFlags = []
-      ReadOnly = True
+      Calculated = True
     end
   end
   object dsLocacoes: TDataSource
