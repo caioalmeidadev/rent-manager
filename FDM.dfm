@@ -217,6 +217,12 @@ object DM: TDM
       FieldName = 'acesso_id'
       Origin = 'acesso_id'
     end
+    object qrUsuarioempresa_id: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'empresa_id'
+      Origin = 'empresa_id'
+      Size = 6
+    end
   end
   object qrUsuarioAcesso: TFDQuery
     MasterSource = dsUsuario

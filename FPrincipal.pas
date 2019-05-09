@@ -68,6 +68,8 @@ type
     btn_rel_locacoes: TdxBarLargeButton;
     btn_rel_clientes: TdxBarLargeButton;
     rel_locacoes: TAction;
+    rel_veiculos: TAction;
+    btn_rel_veiculos: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure cad_veiculoExecute(Sender: TObject);
     procedure cad_estadosExecute(Sender: TObject);
@@ -191,6 +193,7 @@ begin
      btn_rel_recibo.Enabled        := qrUsuarioAcesso.FieldByName('rel_recibo').AsString = 'X';
      btn_rel_clientes.Enabled      := qrUsuarioAcesso.FieldByName('rel_clientes').AsString = 'X';
      btn_rel_locacoes.Enabled      := qrUsuarioAcesso.FieldByName('rel_locacoes').AsString = 'X';
+     btn_rel_veiculos.Enabled      := qrUsuarioAcesso.FieldByName('rel_veiculos').AsString = 'X';
 
      btn_config.Enabled            := qrUsuarioAcesso.FieldByName('config').AsString = 'X';
      btn_altera_senha.Enabled      := True;
@@ -217,7 +220,7 @@ begin
 
   DM.atualizaBanco;
   DM.checkEmpresa;
-  DM.load_parametros(DM.qrEmpresaid_empresa.AsInteger);
+
 
   USUARIO_LOGADO := False;
 
@@ -228,6 +231,7 @@ begin
   FreeAndNil(FrmLogin);
 
   configura_acesso;
+  DM.load_parametros(DM.EMPRESA_ID);
   if not USUARIO_LOGADO then
   begin
     ShowMessage('Usuário não logado! Fechamando o sistema.');

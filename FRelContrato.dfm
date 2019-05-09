@@ -137,7 +137,22 @@ object FrmRelContrato: TFrmRelContrato
     OnCalcFields = qrContratoCalcFields
     Connection = DM.Conn
     SQL.Strings = (
-      'select * from vw_contrato where id_locacao like :ID_')
+      
+        'select c.nome_razao, c.endereco,c.nu_endereco,c.telefone1,c.tele' +
+        'fone2,c.rg,c.cpf_cnpj,c.cnh,v.marca_veiculo,v.cor_veiculo,'#10'v.pla' +
+        'ca,v.descricao,v.chassis,'
+      
+        'v.fl_tipo_veiculo,b.nome as bairro,l.data_abertura,l.data_retorn' +
+        'o,'
+      
+        'c.id_cliente,v.id_veiculo,'#10'l.obs,l.id_locacao,l.vl_diaria,l.vl_t' +
+        'otal,v.valor_veiculo,'
+      'datediff(l.data_retorno,l.data_abertura) as qtde_dias'
+      #10'from tb_locacao as l'
+      #10'left join tb_clientes as c on l.cliente_id = c.id_cliente'
+      #10'left join tb_bairros as b on c.bairro_id = b.id_bairro'
+      #10'left join tb_veiculos as v on l.veiculo_id = v.id_veiculo'
+      'where id_locacao like :ID_')
     Left = 40
     Top = 120
     ParamData = <
@@ -147,6 +162,24 @@ object FrmRelContrato: TFrmRelContrato
         ParamType = ptInput
         Value = Null
       end>
+    object qrContratovl_extenso: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'vl_extenso'
+      Size = 250
+      Calculated = True
+    end
+    object qrContratohora_retirada: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'hora_retirada'
+      Size = 10
+      Calculated = True
+    end
+    object qrContratohora_entrega: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'hora_entrega'
+      Size = 10
+      Calculated = True
+    end
     object qrContratonome_razao: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'nome_razao'
@@ -162,6 +195,7 @@ object FrmRelContrato: TFrmRelContrato
     object qrContratonu_endereco: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'nu_endereco'
+      LookupDataSet = DM.qrEmpresa
       Origin = 'nu_endereco'
       Size = 8
     end
@@ -213,17 +247,23 @@ object FrmRelContrato: TFrmRelContrato
       Origin = 'placa'
       Size = 8
     end
+    object qrContratodescricao: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'descricao'
+      Origin = 'descricao'
+      Size = 150
+    end
     object qrContratochassis: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'chassis'
       Origin = 'chassis'
       Size = 45
     end
-    object qrContratodescricao: TStringField
+    object qrContratofl_tipo_veiculo: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'descricao'
-      Origin = 'descricao'
-      Size = 150
+      FieldName = 'fl_tipo_veiculo'
+      Origin = 'fl_tipo_veiculo'
+      Size = 45
     end
     object qrContratodata_abertura: TDateField
       AutoGenerateValue = arDefault
@@ -235,25 +275,6 @@ object FrmRelContrato: TFrmRelContrato
       FieldName = 'data_retorno'
       Origin = 'data_retorno'
     end
-    object qrContratovalor_veiculo: TBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'valor_veiculo'
-      Origin = 'valor_veiculo'
-      currency = True
-      Precision = 10
-      Size = 2
-    end
-    object qrContratoobs: TMemoField
-      AutoGenerateValue = arDefault
-      FieldName = 'obs'
-      Origin = 'obs'
-      BlobType = ftMemo
-    end
-    object qrContratoid_locacao: TFDAutoIncField
-      FieldName = 'id_locacao'
-      Origin = 'id_locacao'
-      ReadOnly = True
-    end
     object qrContratoid_cliente: TFDAutoIncField
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
@@ -264,23 +285,38 @@ object FrmRelContrato: TFrmRelContrato
       Origin = 'id_veiculo'
       ReadOnly = True
     end
-    object qrContratovl_extenso: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'vl_extenso'
-      Size = 250
-      Calculated = True
+    object qrContratoobs: TMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'obs'
+      Origin = 'obs'
+      BlobType = ftMemo
     end
-    object qrContratohora_retirada: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'hora_retirada'
-      Size = 10
-      Calculated = True
+    object qrContratoid_locacao: TFDAutoIncField
+      FieldName = 'id_locacao'
+      Origin = 'id_locacao'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
-    object qrContratohora_entrega: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'hora_entrega'
-      Size = 10
-      Calculated = True
+    object qrContratovl_diaria: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'vl_diaria'
+      Origin = 'vl_diaria'
+      Precision = 12
+      Size = 2
+    end
+    object qrContratovl_total: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'vl_total'
+      Origin = 'vl_total'
+      Precision = 12
+      Size = 2
+    end
+    object qrContratovalor_veiculo: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valor_veiculo'
+      Origin = 'valor_veiculo'
+      Precision = 10
+      Size = 2
     end
     object qrContratobairro: TStringField
       AutoGenerateValue = arDefault
@@ -288,11 +324,10 @@ object FrmRelContrato: TFrmRelContrato
       Origin = 'bairro'
       Size = 50
     end
-    object qrContratofl_tipo_veiculo: TStringField
+    object qrContratoqtde_dias: TLargeintField
       AutoGenerateValue = arDefault
-      FieldName = 'fl_tipo_veiculo'
-      Origin = 'fl_tipo_veiculo'
-      Size = 45
+      FieldName = 'qtde_dias'
+      Origin = 'qtde_dias'
     end
   end
   object dsContrato: TDataSource
@@ -304,6 +339,9 @@ object FrmRelContrato: TFrmRelContrato
     UserName = 'frxdbContrato'
     CloseDataSource = False
     FieldAliases.Strings = (
+      'vl_extenso=vl_extenso'
+      'hora_retirada=hora_retirada'
+      'hora_entrega=hora_entrega'
       'nome_razao=nome_razao'
       'endereco=endereco'
       'nu_endereco=nu_endereco'
@@ -315,48 +353,47 @@ object FrmRelContrato: TFrmRelContrato
       'marca_veiculo=marca_veiculo'
       'cor_veiculo=cor_veiculo'
       'placa=placa'
-      'chassis=chassis'
       'descricao=descricao'
+      'chassis=chassis'
+      'fl_tipo_veiculo=fl_tipo_veiculo'
       'data_abertura=data_abertura'
       'data_retorno=data_retorno'
-      'valor_veiculo=valor_veiculo'
-      'obs=obs'
-      'id_locacao=id_locacao'
       'id_cliente=id_cliente'
       'id_veiculo=id_veiculo'
-      'vl_extenso=vl_extenso'
-      'hora_retirada=hora_retirada'
-      'hora_entrega=hora_entrega'
+      'obs=obs'
+      'id_locacao=id_locacao'
+      'vl_diaria=vl_diaria'
+      'vl_total=vl_total'
+      'valor_veiculo=valor_veiculo'
       'bairro=bairro'
-      'fl_tipo_veiculo=fl_tipo_veiculo')
+      'qtde_dias=qtde_dias')
     DataSource = dsContrato
     BCDToCurrency = False
     Left = 160
     Top = 120
   end
   object frxReport1: TfrxReport
-    Version = '6.3.1'
+    Version = '6.3.8'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
-    PreviewOptions.AllowEdit = False
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43546.360455046300000000
-    ReportOptions.LastChange = 43549.840362557880000000
+    ReportOptions.LastChange = 43592.634864363430000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'procedure Picture1OnBeforePrint(Sender: TfrxComponent);'
       'begin'
-      '  '
+      ''
       'end;'
       ''
       'begin'
       ''
       'end.')
-    Left = 232
-    Top = 120
+    Left = 48
+    Top = 160
     Datasets = <
       item
         DataSet = frxdbContrato
@@ -449,26 +486,26 @@ object FrmRelContrato: TFrmRelContrato
           AllowVectorExport = True
           Top = 510.236550000000000000
           Width = 718.110700000000000000
-          Height = 90.708720000000000000
+          Height = 117.165430000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = '@Arial Unicode MS'
           Font.Style = []
           Frame.Typ = []
-          HAlign = haCenter
           Memo.UTF8W = (
             
               'Ser'#225' efetuado '#224' vista pelo locat'#225'rio, de forma imediata no receb' +
-              'imento da veiculo e tamb'#233'm assinar'#225' uma promiss'#243'ria ou cheque no' +
-              ' valor do bem: ([<frxdbContrato."valor_veiculo">]), Valor do che' +
-              'que ou promiss'#243'ria  [<frxdbContrato."valor_veiculo">] ([frxdbCon' +
-              'trato."vl_extenso"]), sendo que se o locat'#225'rio desistir do prese' +
-              'nte contrato, n'#227'o ficar'#225' obrigado o locador a devolver valores p' +
-              'agos pelo locat'#225'rio. O veiculo tem que retornar com essas recome' +
-              'nda'#231#245'es: [<frxdbContrato."obs">]')
+              'imento da veiculo com o valor de pagamento [<frxdbContrato."vl_t' +
+              'otal">], considerando a di'#225'ria [<frxdbContrato."vl_diaria">] e o' +
+              ' periodo de loca'#231#227'o de [<frxdbContrato."qtde_dias">] dias e tamb' +
+              #233'm assinar'#225' uma promiss'#243'ria ou cheque no valor do bem, o valor d' +
+              'o cheque ou promiss'#243'ria  [<frxdbContrato."valor_veiculo">] ([frx' +
+              'dbContrato."vl_extenso"]), sendo que se o locat'#225'rio desistir do ' +
+              'presente contrato, n'#227'o ficar'#225' obrigado o locador a devolver valo' +
+              'res pagos pelo locat'#225'rio. O veiculo tem que retornar com essas r' +
+              'ecomenda'#231#245'es: [<frxdbContrato."obs">]')
           ParentFont = False
-          VAlign = vaCenter
           Formats = <
             item
               DecimalSeparator = ','
@@ -483,12 +520,18 @@ object FrmRelContrato: TFrmRelContrato
             item
             end
             item
+              FormatStr = '%2.2m'
+              Kind = fkNumeric
+            end
+            item
+            end
+            item
             end>
         end
         object Memo4: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Top = 706.772110000000000000
+          Top = 726.772110000000000000
           Width = 718.110700000000000000
           Height = 26.456710000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -558,7 +601,7 @@ object FrmRelContrato: TFrmRelContrato
         object Memo6: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Top = 90.165430000000010000
+          Top = 90.165430000000000000
           Width = 718.110700000000000000
           Height = 83.149660000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -752,7 +795,7 @@ object FrmRelContrato: TFrmRelContrato
         object Memo14: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Top = 612.283860000000000000
+          Top = 632.283860000000000000
           Width = 718.110700000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -769,7 +812,7 @@ object FrmRelContrato: TFrmRelContrato
         object Memo15: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Top = 634.961040000000000000
+          Top = 654.961040000000000000
           Width = 718.110700000000000000
           Height = 64.252010000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -838,7 +881,7 @@ object FrmRelContrato: TFrmRelContrato
         object Memo17: TfrxMemoView
           AllowVectorExport = True
           Left = 259.346630000000000000
-          Top = -0.519686670000055600
+          Top = -0.519686670000056000
           Width = 192.756030000000000000
           Height = 18.177739520000000000
           Font.Charset = DEFAULT_CHARSET
@@ -878,7 +921,7 @@ object FrmRelContrato: TFrmRelContrato
     PdfA = False
     PDFStandard = psNone
     PDFVersion = pv17
-    Left = 280
-    Top = 120
+    Left = 96
+    Top = 160
   end
 end

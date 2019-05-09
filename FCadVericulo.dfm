@@ -3,7 +3,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
   Top = 0
   Caption = 'Cadastro de Ve'#237'culos'
   ClientHeight = 613
-  ClientWidth = 600
+  ClientWidth = 872
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 600
+    Width = 872
     Height = 57
     Align = alTop
     TabOrder = 0
@@ -25,7 +25,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Align = alLeft
+      Align = alClient
       Caption = 'Cadastro de Ve'#237'culos'
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
@@ -34,15 +34,16 @@ object FrmCadVeiculo: TFrmCadVeiculo
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.IsFontAssigned = True
-      Properties.Alignment.Horz = taLeftJustify
+      Properties.Alignment.Horz = taCenter
       Properties.Alignment.Vert = taVCenter
+      AnchorX = 436
       AnchorY = 29
     end
   end
   object cxPageControl1: TcxPageControl
     Left = 0
     Top = 57
-    Width = 600
+    Width = 872
     Height = 487
     Align = alClient
     TabOrder = 1
@@ -50,18 +51,18 @@ object FrmCadVeiculo: TFrmCadVeiculo
     Properties.CustomButtons.Buttons = <>
     ClientRectBottom = 483
     ClientRectLeft = 4
-    ClientRectRight = 596
+    ClientRectRight = 868
     ClientRectTop = 24
     object cxTabSheet1: TcxTabSheet
       Caption = 'Listagem'
       ImageIndex = 0
       DesignSize = (
-        592
+        864
         459)
       object cxGrid1: TcxGrid
         Left = 3
         Top = 16
-        Width = 586
+        Width = 858
         Height = 417
         Anchors = [akLeft, akRight]
         TabOrder = 0
@@ -79,6 +80,11 @@ object FrmCadVeiculo: TFrmCadVeiculo
           OptionsData.Inserting = False
           OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
           OptionsView.GroupByBox = False
+          object tvIdVeiculo: TcxGridDBColumn
+            Caption = 'C'#243'digo'
+            DataBinding.FieldName = 'id_veiculo'
+            HeaderAlignmentHorz = taCenter
+          end
           object tvPlaca: TcxGridDBColumn
             Caption = 'Placa'
             DataBinding.FieldName = 'placa'
@@ -88,7 +94,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
             Width = 91
           end
           object tvStatus: TcxGridDBColumn
-            Caption = 'Situa'#231#227'o'
+            Caption = 'Alugado'
             DataBinding.FieldName = 'fl_locacao'
             PropertiesClassName = 'TcxCheckBoxProperties'
             Properties.ValueChecked = 'S'
@@ -354,11 +360,12 @@ object FrmCadVeiculo: TFrmCadVeiculo
         Width = 86
       end
       object cxDBRadioGroup1: TcxDBRadioGroup
-        Left = 416
-        Top = 256
+        Left = 424
+        Top = 95
         Caption = 'Situa'#231#227'o de Loca'#231#227'o'
         DataBinding.DataField = 'fl_locacao'
         DataBinding.DataSource = dsVeiculos
+        Properties.Columns = 2
         Properties.DefaultValue = 'N'
         Properties.Items = <
           item
@@ -371,8 +378,8 @@ object FrmCadVeiculo: TFrmCadVeiculo
           end>
         Properties.ReadOnly = True
         TabOrder = 22
-        Height = 105
-        Width = 129
+        Height = 44
+        Width = 152
       end
       object cxDBDateEdit1: TcxDBDateEdit
         Left = 13
@@ -515,7 +522,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
   object Panel2: TPanel
     Left = 0
     Top = 544
-    Width = 600
+    Width = 872
     Height = 69
     Align = alBottom
     TabOrder = 2
@@ -582,6 +589,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
         09780317BC94605C2D41B50000000049454E44AE426082}
       OptionsImage.Layout = blGlyphTop
       TabOrder = 2
+      OnClick = btnCancelarClick
     end
     object btnEditar: TcxButton
       Left = 254
@@ -603,37 +611,6 @@ object FrmCadVeiculo: TFrmCadVeiculo
       OptionsImage.Layout = blGlyphTop
       TabOrder = 3
       OnClick = btnEditarClick
-    end
-    object btnFechar: TcxButton
-      Left = 335
-      Top = 6
-      Width = 75
-      Height = 56
-      Caption = 'Fechar'
-      OptionsImage.Glyph.SourceDPI = 96
-      OptionsImage.Glyph.Data = {
-        89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
-        F40000001974455874536F6674776172650041646F626520496D616765526561
-        647971C9653C00000012744558745469746C6500466F72776172643B4E657874
-        EB6FF6E1000001D249444154785EC597314BC3401886CD543A8A8A25E0962D9B
-        A39BA3D02E45A4E8E0A2500787FC8204E792D9BFE03F10DA7F20B55610712864
-        737070102C8AE67C2BEF701CD75C92A3DCF02C1FDFBDDF1BEEBBEF2E6B4208A7
-        FC073A57B765F0410FA4600432302719632973FC127AA50D84200153204A32E5
-        9AD0C68007FA604CD11C0C410CDA20004D1230163327E79A3135BCAA065A6000
-        04B901DDB2FBBAC8E51A4106D4341B60E23517CE40041A559B6BB10644D410D4
-        6C990C78D2974FC0A16D972F34A825A8ED1519E84B5FAE14B73631A3767F9981
-        506AB8A8406C07BC285DFF053A061391D498A1CE4022355CC320E683678D896E
-        514F488D99A8067C9EDD5C163198D8064F8A896F7064381D396BF9B2811E0586
-        15F7760B3C28267EC071C19A21F37AB28194C1B846836D807B8D89D325F93173
-        52D9C088C176CD2E5F07778A895F70A6C96D3367241BC8180C946461490E2E14
-        CD8039996C60CE60536BC0DEC4A5A4D9647CBE4A036A3F9CEB0CAC7C0B58FCC4
-        BC05F64DC893A01F4CE626B43F8613A5F82738301F43FB41B4A929FE01F62B0D
-        2275145B4CC177B05767149B2F2373F137B05BF632AA7D1DB3F8A352FC158416
-        D7B1AB0789FB2799FB47A9FB67B9FB1F13F7BF66EE7F4E9DF2078107D681EE1E
-        B7560000000049454E44AE426082}
-      OptionsImage.Layout = blGlyphTop
-      TabOrder = 4
-      OnClick = btnFecharClick
     end
   end
   object qrVeiculos: TFDQuery

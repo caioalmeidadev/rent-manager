@@ -3,8 +3,8 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Listagem de Carros Disponiveis'
-  ClientHeight = 503
-  ClientWidth = 645
+  ClientHeight = 599
+  ClientWidth = 866
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,10 +19,11 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 645
+    Width = 866
     Height = 57
     Align = alTop
     TabOrder = 0
+    ExplicitWidth = 645
     object cxLabel1: TcxLabel
       Left = 1
       Top = 1
@@ -38,14 +39,15 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
       Style.IsFontAssigned = True
       Properties.Alignment.Horz = taCenter
       Properties.Alignment.Vert = taVCenter
-      AnchorX = 323
+      ExplicitWidth = 643
+      AnchorX = 433
       AnchorY = 29
     end
   end
   object cxGrid1: TcxGrid
     Left = 8
-    Top = 63
-    Width = 629
+    Top = 62
+    Width = 737
     Height = 426
     TabOrder = 1
     object cxGrid1DBTableView1: TcxGridDBTableView
@@ -63,10 +65,17 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
       OptionsSelection.CellSelect = False
       OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
       OptionsView.GroupByBox = False
+      object cxGrid1DBTableView1Column5: TcxGridDBColumn
+        Caption = 'C'#243'digo'
+        DataBinding.FieldName = 'id_veiculo'
+        HeaderAlignmentHorz = taCenter
+        Width = 82
+      end
       object cxGrid1DBTableView1Column1: TcxGridDBColumn
         Caption = 'Placa'
         DataBinding.FieldName = 'placa'
         HeaderAlignmentHorz = taCenter
+        Width = 69
       end
       object cxGrid1DBTableView1Column2: TcxGridDBColumn
         Caption = 'Descri'#231#227'o'
@@ -87,8 +96,45 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
         Width = 154
       end
     end
+    object cxGrid1DBTableView2: TcxGridDBTableView
+      Navigator.Buttons.CustomButtons = <>
+      FindPanel.InfoText = 'Info Text'
+      DataController.DataSource = dsVeiculosDisponiveis
+      DataController.Summary.DefaultGroupSummaryItems = <>
+      DataController.Summary.FooterSummaryItems = <>
+      DataController.Summary.SummaryGroups = <>
+      FilterRow.InfoText = 'Arraste a coluna que deseja filtrar'
+      NewItemRow.InfoText = 'New Item'
+      OptionsData.CancelOnExit = False
+      OptionsData.Deleting = False
+      OptionsData.DeletingConfirmation = False
+      OptionsData.Editing = False
+      OptionsData.Inserting = False
+      OptionsView.NoDataToDisplayInfoText = 'Vital Solutions'
+      object cxGrid1DBTableView2Column1: TcxGridDBColumn
+        DataBinding.FieldName = 'id_veiculo'
+      end
+      object cxGrid1DBTableView2Column2: TcxGridDBColumn
+        DataBinding.FieldName = 'fl_tipo_veiculo'
+        Width = 110
+      end
+      object cxGrid1DBTableView2Column3: TcxGridDBColumn
+        DataBinding.FieldName = 'descricao'
+        Width = 236
+      end
+      object cxGrid1DBTableView2Column4: TcxGridDBColumn
+      end
+      object cxGrid1DBTableView2Column5: TcxGridDBColumn
+        DataBinding.FieldName = 'placa'
+        Width = 69
+      end
+      object cxGrid1DBTableView2Column6: TcxGridDBColumn
+        DataBinding.FieldName = 'km_atual'
+        Width = 113
+      end
+    end
     object cxGrid1Level1: TcxGridLevel
-      GridView = cxGrid1DBTableView1
+      GridView = cxGrid1DBTableView2
     end
   end
   object qrVeiculosDisponiveis: TFDQuery

@@ -69,14 +69,16 @@ type
     qrUsuarioAcessodar_desconto_locacao: TStringField;
     qrUsuarioAcessoprc_desconto_locacao: TBCDField;
     qrUsuarioAcessoaltera_vl_diaria: TStringField;
+    qrUsuarioempresa_id: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     function readIni(xSecao:string; xChave:string; xPadrao:string):string;
   private
     { Private declarations }
   public
     { Public declarations }
+    EMPRESA_ID : Integer;
     procedure checkEmpresa;
-    function login(xUsuario:string; xSenha:string):Boolean;
+    function login(xUsuario:string; xSenha:string;xEmpresa:string):Boolean;
     procedure load_parametros(xIdEmpresa:Integer);
     procedure atualizaBanco;
 
@@ -100,14 +102,34 @@ begin
  if checkColuna('tb_usuario_acesso','altera_vl_diaria') then
  begin
     try
-     Conn.ExecSQL('ALTER TABLE `sisloc`.`tb_usuario_acesso`'+
+     Conn.ExecSQL('ALTER TABLE `tb_usuario_acesso`'+
                   ' ADD COLUMN `altera_vl_diaria` CHAR(1) NULL DEFAULT ''N''');
     except
-     raise Exception.Create('Ocorreu um erro ao criar as colunas da versão 1.5');
+     raise Exception.Create('Ocorreu um erro ao atualizar. Entre em contato com o suporte.');
     end;
  end;
-end;
 
+ if checkColuna('tb_usuarios','empresa_id') then
+ begin
+   try
+     Conn.ExecSQL('ALTER TABLE `tb_usuarios` ADD COLUMN `empresa_id` VARCHAR(6) NULL AFTER `acesso_id`;');
+   except
+     raise Exception.Create('Ocorreu um erro ao atualizar. Entre em contato com o suporte.');
+    end;
+   end;
+
+
+ if checkColuna('tb_usuario_acesso','rel_veiculos') then
+ begin
+    try
+     Conn.ExecSQL('ALTER TABLE `tb_usuario_acesso`'+
+                  ' ADD COLUMN `rel_veiculos` CHAR(1) NULL DEFAULT ''N''');
+    except
+     raise Exception.Create('Ocorreu um erro ao atualizar. Entre em contato com o suporte.');
+    end;
+ end;
+
+end;
 procedure TDM.checkEmpresa;
 begin
 
@@ -135,7 +157,7 @@ begin
   finally
 
   end;
-
+   EMPRESA_ID := 0;
 
   
 
@@ -161,14 +183,23 @@ begin
  end;
 end;
 
-function TDM.login(xUsuario, xSenha: string): Boolean;
+function TDM.login(xUsuario, xSenha,xEmpresa: string): Boolean;
 begin
  qrUsuario.Close;
  qrUsuario.ParamByName('USUARIO').AsString := xUsuario;
  qrUsuario.Open;
  if qrUsuario.RecordCount > 0 then
  begin
-   Result := qrUsuariosenha.AsString = xSenha;
+    if qrUsuariosenha.AsString = xSenha then
+    begin
+       if (qrUsuarioempresa_id.AsString = xEmpresa) or (qrUsuarioempresa_id.AsString = '%') then
+       begin
+         EMPRESA_ID := StrToInt(xEmpresa);
+         Result := True;
+       end
+       else Result := False;
+    end
+    else Result := False;
  end
  else
   Result := False;

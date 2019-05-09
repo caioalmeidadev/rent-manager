@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, dxSkinsCore, Vcl.Menus,
-  Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, cxImage, cxTextEdit, cxLabel;
+  Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, cxImage, cxTextEdit, cxLabel,
+  cxMaskEdit, cxDropDownEdit;
 
 type
   TFrmLogin = class(TForm)
@@ -18,6 +19,8 @@ type
     img_login: TcxImage;
     btnSair: TcxButton;
     btnAcessar: TcxButton;
+    cxLabel4: TcxLabel;
+    cb_empresa: TcxComboBox;
     procedure btnSairClick(Sender: TObject);
     procedure ed_usuarioKeyPress(Sender: TObject; var Key: Char);
     procedure ed_senhaKeyPress(Sender: TObject; var Key: Char);
@@ -56,7 +59,13 @@ begin
    Exit;
  end;
 
- if DM.login(ed_usuario.Text,ed_senha.Text) then
+ if cb_empresa.Text = '***' then
+ begin
+   ShowMessage('Sistema sem cadatro de empresa, por favor entre em contato com o suporte.');
+   Exit;
+ end;
+
+ if DM.login(ed_usuario.Text,ed_senha.Text,copy(cb_empresa.Text,0,2)) then
  begin
    FrmPrincipal.USUARIO_LOGADO := True;
    Close;
@@ -90,7 +99,27 @@ end;
 
 procedure TFrmLogin.FormShow(Sender: TObject);
 begin
- ed_usuario.SetFocus;
+
+ with DM do
+ begin
+   qrEmpresa.Open;
+   if qrEmpresa.RecordCount > 0 then
+   begin
+     qrEmpresa.First;
+     cb_empresa.Properties.Items.Clear;
+     while not qrEmpresa.Eof do
+     begin
+      cb_empresa.Properties.Items.Add(
+      FormatFloat('00',qrEmpresaid_empresa.AsInteger) + '-' +
+      qrEmpresarazao_social.AsString);
+      qrEmpresa.Next;
+     end;
+   end
+   else
+    cb_empresa.Properties.Items.Add('***');
+   cb_empresa.ItemIndex := 0;
+  ed_usuario.SetFocus;
+ end;
 end;
 
 end.

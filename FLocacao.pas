@@ -60,6 +60,7 @@ type
     ed_pc_desconto: TcxCurrencyEdit;
     ed_vl_sub_total: TcxCurrencyEdit;
     cxLabel14: TcxLabel;
+    cxLabel18: TcxLabel;
     procedure novaLocacao;
     procedure btnNovoClick(Sender: TObject);
     procedure ed_cod_veiculoPropertiesButtonClick(Sender: TObject;

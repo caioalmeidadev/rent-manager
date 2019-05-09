@@ -10,7 +10,7 @@ uses
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, dxSkinsCore,
   Vcl.Menus, Vcl.StdCtrls, cxButtons, cxMaskEdit, cxSpinEdit, cxTimeEdit,
   cxTextEdit, cxLabel, Data.DB, FireDAC.Comp.DataSet, frxClass, frxDBSet,
-  FireDAC.Comp.Client, frxExportBaseDialog, frxExportPDF;
+  FireDAC.Comp.Client, frxExportBaseDialog, frxExportPDF, frxDesgn;
 
 type
   TFrmRelContrato = class(TForm)
@@ -18,26 +18,6 @@ type
     dsContrato: TDataSource;
     frxdbContrato: TfrxDBDataset;
     frxReport1: TfrxReport;
-    qrContratonome_razao: TStringField;
-    qrContratoendereco: TStringField;
-    qrContratonu_endereco: TStringField;
-    qrContratotelefone1: TStringField;
-    qrContratotelefone2: TStringField;
-    qrContratorg: TStringField;
-    qrContratocpf_cnpj: TStringField;
-    qrContratocnh: TStringField;
-    qrContratomarca_veiculo: TStringField;
-    qrContratocor_veiculo: TStringField;
-    qrContratoplaca: TStringField;
-    qrContratochassis: TStringField;
-    qrContratodescricao: TStringField;
-    qrContratodata_abertura: TDateField;
-    qrContratodata_retorno: TDateField;
-    qrContratovalor_veiculo: TBCDField;
-    qrContratoobs: TMemoField;
-    qrContratoid_locacao: TFDAutoIncField;
-    qrContratoid_cliente: TFDAutoIncField;
-    qrContratoid_veiculo: TFDAutoIncField;
     cxLabel1: TcxLabel;
     cxLabel2: TcxLabel;
     cxLabel3: TcxLabel;
@@ -50,9 +30,32 @@ type
     qrContratovl_extenso: TStringField;
     qrContratohora_retirada: TStringField;
     qrContratohora_entrega: TStringField;
-    qrContratobairro: TStringField;
     frxPDFExport1: TfrxPDFExport;
+    qrContratonome_razao: TStringField;
+    qrContratoendereco: TStringField;
+    qrContratonu_endereco: TStringField;
+    qrContratotelefone1: TStringField;
+    qrContratotelefone2: TStringField;
+    qrContratorg: TStringField;
+    qrContratocpf_cnpj: TStringField;
+    qrContratocnh: TStringField;
+    qrContratomarca_veiculo: TStringField;
+    qrContratocor_veiculo: TStringField;
+    qrContratoplaca: TStringField;
+    qrContratodescricao: TStringField;
+    qrContratochassis: TStringField;
     qrContratofl_tipo_veiculo: TStringField;
+    qrContratodata_abertura: TDateField;
+    qrContratodata_retorno: TDateField;
+    qrContratoid_cliente: TFDAutoIncField;
+    qrContratoid_veiculo: TFDAutoIncField;
+    qrContratoobs: TMemoField;
+    qrContratoid_locacao: TFDAutoIncField;
+    qrContratovl_diaria: TBCDField;
+    qrContratovl_total: TBCDField;
+    qrContratovalor_veiculo: TBCDField;
+    qrContratobairro: TStringField;
+    qrContratoqtde_dias: TLargeintField;
     procedure FormShow(Sender: TObject);
     procedure cxButton1Click(Sender: TObject);
     procedure cxButton2Click(Sender: TObject);

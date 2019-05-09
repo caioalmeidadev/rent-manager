@@ -32,6 +32,14 @@ type
     qrVeiculosDisponiveisplaca: TStringField;
     qrVeiculosDisponiveisfl_tipo_veiculo: TStringField;
     qrVeiculosDisponiveiskm_atual: TStringField;
+    cxGrid1DBTableView1Column5: TcxGridDBColumn;
+    cxGrid1DBTableView2: TcxGridDBTableView;
+    cxGrid1DBTableView2Column1: TcxGridDBColumn;
+    cxGrid1DBTableView2Column2: TcxGridDBColumn;
+    cxGrid1DBTableView2Column3: TcxGridDBColumn;
+    cxGrid1DBTableView2Column4: TcxGridDBColumn;
+    cxGrid1DBTableView2Column5: TcxGridDBColumn;
+    cxGrid1DBTableView2Column6: TcxGridDBColumn;
     procedure FormShow(Sender: TObject);
     procedure cxGrid1DBTableView1KeyPress(Sender: TObject; var Key: Char);
   private
