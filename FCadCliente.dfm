@@ -476,6 +476,7 @@ object FrmCadCliente: TFrmCadCliente
             Top = 76
             DataBinding.DataField = 'estado_id'
             DataBinding.DataSource = dsCliente
+            Properties.DropDownListStyle = lsFixedList
             Properties.KeyFieldNames = 'id_estado'
             Properties.ListColumns = <
               item
@@ -492,6 +493,7 @@ object FrmCadCliente: TFrmCadCliente
             Top = 76
             DataBinding.DataField = 'municipio_id'
             DataBinding.DataSource = dsCliente
+            Properties.DropDownListStyle = lsFixedList
             Properties.KeyFieldNames = 'id_municipio'
             Properties.ListColumns = <
               item
@@ -508,6 +510,7 @@ object FrmCadCliente: TFrmCadCliente
             Top = 76
             DataBinding.DataField = 'bairro_id'
             DataBinding.DataSource = dsCliente
+            Properties.DropDownListStyle = lsFixedList
             Properties.KeyFieldNames = 'id_bairro'
             Properties.ListColumns = <
               item

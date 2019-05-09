@@ -33,7 +33,8 @@ uses
   FParametros in 'FParametros.pas' {FrmParametros},
   Vcl.Themes,
   Vcl.Styles,
-  FRelLocacoes in 'FRelLocacoes.pas' {FrmRelLocacoes};
+  FRelLocacoes in 'FRelLocacoes.pas' {FrmRelLocacoes},
+  FRelVeiculos in 'FRelVeiculos.pas' {FrmRelVeiculo};
 
 {$R *.res}
 
@@ -42,6 +43,5 @@ begin
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Windows10');
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
-  Application.CreateForm(TFrmRelLocacoes, FrmRelLocacoes);
   Application.Run;
 end.

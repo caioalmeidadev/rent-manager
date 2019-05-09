@@ -493,6 +493,13 @@ object FrmAcessoUsuarios: TFrmAcessoUsuarios
       Precision = 10
       Size = 2
     end
+    object qrAcessosaltera_vl_diaria: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'altera_vl_diaria'
+      Origin = 'altera_vl_diaria'
+      FixedChar = True
+      Size = 1
+    end
   end
   object dsAcessos: TDataSource
     DataSet = qrAcessos

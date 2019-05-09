@@ -80,6 +80,7 @@ type
     qrAcessosdar_desconto_locacao: TStringField;
     qrAcessosprc_desconto_locacao: TBCDField;
     ACBrEnterTab1: TACBrEnterTab;
+    qrAcessosaltera_vl_diaria: TStringField;
     procedure btnNovoClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);

@@ -98,6 +98,16 @@ uses App.Funcoes, FPrincipal;
 
 procedure TDM.atualizaBanco;
 begin
+ if checkColuna('tb_usuario_acesso','config') then
+ begin
+    try
+     Conn.ExecSQL('ALTER TABLE `tb_usuario_acesso`'+
+                  ' ADD COLUMN `config` CHAR(1) NULL DEFAULT ''N''');
+    except
+     raise Exception.Create('Ocorreu um erro ao atualizar. Entre em contato com o suporte.');
+    end;
+ end;
+
 
  if checkColuna('tb_usuario_acesso','altera_vl_diaria') then
  begin

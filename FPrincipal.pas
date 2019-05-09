@@ -84,7 +84,6 @@ type
     procedure rel_contratoExecute(Sender: TObject);
     procedure rel_reciboExecute(Sender: TObject);
     procedure configura_acesso;
-    procedure btn_cad_empresaClick(Sender: TObject);
     procedure cad_senhaExecute(Sender: TObject);
     procedure cad_usuariosExecute(Sender: TObject);
     procedure cad_perfil_usuarioExecute(Sender: TObject);
@@ -92,6 +91,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure sys_configExecute(Sender: TObject);
     procedure rel_locacoesExecute(Sender: TObject);
+
+    procedure rel_veiculosExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -110,13 +111,8 @@ implementation
 uses FCadVericulo,FDM, App.Constantes, App.Funcoes, FCadCliente, FCadEstado,
   FLocacao,FCadMunicipio,FCadBairro, FVeiculosDisponivel, FRetorno, FDevolucao,
   FRelClientes, FRelContrato, FRelRecibo, Flogin, FCadEmpresa, FAlteraSenha,
-  FCadUsuario, FAcessoUsuarios, FParametros, FRelLocacoes;
+  FCadUsuario, FAcessoUsuarios, FParametros, FRelLocacoes, FRelVeiculos;
 
-
-procedure TFrmPrincipal.btn_cad_empresaClick(Sender: TObject);
-begin
- FTDI.MostrarFormulario(TFrmCadEmpresa,False);
-end;
 
 procedure TFrmPrincipal.cad_bairrosExecute(Sender: TObject);
 begin
@@ -205,6 +201,7 @@ end;
 procedure TFrmPrincipal.devolver_veiculoExecute(Sender: TObject);
 begin
   if not Assigned(FrmDevolucao) then
+
    FrmDevolucao := TFrmDevolucao.Create(Self,-1);
  FrmDevolucao.ShowModal;
  FreeAndNil(FrmDevolucao);
@@ -283,6 +280,13 @@ begin
  if not Assigned(FrmRelRecibo) then
   FrmRelRecibo := TFrmRelRecibo.Create(Self);
  FrmRelRecibo.ShowModal;
+end;
+
+procedure TFrmPrincipal.rel_veiculosExecute(Sender: TObject);
+begin
+ if not Assigned(FrmRelVeiculo) then
+  FrmRelVeiculo := TFrmRelVeiculo.Create(Self);
+ FrmRelVeiculo.ShowModal;
 end;
 
 procedure TFrmPrincipal.retorno_veiculoExecute(Sender: TObject);
