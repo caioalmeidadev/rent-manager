@@ -3,7 +3,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
   Top = 0
   Caption = 'Cadastro de Ve'#237'culos'
   ClientHeight = 613
-  ClientWidth = 600
+  ClientWidth = 872
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 600
+    Width = 872
     Height = 57
     Align = alTop
     TabOrder = 0
@@ -25,7 +25,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Align = alLeft
+      Align = alClient
       Caption = 'Cadastro de Ve'#237'culos'
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
@@ -34,34 +34,35 @@ object FrmCadVeiculo: TFrmCadVeiculo
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.IsFontAssigned = True
-      Properties.Alignment.Horz = taLeftJustify
+      Properties.Alignment.Horz = taCenter
       Properties.Alignment.Vert = taVCenter
+      AnchorX = 436
       AnchorY = 29
     end
   end
   object cxPageControl1: TcxPageControl
     Left = 0
     Top = 57
-    Width = 600
+    Width = 872
     Height = 487
     Align = alClient
     TabOrder = 1
-    Properties.ActivePage = cxTabSheet2
+    Properties.ActivePage = cxTabSheet1
     Properties.CustomButtons.Buttons = <>
     ClientRectBottom = 483
     ClientRectLeft = 4
-    ClientRectRight = 596
+    ClientRectRight = 868
     ClientRectTop = 24
     object cxTabSheet1: TcxTabSheet
       Caption = 'Listagem'
       ImageIndex = 0
       DesignSize = (
-        592
+        864
         459)
       object cxGrid1: TcxGrid
         Left = 3
         Top = 16
-        Width = 586
+        Width = 858
         Height = 417
         Anchors = [akLeft, akRight]
         TabOrder = 0
@@ -77,6 +78,13 @@ object FrmCadVeiculo: TFrmCadVeiculo
           OptionsData.DeletingConfirmation = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
+          OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
+          OptionsView.GroupByBox = False
+          object tvIdVeiculo: TcxGridDBColumn
+            Caption = 'C'#243'digo'
+            DataBinding.FieldName = 'id_veiculo'
+            HeaderAlignmentHorz = taCenter
+          end
           object tvPlaca: TcxGridDBColumn
             Caption = 'Placa'
             DataBinding.FieldName = 'placa'
@@ -86,7 +94,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
             Width = 91
           end
           object tvStatus: TcxGridDBColumn
-            Caption = 'Situa'#231#227'o'
+            Caption = 'Alugado'
             DataBinding.FieldName = 'fl_locacao'
             PropertiesClassName = 'TcxCheckBoxProperties'
             Properties.ValueChecked = 'S'
@@ -269,6 +277,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
       object cxDBTextEdit6: TcxDBTextEdit
         Left = 323
         Top = 117
+        DataBinding.DataField = 'modelo_veiculo'
         DataBinding.DataSource = dsVeiculos
         Properties.CharCase = ecUpperCase
         TabOrder = 14
@@ -351,11 +360,12 @@ object FrmCadVeiculo: TFrmCadVeiculo
         Width = 86
       end
       object cxDBRadioGroup1: TcxDBRadioGroup
-        Left = 416
-        Top = 256
+        Left = 424
+        Top = 95
         Caption = 'Situa'#231#227'o de Loca'#231#227'o'
         DataBinding.DataField = 'fl_locacao'
         DataBinding.DataSource = dsVeiculos
+        Properties.Columns = 2
         Properties.DefaultValue = 'N'
         Properties.Items = <
           item
@@ -368,8 +378,8 @@ object FrmCadVeiculo: TFrmCadVeiculo
           end>
         Properties.ReadOnly = True
         TabOrder = 22
-        Height = 105
-        Width = 129
+        Height = 44
+        Width = 152
       end
       object cxDBDateEdit1: TcxDBDateEdit
         Left = 13
@@ -392,7 +402,8 @@ object FrmCadVeiculo: TFrmCadVeiculo
           'SEMINOVO'
           'USADO'
           'SUCATA'
-          'VENDIDO')
+          'VENDIDO'
+          'INATIVO')
         TabOrder = 24
         Width = 158
       end
@@ -425,7 +436,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
         Properties.DropDownListStyle = lsFixedList
         Properties.Items.Strings = (
           'CARRO'
-          'MOTO')
+          'MOTOCICLETA')
         TabOrder = 27
         Width = 121
       end
@@ -512,7 +523,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
   object Panel2: TPanel
     Left = 0
     Top = 544
-    Width = 600
+    Width = 872
     Height = 69
     Align = alBottom
     TabOrder = 2
@@ -538,7 +549,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
       TabOrder = 0
       OnClick = btnNovoClick
     end
-    object cxButton2: TcxButton
+    object btnSalvar: TcxButton
       Left = 92
       Top = 6
       Width = 75
@@ -579,6 +590,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
         09780317BC94605C2D41B50000000049454E44AE426082}
       OptionsImage.Layout = blGlyphTop
       TabOrder = 2
+      OnClick = btnCancelarClick
     end
     object btnEditar: TcxButton
       Left = 254
@@ -706,9 +718,16 @@ object FrmCadVeiculo: TFrmCadVeiculo
       Precision = 10
       Size = 2
     end
+    object qrVeiculosmodelo_veiculo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'modelo_veiculo'
+      Origin = 'modelo_veiculo'
+      Size = 40
+    end
   end
   object dsVeiculos: TDataSource
     DataSet = qrVeiculos
+    OnStateChange = dsVeiculosStateChange
     Left = 348
     Top = 17
   end

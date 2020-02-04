@@ -3,8 +3,8 @@ object FrmRelRecibo: TFrmRelRecibo
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Imprimir Recibos'
-  ClientHeight = 157
-  ClientWidth = 389
+  ClientHeight = 141
+  ClientWidth = 367
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,19 +16,33 @@ object FrmRelRecibo: TFrmRelRecibo
   PixelsPerInch = 96
   TextHeight = 13
   object cxLabel1: TcxLabel
-    Left = 80
-    Top = 83
+    Left = 32
+    Top = 57
     Caption = 'C'#243'digo do Contrato'
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -16
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
   end
   object ed_cod_contrato: TcxTextEdit
-    Left = 96
-    Top = 106
+    Left = 72
+    Top = 86
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -24
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
     TabOrder = 1
-    Width = 121
+    Width = 145
   end
   object cxButton1: TcxButton
-    Left = 298
-    Top = 88
+    Left = 258
+    Top = 72
     Width = 75
     Height = 25
     Caption = 'Imprimir'
@@ -50,8 +64,8 @@ object FrmRelRecibo: TFrmRelRecibo
     Style.IsFontAssigned = True
   end
   object cxButton2: TcxButton
-    Left = 298
-    Top = 119
+    Left = 258
+    Top = 103
     Width = 75
     Height = 25
     Caption = 'Cancelar'
@@ -66,7 +80,7 @@ object FrmRelRecibo: TFrmRelRecibo
     SQL.Strings = (
       'select *  from vw_recibo where id_locacao = :ID_')
     Left = 16
-    Top = 56
+    Top = 136
     ParamData = <
       item
         Name = 'ID_'
@@ -136,7 +150,7 @@ object FrmRelRecibo: TFrmRelRecibo
   object dsLocacao: TDataSource
     DataSet = qrLocacao
     Left = 48
-    Top = 56
+    Top = 136
   end
   object frxDBLocacao: TfrxDBDataset
     UserName = 'frxDBLocacao'
@@ -155,7 +169,7 @@ object FrmRelRecibo: TFrmRelRecibo
     DataSource = dsLocacao
     BCDToCurrency = False
     Left = 80
-    Top = 56
+    Top = 136
   end
   object frxReport1: TfrxReport
     Version = '6.3.1'
@@ -173,7 +187,7 @@ object FrmRelRecibo: TFrmRelRecibo
       ''
       'end.')
     Left = 112
-    Top = 56
+    Top = 136
     Datasets = <
       item
         DataSet = DM.frxDBDsEmpresa

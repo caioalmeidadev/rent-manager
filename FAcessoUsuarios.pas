@@ -14,7 +14,8 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Vcl.Menus, FireDAC.Comp.DataSet, Vcl.StdCtrls, cxButtons, FireDAC.Comp.Client,
-  cxTextEdit;
+  cxTextEdit, cxTL, cxMaskEdit, cxTLdxBarBuiltInMenu, cxInplaceContainer,
+  cxDBTL, cxTLData, cxCurrencyEdit, ACBrBase, ACBrEnterTab;
 
 type
   TFrmAcessoUsuarios = class(TForm)
@@ -23,22 +24,10 @@ type
     cxGrid1: TcxGrid;
     Panel1: TPanel;
     cxGroupBox1: TcxGroupBox;
-    cxDBCheckBox1: TcxDBCheckBox;
-    cxDBCheckBox2: TcxDBCheckBox;
-    cxDBCheckBox3: TcxDBCheckBox;
-    cxDBCheckBox4: TcxDBCheckBox;
-    cxDBCheckBox5: TcxDBCheckBox;
-    cxDBCheckBox8: TcxDBCheckBox;
-    cxDBCheckBox9: TcxDBCheckBox;
     qrAcessos: TFDQuery;
     dsAcessos: TDataSource;
     cxGrid1DBTableView1id_acesso: TcxGridDBColumn;
     cxGrid1DBTableView1nome_acesso: TcxGridDBColumn;
-    cxDBCheckBox6: TcxDBCheckBox;
-    cxDBCheckBox7: TcxDBCheckBox;
-    cxDBCheckBox10: TcxDBCheckBox;
-    cxDBCheckBox11: TcxDBCheckBox;
-    cxDBCheckBox12: TcxDBCheckBox;
     btnNovo: TcxButton;
     btnGravar: TcxButton;
     cxLabel1: TcxLabel;
@@ -61,6 +50,37 @@ type
     qrAcessoscad_parametros: TStringField;
     cxLabel2: TcxLabel;
     cxDBTextEdit1: TcxDBTextEdit;
+    cxGroupBox2: TcxGroupBox;
+    cxGroupBox3: TcxGroupBox;
+    cxGroupBox4: TcxGroupBox;
+    cxDBCheckBox3: TcxDBCheckBox;
+    cxDBCheckBox4: TcxDBCheckBox;
+    cxDBCheckBox1: TcxDBCheckBox;
+    cxDBCheckBox5: TcxDBCheckBox;
+    cxDBCheckBox2: TcxDBCheckBox;
+    cxDBCheckBox6: TcxDBCheckBox;
+    cxDBCheckBox9: TcxDBCheckBox;
+    cxDBCheckBox8: TcxDBCheckBox;
+    cxDBCheckBox13: TcxDBCheckBox;
+    cxLabel3: TcxLabel;
+    cxDBCurrencyEdit1: TcxDBCurrencyEdit;
+    cxGroupBox5: TcxGroupBox;
+    cxDBCheckBox14: TcxDBCheckBox;
+    cxDBCheckBox7: TcxDBCheckBox;
+    cxDBCheckBox10: TcxDBCheckBox;
+    cxDBCheckBox11: TcxDBCheckBox;
+    cxDBCheckBox12: TcxDBCheckBox;
+    cxDBCheckBox15: TcxDBCheckBox;
+    cxDBCheckBox16: TcxDBCheckBox;
+    cxDBCheckBox17: TcxDBCheckBox;
+    cxDBCheckBox18: TcxDBCheckBox;
+    qrAcessoscad_acesso_usuario: TStringField;
+    qrAcessosrel_veiculos: TStringField;
+    qrAcessosrel_locacoes: TStringField;
+    qrAcessosdar_desconto_locacao: TStringField;
+    qrAcessosprc_desconto_locacao: TBCDField;
+    ACBrEnterTab1: TACBrEnterTab;
+    qrAcessosaltera_vl_diaria: TStringField;
     procedure btnNovoClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);

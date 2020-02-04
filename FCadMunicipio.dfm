@@ -117,6 +117,7 @@ object FrmCadMunicipio: TFrmCadMunicipio
         OptionsData.DeletingConfirmation = False
         OptionsData.Editing = False
         OptionsData.Inserting = False
+        OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
         OptionsView.GroupByBox = False
         object cxGrid1DBTableView1Column1: TcxGridDBColumn
           Caption = 'C'#243'digo'

@@ -3,8 +3,8 @@ object FrmRelContrato: TFrmRelContrato
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Impress'#227'o de Contrato'
-  ClientHeight = 229
-  ClientWidth = 534
+  ClientHeight = 189
+  ClientWidth = 536
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -41,8 +41,8 @@ object FrmRelContrato: TFrmRelContrato
     Style.IsFontAssigned = True
   end
   object cxLabel3: TcxLabel
-    Left = 16
-    Top = 120
+    Left = 184
+    Top = 61
     Caption = 'Hor'#225'rio de Retirada'
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
@@ -66,14 +66,21 @@ object FrmRelContrato: TFrmRelContrato
     Width = 137
   end
   object ed_hora_retirada: TcxTimeEdit
-    Left = 16
-    Top = 147
+    Left = 184
+    Top = 87
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -16
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
     TabOrder = 4
     Width = 121
   end
   object cxLabel5: TcxLabel
-    Left = 16
-    Top = 174
+    Left = 317
+    Top = 61
     Caption = 'Hor'#225'rio de Entrega'
     ParentFont = False
     Style.Font.Charset = DEFAULT_CHARSET
@@ -84,14 +91,21 @@ object FrmRelContrato: TFrmRelContrato
     Style.IsFontAssigned = True
   end
   object ed_hora_entrega: TcxTimeEdit
-    Left = 16
-    Top = 199
+    Left = 311
+    Top = 87
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -16
+    Style.Font.Name = 'Tahoma'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
     TabOrder = 6
     Width = 121
   end
   object cxButton1: TcxButton
-    Left = 445
-    Top = 73
+    Left = 364
+    Top = 121
     Width = 75
     Height = 59
     Caption = 'Imprimir'
@@ -109,7 +123,7 @@ object FrmRelContrato: TFrmRelContrato
   end
   object cxButton2: TcxButton
     Left = 445
-    Top = 161
+    Top = 121
     Width = 75
     Height = 59
     Caption = 'Cancelar'
@@ -120,13 +134,27 @@ object FrmRelContrato: TFrmRelContrato
     OnClick = cxButton2Click
   end
   object qrContrato: TFDQuery
-    Active = True
     OnCalcFields = qrContratoCalcFields
     Connection = DM.Conn
     SQL.Strings = (
-      'select * from vw_contrato where id_locacao like :ID_')
-    Left = 192
-    Top = 64
+      
+        'select c.nome_razao, c.endereco,c.nu_endereco,c.telefone1,c.tele' +
+        'fone2,c.rg,c.cpf_cnpj,c.cnh,v.marca_veiculo,v.cor_veiculo,'#10'v.pla' +
+        'ca,v.descricao,v.chassis,'
+      
+        'v.fl_tipo_veiculo,b.nome as bairro,l.data_abertura,l.data_retorn' +
+        'o,'
+      
+        'c.id_cliente,v.id_veiculo,'#10'l.obs,l.id_locacao,l.vl_diaria,l.vl_t' +
+        'otal,v.valor_veiculo,'
+      'datediff(l.data_retorno,l.data_abertura) as qtde_dias'
+      #10'from tb_locacao as l'
+      #10'left join tb_clientes as c on l.cliente_id = c.id_cliente'
+      #10'left join tb_bairros as b on c.bairro_id = b.id_bairro'
+      #10'left join tb_veiculos as v on l.veiculo_id = v.id_veiculo'
+      'where id_locacao like :ID_')
+    Left = 40
+    Top = 120
     ParamData = <
       item
         Name = 'ID_'
@@ -134,6 +162,24 @@ object FrmRelContrato: TFrmRelContrato
         ParamType = ptInput
         Value = Null
       end>
+    object qrContratovl_extenso: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'vl_extenso'
+      Size = 250
+      Calculated = True
+    end
+    object qrContratohora_retirada: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'hora_retirada'
+      Size = 10
+      Calculated = True
+    end
+    object qrContratohora_entrega: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'hora_entrega'
+      Size = 10
+      Calculated = True
+    end
     object qrContratonome_razao: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'nome_razao'
@@ -149,6 +195,7 @@ object FrmRelContrato: TFrmRelContrato
     object qrContratonu_endereco: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'nu_endereco'
+      LookupDataSet = DM.qrEmpresa
       Origin = 'nu_endereco'
       Size = 8
     end
@@ -200,17 +247,23 @@ object FrmRelContrato: TFrmRelContrato
       Origin = 'placa'
       Size = 8
     end
+    object qrContratodescricao: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'descricao'
+      Origin = 'descricao'
+      Size = 150
+    end
     object qrContratochassis: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'chassis'
       Origin = 'chassis'
       Size = 45
     end
-    object qrContratodescricao: TStringField
+    object qrContratofl_tipo_veiculo: TStringField
       AutoGenerateValue = arDefault
-      FieldName = 'descricao'
-      Origin = 'descricao'
-      Size = 150
+      FieldName = 'fl_tipo_veiculo'
+      Origin = 'fl_tipo_veiculo'
+      Size = 45
     end
     object qrContratodata_abertura: TDateField
       AutoGenerateValue = arDefault
@@ -222,25 +275,6 @@ object FrmRelContrato: TFrmRelContrato
       FieldName = 'data_retorno'
       Origin = 'data_retorno'
     end
-    object qrContratovalor_veiculo: TBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'valor_veiculo'
-      Origin = 'valor_veiculo'
-      currency = True
-      Precision = 10
-      Size = 2
-    end
-    object qrContratoobs: TMemoField
-      AutoGenerateValue = arDefault
-      FieldName = 'obs'
-      Origin = 'obs'
-      BlobType = ftMemo
-    end
-    object qrContratoid_locacao: TFDAutoIncField
-      FieldName = 'id_locacao'
-      Origin = 'id_locacao'
-      ReadOnly = True
-    end
     object qrContratoid_cliente: TFDAutoIncField
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
@@ -251,23 +285,38 @@ object FrmRelContrato: TFrmRelContrato
       Origin = 'id_veiculo'
       ReadOnly = True
     end
-    object qrContratovl_extenso: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'vl_extenso'
-      Size = 250
-      Calculated = True
+    object qrContratoobs: TMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'obs'
+      Origin = 'obs'
+      BlobType = ftMemo
     end
-    object qrContratohora_retirada: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'hora_retirada'
-      Size = 10
-      Calculated = True
+    object qrContratoid_locacao: TFDAutoIncField
+      FieldName = 'id_locacao'
+      Origin = 'id_locacao'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
-    object qrContratohora_entrega: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'hora_entrega'
-      Size = 10
-      Calculated = True
+    object qrContratovl_diaria: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'vl_diaria'
+      Origin = 'vl_diaria'
+      Precision = 12
+      Size = 2
+    end
+    object qrContratovl_total: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'vl_total'
+      Origin = 'vl_total'
+      Precision = 12
+      Size = 2
+    end
+    object qrContratovalor_veiculo: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valor_veiculo'
+      Origin = 'valor_veiculo'
+      Precision = 10
+      Size = 2
     end
     object qrContratobairro: TStringField
       AutoGenerateValue = arDefault
@@ -275,16 +324,24 @@ object FrmRelContrato: TFrmRelContrato
       Origin = 'bairro'
       Size = 50
     end
+    object qrContratoqtde_dias: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtde_dias'
+      Origin = 'qtde_dias'
+    end
   end
   object dsContrato: TDataSource
     DataSet = qrContrato
-    Left = 240
-    Top = 64
+    Left = 88
+    Top = 120
   end
   object frxdbContrato: TfrxDBDataset
     UserName = 'frxdbContrato'
     CloseDataSource = False
     FieldAliases.Strings = (
+      'vl_extenso=vl_extenso'
+      'hora_retirada=hora_retirada'
+      'hora_entrega=hora_entrega'
       'nome_razao=nome_razao'
       'endereco=endereco'
       'nu_endereco=nu_endereco'
@@ -296,47 +353,47 @@ object FrmRelContrato: TFrmRelContrato
       'marca_veiculo=marca_veiculo'
       'cor_veiculo=cor_veiculo'
       'placa=placa'
-      'chassis=chassis'
       'descricao=descricao'
+      'chassis=chassis'
+      'fl_tipo_veiculo=fl_tipo_veiculo'
       'data_abertura=data_abertura'
       'data_retorno=data_retorno'
-      'valor_veiculo=valor_veiculo'
-      'obs=obs'
-      'id_locacao=id_locacao'
       'id_cliente=id_cliente'
       'id_veiculo=id_veiculo'
-      'vl_extenso=vl_extenso'
-      'hora_retirada=hora_retirada'
-      'hora_entrega=hora_entrega'
-      'bairro=bairro')
+      'obs=obs'
+      'id_locacao=id_locacao'
+      'vl_diaria=vl_diaria'
+      'vl_total=vl_total'
+      'valor_veiculo=valor_veiculo'
+      'bairro=bairro'
+      'qtde_dias=qtde_dias')
     DataSource = dsContrato
     BCDToCurrency = False
-    Left = 312
-    Top = 64
+    Left = 160
+    Top = 120
   end
   object frxReport1: TfrxReport
-    Version = '6.3.1'
+    Version = '6.3.8'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
-    PreviewOptions.AllowEdit = False
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43546.360455046300000000
-    ReportOptions.LastChange = 43549.840362557880000000
+    ReportOptions.LastChange = 43592.634864363430000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'procedure Picture1OnBeforePrint(Sender: TfrxComponent);'
       'begin'
-      '  '
+      ''
       'end;'
       ''
       'begin'
       ''
       'end.')
-    Left = 384
-    Top = 64
+    Left = 48
+    Top = 160
     Datasets = <
       item
         DataSet = frxdbContrato
@@ -369,15 +426,15 @@ object FrmRelContrato: TFrmRelContrato
       object ReportTitle1: TfrxReportTitle
         FillType = ftBrush
         Frame.Typ = []
-        Height = 147.401670000000000000
+        Height = 83.149660000000000000
         Top = 18.897650000000000000
         Width = 718.110700000000000000
         object Memo2: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
-          Left = 158.740260000000000000
-          Top = 52.913420000000000000
-          Width = 559.370439999999900000
+          Left = 98.267780000000000000
+          Top = 11.338590000000000000
+          Width = 619.842920000000000000
           Height = 37.795300000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -392,8 +449,8 @@ object FrmRelContrato: TFrmRelContrato
         end
         object Picture1: TfrxPictureView
           AllowVectorExport = True
-          Width = 158.740260000000000000
-          Height = 124.724490000000000000
+          Width = 98.267780000000000000
+          Height = 71.811070000000000000
           OnBeforePrint = 'Picture1OnBeforePrint'
           Center = True
           DataField = 'img_locacao'
@@ -407,7 +464,7 @@ object FrmRelContrato: TFrmRelContrato
         object Line1: TfrxLineView
           Align = baWidth
           AllowVectorExport = True
-          Top = 139.842610000000000000
+          Top = 79.370130000000000000
           Width = 718.110700000000000000
           Color = clBlack
           Frame.Typ = []
@@ -418,108 +475,39 @@ object FrmRelContrato: TFrmRelContrato
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 725.669760000000000000
-        Top = 226.771800000000000000
+        Height = 805.939778090000000000
+        Top = 162.519790000000000000
         Width = 718.110700000000000000
         DataSet = frxdbContrato
         DataSetName = 'frxdbContrato'
         RowCount = 0
         object Memo1: TfrxMemoView
+          Align = baWidth
           AllowVectorExport = True
-          Top = 18.897650000000000000
-          Width = 721.890230000000000000
-          Height = 502.677490000000000000
+          Top = 510.236550000000000000
+          Width = 718.110700000000000000
+          Height = 117.165430000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -16
-          Font.Name = 'Arial'
+          Font.Height = -13
+          Font.Name = '@Arial Unicode MS'
           Font.Style = []
           Frame.Typ = []
-          HAlign = haCenter
           Memo.UTF8W = (
             
-              'Locat'#225'rio: [<frxdbContrato."nome_razao">] Maior residente e domi' +
-              'ciliar nesta capital na Rua: [<frxdbContrato."endereco">],  N'#186' [' +
-              '<frxdbContrato."nu_endereco">] Bairro: [<frxdbContrato."bairro">' +
-              '] Telefone: [<frxdbContrato."telefone2">] -  [<frxdbContrato."te' +
-              'lefone1">], RG/IE: [<frxdbContrato."rg">], CPF/CNPJ: [<frxdbCont' +
-              'rato."cpf_cnpj">], CNH: [<frxdbContrato."cnh">]. Do objeto - Loc' +
-              'a'#231#227'o Marca:[<frxdbContrato."marca_veiculo">] Cor: [<frxdbContrat' +
-              'o."cor_veiculo">] Placa:[<frxdbContrato."placa">] e Chassi:  [<f' +
-              'rxdbContrato."chassis">], sendo que sua finalidade e de uso excl' +
-              'usivo na '#225'rea urbana do Munic'#237'pio de Porto Velho-RO. Sem restri'#231 +
-              #245'es de dia e hor'#225'rio que o locat'#225'rio n'#227'o poder'#225' ceder, alugar, e' +
-              'mprestar a referente [<frxdbContrato."descricao">] a terceiros o' +
-              ' uso da mesma ser'#225' exclusivo do locat'#225'rio. Da dura'#231#227'o '#8211' O prazo ' +
-              'de dura'#231#227'o do presente contrato e do dia [<frxdbContrato."data_a' +
-              'bertura">] ,[<frxdbContrato."hora_retirada">]  At'#233' o dia [<frxdb' +
-              'Contrato."data_retorno">], [<frxdbContrato."hora_entrega">], Cas' +
-              'o o locat'#225'rio ultrapassar essa data ter'#225' que pagar a diaria deco' +
-              'rrente, e a renova'#231#227'o do contrato. Da manuten'#231#227'o e conserva'#231#227'o '#8211 +
-              ' O locador entrega a referida veiculo em condi'#231#245'es normais de us' +
-              'o ao locat'#225'rio, por sua vez, ser'#225' obrigado a devolver a mesma na' +
-              ' preza estipula'#231#227'o pelo contrato, nas mesmas condi'#231#245'es de uso em' +
-              ' que se encontrava o bem, assumindo total responsabilidade de ev' +
-              'entuais danifica'#231#245'es de acidentes com outros tipos de ve'#237'culos e' +
-              ' pessoais, inclusive de terceiros, multas de tr'#226'nsito, bem como ' +
-              'assumindo total responsabilidade civil e criminal. Do pagamento ' +
-              #8211' Ser'#225' efetuado '#224' vista pelo locat'#225'rio, de forma imediata no rec' +
-              'ebimento da veiculo e tamb'#233'm assinar'#225' uma promiss'#243'ria ou cheque ' +
-              'no valor do bem: ([<frxdbContrato."valor_veiculo">]), Valor do c' +
-              'heque ou promiss'#243'ria  [<frxdbContrato."valor_veiculo">] ([frxdbC' +
-              'ontrato."vl_extenso"]), sendo que se o locat'#225'rio desistir do pre' +
-              'sente contrato, n'#227'o ficar'#225' obrigado o locador a devolver valores' +
-              ' pagos pelo locat'#225'rio. O veiculo tem que retornar com essas reco' +
-              'menda'#231#245'es: [<frxdbContrato."obs">]'
-            'CONSIDERA'#199#213'ES FINAIS:'
-            
-              '1. O presente contrato passa a vigorar a partir da assinatura do' +
-              ' mesmo por ambas as'
-            'partes.'
-            
-              '2. Fica eleito o Foro da Comarca de [<frxDBDsEmpresa."municipio"' +
-              '>]-[<frxDBDsEmpresa."estado">] para diminuir eventuais d'#250'vidas'
-            'que por ventura venha surgir com rela'#231#227'o ao presente Contrato.')
+              'Ser'#225' efetuado '#224' vista pelo locat'#225'rio, de forma imediata no receb' +
+              'imento da veiculo com o valor de pagamento [<frxdbContrato."vl_t' +
+              'otal">], considerando a di'#225'ria [<frxdbContrato."vl_diaria">] e o' +
+              ' periodo de loca'#231#227'o de [<frxdbContrato."qtde_dias">] dias e tamb' +
+              #233'm assinar'#225' uma promiss'#243'ria ou cheque no valor do bem, o valor d' +
+              'o cheque ou promiss'#243'ria  [<frxdbContrato."valor_veiculo">] ([frx' +
+              'dbContrato."vl_extenso"]), sendo que se o locat'#225'rio desistir do ' +
+              'presente contrato, n'#227'o ficar'#225' obrigado o locador a devolver valo' +
+              'res pagos pelo locat'#225'rio. O veiculo tem que retornar com essas r' +
+              'ecomenda'#231#245'es: [<frxdbContrato."obs">]')
           ParentFont = False
-          VAlign = vaCenter
           Formats = <
             item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
-            end
-            item
               DecimalSeparator = ','
               FormatStr = '%2.2m'
               Kind = fkNumeric
@@ -532,38 +520,19 @@ object FrmRelContrato: TFrmRelContrato
             item
             end
             item
+              FormatStr = '%2.2m'
+              Kind = fkNumeric
             end
             item
             end
             item
             end>
         end
-        object Memo3: TfrxMemoView
-          AllowVectorExport = True
-          Left = 37.795300000000000000
-          Top = 551.811380000000000000
-          Width = 642.520100000000000000
-          Height = 90.708720000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'Locador:   __________________________________________'
-            '                       [frxdbContrato."nome_razao"]'
-            ''
-            ''
-            'Locat'#225'rio: __________________________________________')
-          ParentFont = False
-        end
         object Memo4: TfrxMemoView
+          Align = baWidth
           AllowVectorExport = True
-          Left = 37.795300000000000000
-          Top = 646.299630000000000000
-          Width = 642.520100000000000000
+          Top = 726.772110000000000000
+          Width = 718.110700000000000000
           Height = 26.456710000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -571,10 +540,17 @@ object FrmRelContrato: TFrmRelContrato
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = []
+          HAlign = haRight
           Memo.UTF8W = (
-            'Porto Velho/RO, [<Date>],[<Time>]')
+            
+              '[<frxDBDsEmpresa."municipio">]/[<frxDBDsEmpresa."estado">], [<Da' +
+              'te>],[<Time>]')
           ParentFont = False
           Formats = <
+            item
+            end
+            item
+            end
             item
               FormatStr = 'dd mmm yyyy'
               Kind = fkDateTime
@@ -584,21 +560,339 @@ object FrmRelContrato: TFrmRelContrato
               Kind = fkDateTime
             end>
         end
+        object Memo5: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 3.779530000000000000
+          Width = 718.110700000000000000
+          Height = 79.370130000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = '@Arial Unicode MS'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'Locador: [frxDBDsEmpresa."razao_social"], nesta cidade na [<frxD' +
+              'BDsEmpresa."endereco">], [<frxDBDsEmpresa."nu_endereco">] Bairro' +
+              ': [<frxDBDsEmpresa."bairro">], com o telefone: [<frxDBDsEmpresa.' +
+              '"telefone1">]-[<frxDBDsEmpresa."telefone2">]. CNPJ:[<frxDBDsEmpr' +
+              'esa."cnpj">]. Fantasia:[<frxDBDsEmpresa."nome_fantasia">]')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo6: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 90.165430000000000000
+          Width = 718.110700000000000000
+          Height = 83.149660000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = '@Arial Unicode MS'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'Locat'#225'rio: [<frxdbContrato."nome_razao">], maior, residente e do' +
+              'miciliado nesta cidade na [<frxdbContrato."endereco">],N'#186' [<frxd' +
+              'bContrato."nu_endereco">] - Bairro: [<frxdbContrato."bairro">]. ' +
+              'Telefone: [<frxdbContrato."telefone1">] - [<frxdbContrato."telef' +
+              'one2">] RG: [<frxdbContrato."rg">], CPF/CNPJ: [<frxdbContrato."c' +
+              'pf_cnpj">], CNH: [<frxdbContrato."cnh">].')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo7: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 181.417440000000000000
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Do Objeto de Loca'#231#227'o')
+          ParentFont = False
+        end
+        object Memo8: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 211.653680000000000000
+          Width = 718.110700000000000000
+          Height = 68.031540000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = '@Arial Unicode MS'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'Placa: [<frxdbContrato."placa">] e Chassi: [<frxdbContrato."chas' +
+              'sis">], sendo que sua finalidade '#233' de uso exclusivo na '#225'rea urba' +
+              'na no Munic'#237'pio de [<frxDBDsEmpresa."municipio">]/[<frxDBDsEmpre' +
+              'sa."estado">]. Sem restri'#231#227'o de dia e hor'#225'rio que o locat'#225'rio n'#227 +
+              'o poder'#225' ceder, alugar, emprestar a referente [<frxdbContrato."f' +
+              'l_tipo_veiculo">] a terceiros, o usoser'#225' exclusivo do locat'#225'rio.')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo9: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 287.244280000000000000
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Da dura'#231#227'o')
+          ParentFont = False
+        end
+        object Memo10: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 308.141930000000000000
+          Width = 718.110700000000000000
+          Height = 56.692950000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = '@Arial Unicode MS'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'O prazo de dura'#231#227'o do presente contrato '#233' do dia [<frxdbContrato' +
+              '."data_abertura">] - [<frxdbContrato."hora_retirada">], at'#233' o di' +
+              'a [<frxdbContrato."data_retorno">] - [<frxdbContrato."hora_entre' +
+              'ga">]. Caso o locat'#225'rio ultrapassar essa data ter'#225' que pagar a d' +
+              'iaria decorrente e a renova'#231#227'o do contrato.')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo11: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 377.953000000000000000
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Da Manuten'#231#227'o e Conserva'#231#227'o')
+          ParentFont = False
+        end
+        object Memo12: TfrxMemoView
+          AllowVectorExport = True
+          Top = 404.409710000000000000
+          Width = 718.110700000000000000
+          Height = 71.811070000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = '@Arial Unicode MS'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'O locador entrega a referida ve'#237'culo em condi'#231#245'es normais de uso' +
+              ' ao locat'#225'rio, por sua vez, ser'#225' obrigado a devolver a mesa na p' +
+              'reza estipula'#231#227'o pelo contrato, nas mesmas condi'#231#245'es de uso em q' +
+              'ue se encontrava o bem, assumindo total responsabilidade de even' +
+              'tuais danifica'#231#245'es de acidentes com outros tipos de ve'#237'culos e p' +
+              'essoais, inclusive de terceiros, multas de tr'#226'nsito, bem como as' +
+              'sumindo total responsabilidade civil e criminal.')
+          ParentFont = False
+        end
+        object Memo13: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 487.559370000000000000
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Do Pagamento')
+          ParentFont = False
+        end
+        object Memo14: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 632.283860000000000000
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            'Considera'#231#245'es Finais')
+          ParentFont = False
+        end
+        object Memo15: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 654.961040000000000000
+          Width = 718.110700000000000000
+          Height = 64.252010000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = '@Arial Unicode MS'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              'O ve'#237'culo tem que retornar com essas recomenda'#231#245'es: [<frxdbContr' +
+              'ato."obs">].'
+            
+              'O presente contrato passa a vigorar a partir da assinatura do me' +
+              'smo por ambas as partes.'
+            
+              'Fica eleito o Foto da Comarca de [<frxDBDsEmpresa."municipio">]/' +
+              '[<frxDBDsEmpresa."estado">] para diminuir eventuais d'#250'vidas que ' +
+              'por ventura venha surgir com rela'#231#227'o ao presente contrato.')
+          ParentFont = False
+          Formats = <
+            item
+            end
+            item
+            end
+            item
+            end>
+        end
+        object Memo16: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 758.965619520000000000
+          Width = 718.110700000000000000
+          Height = 43.194628570000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = '@Arial Unicode MS'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            
+              '____________________                                          __' +
+              '_____________________'
+            
+              '                     Locador                                    ' +
+              '                                                              Lo' +
+              'cat'#225'rio')
+          ParentFont = False
+        end
       end
       object PageFooter1: TfrxPageFooter
         FillType = ftBrush
         Frame.Typ = []
-        Height = 22.677180000000000000
-        Top = 1012.914040000000000000
+        Height = 15.118120000000000000
+        Top = 1028.032160000000000000
         Width = 718.110700000000000000
         object Line2: TfrxLineView
           Align = baWidth
           AllowVectorExport = True
-          Top = 7.559060000000000000
           Width = 718.110700000000000000
           Color = clBlack
           Frame.Typ = []
           Diagonal = True
+        end
+        object Memo17: TfrxMemoView
+          AllowVectorExport = True
+          Left = 259.346630000000000000
+          Top = -0.519686670000056000
+          Width = 192.756030000000000000
+          Height = 18.177739520000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Vital Rent Manager - Vital Solutions')
+          ParentFont = False
         end
       end
     end
@@ -627,7 +921,7 @@ object FrmRelContrato: TFrmRelContrato
     PdfA = False
     PDFStandard = psNone
     PDFVersion = pv17
-    Left = 384
-    Top = 120
+    Left = 96
+    Top = 160
   end
 end

@@ -54,9 +54,6 @@ type
     btn_config: TdxBarLargeButton;
     rel_contrato: TAction;
     rel_recibo: TAction;
-    btn_rel_contrato: TdxBarButton;
-    btn_rel_recibo: TdxBarButton;
-    btn_rel_clientes: TdxBarButton;
     rel_clientes: TAction;
     dxBarManager1Bar6: TdxBar;
     cad_usuarios: TAction;
@@ -65,6 +62,14 @@ type
     btn_cad_usuario: TdxBarLargeButton;
     btn_cad_acesso: TdxBarLargeButton;
     btn_altera_senha: TdxBarLargeButton;
+    dxRibbon1Tab3: TdxRibbonTab;
+    btn_rel_contrato: TdxBarLargeButton;
+    btn_rel_recibo: TdxBarLargeButton;
+    btn_rel_locacoes: TdxBarLargeButton;
+    btn_rel_clientes: TdxBarLargeButton;
+    rel_locacoes: TAction;
+    rel_veiculos: TAction;
+    btn_rel_veiculos: TdxBarLargeButton;
     procedure FormCreate(Sender: TObject);
     procedure cad_veiculoExecute(Sender: TObject);
     procedure cad_estadosExecute(Sender: TObject);
@@ -79,13 +84,15 @@ type
     procedure rel_contratoExecute(Sender: TObject);
     procedure rel_reciboExecute(Sender: TObject);
     procedure configura_acesso;
-    procedure btn_cad_empresaClick(Sender: TObject);
     procedure cad_senhaExecute(Sender: TObject);
     procedure cad_usuariosExecute(Sender: TObject);
     procedure cad_perfil_usuarioExecute(Sender: TObject);
     procedure cad_empresaExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure sys_configExecute(Sender: TObject);
+    procedure rel_locacoesExecute(Sender: TObject);
+
+    procedure rel_veiculosExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -104,13 +111,8 @@ implementation
 uses FCadVericulo,FDM, App.Constantes, App.Funcoes, FCadCliente, FCadEstado,
   FLocacao,FCadMunicipio,FCadBairro, FVeiculosDisponivel, FRetorno, FDevolucao,
   FRelClientes, FRelContrato, FRelRecibo, Flogin, FCadEmpresa, FAlteraSenha,
-  FCadUsuario, FAcessoUsuarios, FParametros;
+  FCadUsuario, FAcessoUsuarios, FParametros, FRelLocacoes, FRelVeiculos;
 
-
-procedure TFrmPrincipal.btn_cad_empresaClick(Sender: TObject);
-begin
- FTDI.MostrarFormulario(TFrmCadEmpresa,False);
-end;
 
 procedure TFrmPrincipal.cad_bairrosExecute(Sender: TObject);
 begin
@@ -171,18 +173,24 @@ begin
 
      btn_cad_clientes.Enabled      := qrUsuarioAcesso.FieldByName('cad_cliente').AsString = 'X';
      btn_cad_veiculos.Enabled      := qrUsuarioAcesso.FieldByName('cad_veiculo').AsString = 'X';
-     btn_locar.Enabled             := qrUsuarioAcesso.FieldByName('nova_locacao').AsString = 'X';
-     btn_devolver.Enabled          := qrUsuarioAcesso.FieldByName('cancela_locacao').AsString = 'X';
-     btn_lista_veiculos.Enabled    := True; //qrUsuarioAcesso.FieldByName('').AsString = 'X';
-     btn_cad_estados.Enabled       := qrUsuarioAcesso.FieldByName('cad_estado').AsString = 'X';
-     btn_cad_municipios.Enabled    := qrUsuarioAcesso.FieldByName('cad_municipio').AsString = 'X';
-     btn_cad_bairros.Enabled       := qrUsuarioAcesso.FieldByName('cad_bairro').AsString = 'X';
-     btn_rel_contrato.Enabled      := qrUsuarioAcesso.FieldByName('rel_contrato').AsString = 'X';
-     btn_rel_recibo.Enabled        := qrUsuarioAcesso.FieldByName('rel_recibo').AsString = 'X';
-     btn_rel_clientes.Enabled      := qrUsuarioAcesso.FieldByName('rel_clientes').AsString = 'X';
      btn_cad_usuario.Enabled       := qrUsuarioAcesso.FieldByName('cad_usuario').AsString = 'X';
      btn_cad_empresa.Enabled       := qrUsuarioAcesso.FieldByName('cad_empresa').AsString = 'X';
      btn_cad_acesso.Enabled        := qrUsuarioAcesso.FieldByName('cad_acesso_usuario').AsString = 'X';
+     btn_cad_estados.Enabled       := qrUsuarioAcesso.FieldByName('cad_estado').AsString = 'X';
+     btn_cad_municipios.Enabled    := qrUsuarioAcesso.FieldByName('cad_municipio').AsString = 'X';
+     btn_cad_bairros.Enabled       := qrUsuarioAcesso.FieldByName('cad_bairro').AsString = 'X';
+
+     btn_locar.Enabled             := qrUsuarioAcesso.FieldByName('nova_locacao').AsString = 'X';
+     btn_devolver.Enabled          := qrUsuarioAcesso.FieldByName('cancela_locacao').AsString = 'X';
+     btn_lista_veiculos.Enabled    := True; //qrUsuarioAcesso.FieldByName('').AsString = 'X';
+
+
+     btn_rel_contrato.Enabled      := qrUsuarioAcesso.FieldByName('rel_contrato').AsString = 'X';
+     btn_rel_recibo.Enabled        := qrUsuarioAcesso.FieldByName('rel_recibo').AsString = 'X';
+     btn_rel_clientes.Enabled      := qrUsuarioAcesso.FieldByName('rel_clientes').AsString = 'X';
+     btn_rel_locacoes.Enabled      := qrUsuarioAcesso.FieldByName('rel_locacoes').AsString = 'X';
+     btn_rel_veiculos.Enabled      := qrUsuarioAcesso.FieldByName('rel_veiculos').AsString = 'X';
+
      btn_config.Enabled            := qrUsuarioAcesso.FieldByName('config').AsString = 'X';
      btn_altera_senha.Enabled      := True;
     end;
@@ -193,6 +201,7 @@ end;
 procedure TFrmPrincipal.devolver_veiculoExecute(Sender: TObject);
 begin
   if not Assigned(FrmDevolucao) then
+
    FrmDevolucao := TFrmDevolucao.Create(Self,-1);
  FrmDevolucao.ShowModal;
  FreeAndNil(FrmDevolucao);
@@ -206,6 +215,10 @@ begin
   if not Assigned(DM) then
     DM := TDM.Create(Self);
 
+  DM.atualizaBanco;
+  DM.checkEmpresa;
+
+
   USUARIO_LOGADO := False;
 
 
@@ -215,6 +228,7 @@ begin
   FreeAndNil(FrmLogin);
 
   configura_acesso;
+  DM.load_parametros(DM.EMPRESA_ID);
   if not USUARIO_LOGADO then
   begin
     ShowMessage('Usuário não logado! Fechamando o sistema.');
@@ -226,6 +240,7 @@ end;
 procedure TFrmPrincipal.FormShow(Sender: TObject);
 begin
  dxRibbon1.ActiveTab := dxRibbon1Tab1;
+ FrmPrincipal.Caption := FrmPrincipal.Caption + ' ' + SYSTEM_VERSION;
  if USUARIO_LOGADO then
  begin
    dxStatusBar1.Panels.Items[0].Text := 'Usuário: ' + DM.qrUsuariologin.AsString;
@@ -255,11 +270,23 @@ begin
  FreeAndNil(FrmRelContrato);
 end;
 
+procedure TFrmPrincipal.rel_locacoesExecute(Sender: TObject);
+begin
+  FTDI.MostrarFormulario(TFrmRelLocacoes,False);
+end;
+
 procedure TFrmPrincipal.rel_reciboExecute(Sender: TObject);
 begin
  if not Assigned(FrmRelRecibo) then
   FrmRelRecibo := TFrmRelRecibo.Create(Self);
  FrmRelRecibo.ShowModal;
+end;
+
+procedure TFrmPrincipal.rel_veiculosExecute(Sender: TObject);
+begin
+ if not Assigned(FrmRelVeiculo) then
+  FrmRelVeiculo := TFrmRelVeiculo.Create(Self);
+ FrmRelVeiculo.ShowModal;
 end;
 
 procedure TFrmPrincipal.retorno_veiculoExecute(Sender: TObject);

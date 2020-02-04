@@ -2,4 +2,5 @@
 *.identcache
 __recovery
 __history
-
+*.stat
+Win32/release

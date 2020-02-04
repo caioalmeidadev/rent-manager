@@ -3,8 +3,8 @@ object FrmListaClientes: TFrmListaClientes
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Lista de Clientes'
-  ClientHeight = 339
-  ClientWidth = 818
+  ClientHeight = 521
+  ClientWidth = 962
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,13 +17,15 @@ object FrmListaClientes: TFrmListaClientes
   TextHeight = 13
   object cxGrid1: TcxGrid
     Left = 0
-    Top = 29
-    Width = 818
-    Height = 310
+    Top = 113
+    Width = 962
+    Height = 408
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 35
-    ExplicitWidth = 646
+    ExplicitLeft = 48
+    ExplicitTop = 221
+    ExplicitWidth = 818
+    ExplicitHeight = 310
     object cxGrid1DBTableView1: TcxGridDBTableView
       OnDblClick = cxGrid1DBTableView1DblClick
       OnKeyPress = cxGrid1DBTableView1KeyPress
@@ -38,6 +40,7 @@ object FrmListaClientes: TFrmListaClientes
       OptionsData.Editing = False
       OptionsData.Inserting = False
       OptionsSelection.CellSelect = False
+      OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
       OptionsView.GroupByBox = False
       object cxGrid1DBTableView1Column1: TcxGridDBColumn
         Caption = 'C'#243'digo'
@@ -63,23 +66,75 @@ object FrmListaClientes: TFrmListaClientes
       GridView = cxGrid1DBTableView1
     end
   end
-  object cxLabel1: TcxLabel
+  object Panel1: TPanel
     Left = 0
     Top = 0
+    Width = 962
+    Height = 113
     Align = alTop
-    Caption = 'Lista de Clientes'
-    ParentFont = False
-    Style.Font.Charset = DEFAULT_CHARSET
-    Style.Font.Color = clWindowText
-    Style.Font.Height = -21
-    Style.Font.Name = 'Tahoma'
-    Style.Font.Style = []
-    Style.IsFontAssigned = True
-    Properties.Alignment.Horz = taCenter
-    Properties.Alignment.Vert = taVCenter
-    ExplicitWidth = 636
-    AnchorX = 409
-    AnchorY = 15
+    TabOrder = 1
+    object cxLabel1: TcxLabel
+      Left = 1
+      Top = 1
+      Align = alTop
+      Caption = 'Lista de Clientes'
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -21
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = []
+      Style.IsFontAssigned = True
+      Properties.Alignment.Horz = taCenter
+      Properties.Alignment.Vert = taVCenter
+      AnchorX = 481
+      AnchorY = 16
+    end
+    object Panel2: TPanel
+      Left = 1
+      Top = 30
+      Width = 960
+      Height = 82
+      Align = alClient
+      TabOrder = 1
+      ExplicitHeight = 59
+      object cxLabel2: TcxLabel
+        Left = 16
+        Top = 6
+        Caption = 'Tipo de Busca'
+      end
+      object cxLabel3: TcxLabel
+        Left = 184
+        Top = 6
+        Caption = 'Tipo de Busca'
+      end
+      object cxComboBox1: TcxComboBox
+        Left = 16
+        Top = 29
+        Properties.DropDownListStyle = lsFixedList
+        Properties.Items.Strings = (
+          'CPF'
+          'CODIGO'
+          'NOME')
+        TabOrder = 2
+        Width = 121
+      end
+      object cxTextEdit1: TcxTextEdit
+        Left = 184
+        Top = 29
+        TabOrder = 3
+        Text = 'cxTextEdit1'
+        Width = 593
+      end
+      object cxButton1: TcxButton
+        Left = 790
+        Top = 27
+        Width = 75
+        Height = 25
+        Caption = 'cxButton1'
+        TabOrder = 4
+      end
+    end
   end
   object qrClientes: TFDQuery
     Connection = DM.Conn
@@ -91,6 +146,7 @@ object FrmListaClientes: TFrmListaClientes
       FieldName = 'id_cliente'
       Origin = 'id_cliente'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrClientesnome_razao: TStringField
       AutoGenerateValue = arDefault

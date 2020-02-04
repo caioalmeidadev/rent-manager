@@ -2,7 +2,7 @@
   Left = 0
   Top = 0
   Caption = 'Retorno de Loca'#231#227'o'
-  ClientHeight = 489
+  ClientHeight = 469
   ClientWidth = 1090
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,24 +18,27 @@
     Left = 0
     Top = 57
     Width = 1090
-    Height = 432
+    Height = 412
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet2
+    Properties.ActivePage = cxTabSheet1
     Properties.CustomButtons.Buttons = <>
-    ClientRectBottom = 428
+    ClientRectBottom = 408
     ClientRectLeft = 4
     ClientRectRight = 1086
     ClientRectTop = 24
     object cxTabSheet1: TcxTabSheet
       Caption = 'Lista de Loca'#231#245'es'
       ImageIndex = 0
+      DesignSize = (
+        1082
+        384)
       object cxGrid1: TcxGrid
-        Left = 0
-        Top = 0
-        Width = 1082
-        Height = 345
-        Align = alTop
+        Left = 3
+        Top = 63
+        Width = 1062
+        Height = 262
+        Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 0
         object cxGrid1DBTableView1: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
@@ -43,12 +46,14 @@
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
+          NewItemRow.InfoText = 'Sem Filtro'
           OptionsData.CancelOnExit = False
           OptionsData.Deleting = False
           OptionsData.DeletingConfirmation = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
           OptionsSelection.CellSelect = False
+          OptionsView.NoDataToDisplayInfoText = 'Vital Solutions'
           object cxGrid1DBTableView1Column1: TcxGridDBColumn
             Caption = 'C'#243'digo'
             DataBinding.FieldName = 'id_locacao'
@@ -72,13 +77,13 @@
             Caption = 'Data Loca'#231#227'o'
             DataBinding.FieldName = 'data_abertura'
             HeaderAlignmentHorz = taCenter
-            Width = 81
+            Width = 103
           end
           object cxGrid1DBTableView1Column4: TcxGridDBColumn
             Caption = 'Data de Retorno'
             DataBinding.FieldName = 'data_retorno'
             HeaderAlignmentHorz = taCenter
-            Width = 74
+            Width = 106
           end
           object cxGrid1DBTableView1Column5: TcxGridDBColumn
             Caption = 'Placa'
@@ -92,13 +97,15 @@
             Caption = 'Status'
             DataBinding.FieldName = 'fl_situacao_nome'
             PropertiesClassName = 'TcxTextEditProperties'
+            Visible = False
+            GroupIndex = 0
             HeaderAlignmentHorz = taCenter
           end
           object cxGrid1DBTableView1Column8: TcxGridDBColumn
             Caption = 'Observa'#231#245'es'
             DataBinding.FieldName = 'obs'
             HeaderAlignmentHorz = taCenter
-            Width = 404
+            Width = 381
           end
         end
         object cxGrid1Level1: TcxGridLevel
@@ -107,9 +114,10 @@
       end
       object cxButton5: TcxButton
         Left = 0
-        Top = 351
+        Top = 331
         Width = 106
         Height = 50
+        Anchors = [akLeft, akBottom]
         Caption = 'Finalizar'
         OptionsImage.ImageIndex = 48
         OptionsImage.Images = FrmPrincipal.imgs32x32
@@ -118,15 +126,56 @@
       end
       object cxButton6: TcxButton
         Left = 112
-        Top = 351
+        Top = 331
         Width = 106
         Height = 50
+        Anchors = [akLeft, akBottom]
         Caption = 'Cancelar Loca'#231#227'o'
         OptionsImage.ImageIndex = 31
         OptionsImage.Images = FrmPrincipal.imgs32x32
         TabOrder = 2
         WordWrap = True
         OnClick = cxButton6Click
+      end
+      object cxGroupBox1: TcxGroupBox
+        Left = 3
+        Top = 3
+        Caption = 'Per'#237'odo'
+        TabOrder = 3
+        Height = 54
+        Width = 382
+        object ed_filtro_inicio: TcxDateEdit
+          Left = 3
+          Top = 24
+          Properties.SaveTime = False
+          Properties.ShowTime = False
+          TabOrder = 0
+          Width = 121
+        end
+        object cxLabel15: TcxLabel
+          Left = 130
+          Top = 24
+          Caption = #224
+        end
+        object ed_filtro_fim: TcxDateEdit
+          Left = 146
+          Top = 24
+          Properties.SaveTime = False
+          Properties.ShowTime = False
+          TabOrder = 2
+          Width = 121
+        end
+        object btn_filtrar: TcxButton
+          Left = 280
+          Top = 21
+          Width = 92
+          Height = 25
+          Caption = 'Filtrar'
+          OptionsImage.ImageIndex = 13
+          OptionsImage.Images = FrmPrincipal.imgs16x16
+          TabOrder = 3
+          OnClick = btn_filtrarClick
+        end
       end
     end
     object cxTabSheet2: TcxTabSheet
@@ -222,6 +271,7 @@
         Top = 39
         DataBinding.DataField = 'data_retorno'
         DataBinding.DataSource = dsLocacoes
+        Enabled = False
         Properties.SaveTime = False
         Properties.ShowTime = False
         Properties.OnChange = cxDBDateEdit2PropertiesChange
@@ -234,7 +284,7 @@
         Caption = 'Data Retorno'
       end
       object cxDBCurrencyEdit2: TcxDBCurrencyEdit
-        Left = 628
+        Left = 804
         Top = 39
         DataBinding.DataField = 'vl_total'
         DataBinding.DataSource = dsLocacoes
@@ -315,7 +365,7 @@
         Caption = 'Valor Di'#225'ria'
       end
       object cxLabel14: TcxLabel
-        Left = 628
+        Left = 804
         Top = 16
         Caption = 'Valor a Pagar'
       end
@@ -329,7 +379,7 @@
         Width = 66
       end
       object cxButton1: TcxButton
-        Left = 15
+        Left = 446
         Top = 352
         Width = 89
         Height = 37
@@ -337,6 +387,7 @@
         OptionsImage.ImageIndex = 3
         OptionsImage.Images = FrmPrincipal.imgs16x16
         TabOrder = 26
+        Visible = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -346,7 +397,7 @@
         OnClick = cxButton1Click
       end
       object cxButton2: TcxButton
-        Left = 110
+        Left = 16
         Top = 352
         Width = 89
         Height = 37
@@ -363,11 +414,11 @@
         OnClick = cxButton2Click
       end
       object cxButton3: TcxButton
-        Left = 205
+        Left = 111
         Top = 352
         Width = 150
         Height = 37
-        Caption = 'Finalizar Loca'#231#227'o'
+        Caption = 'Faturar'
         OptionsImage.ImageIndex = 9
         OptionsImage.Images = FrmPrincipal.imgs16x16
         TabOrder = 28
@@ -378,6 +429,17 @@
         Font.Style = [fsBold]
         ParentFont = False
         OnClick = cxButton3Click
+      end
+      object ed_km_retorno: TcxTextEdit
+        Left = 397
+        Top = 167
+        TabOrder = 29
+        Width = 121
+      end
+      object cxLabel2: TcxLabel
+        Left = 397
+        Top = 144
+        Caption = 'KM de Retorno'
       end
     end
   end
@@ -410,34 +472,65 @@
   end
   object qrLocacoes: TFDQuery
     AfterScroll = qrLocacoesAfterScroll
+    OnCalcFields = qrLocacoesCalcFields
     Connection = DM.Conn
     SQL.Strings = (
       
         ' SELECT '#10'        `l`.`id_locacao` AS `id_locacao`,'#10'        `l`.`' +
-        'data_abertura` AS `data_abertura`,'#10'        `l`.`data_retorno` AS' +
-        ' `data_retorno`,'#10'        `l`.`cliente_fone` AS `cliente_fone`,'#10' ' +
-        '       `l`.`vl_diaria` AS `vl_diaria`,'#10'        `l`.`vl_total` AS' +
-        ' `vl_total`,'#10'        `l`.`km_abertura` AS `km_abertura`,'#10'       ' +
-        ' `l`.`km_fechamento` AS `km_fechamento`,'#10'        `l`.`obs` AS `o' +
-        'bs`,'#10'        `l`.`fl_situacao` AS `fl_situacao`,'#10'        (CASE'#10' ' +
-        '           WHEN (`l`.`fl_situacao` = 0) THEN '#39'ABERTA'#39#10'          ' +
-        '  WHEN (`l`.`fl_situacao` = 1) THEN '#39'CANCELADA'#39#10'            WHEN' +
-        ' (`l`.`fl_situacao` = 2) THEN '#39'FECHADA'#39#10'        END) AS `fl_situ' +
-        'acao_nome`,'#10'        `v`.`placa` AS `placa`,'#10'        `v`.`descric' +
-        'ao` AS `veiculo_descricao`,'#10'        `c`.`nome_razao` AS `cliente' +
-        '_nome`,'#10'        `l`.`veiculo_id` AS `veiculo_id`,'#10'        `l`.`c' +
-        'liente_id` AS `cliente_id`,'#10'        (TO_DAYS(`l`.`data_retorno`)' +
-        ' - TO_DAYS(`l`.`data_abertura`)) AS `qtde_dias`'#10'    FROM'#10'       ' +
-        ' ((`tb_locacao` `l`'#10'        LEFT JOIN `tb_clientes` `c` ON ((`l`'
+        'data_abertura` AS `data_abertura`,'#10'  '
+      
+        '      `l`.`data_retorno` AS `data_retorno`,'#10'        `l`.`cliente' +
+        '_fone` AS `cliente_fone`,'#10'    '
+      
+        '    `l`.`vl_diaria` AS `vl_diaria`,'#10'        `l`.`vl_total` AS `v' +
+        'l_total`,'#10'        `l`.`km_abertura` AS `km_abertura`,'#10'  '
+      
+        '      `l`.`km_fechamento` AS `km_fechamento`,'#10'        `l`.`obs` ' +
+        'AS `obs`,'#10'        `l`.`fl_situacao` AS `fl_situacao`,'#10'   '
+      
+        '     (CASE'#10'            WHEN (`l`.`fl_situacao` = 0) THEN '#39'ABERTA' +
+        #39#10'            '
+      'WHEN (`l`.`fl_situacao` = 1) THEN '#39'CANCELADA'#39#10'           '
+      
+        ' WHEN (`l`.`fl_situacao` = 2) THEN '#39'FECHADA'#39#10'        END) AS `fl' +
+        '_situacao_nome`,'#10
+      
+        '        `v`.`placa` AS `placa`,'#10'        `v`.`descricao` AS `veic' +
+        'ulo_descricao`,'#10
+      
+        '        `c`.`nome_razao` AS `cliente_nome`,'#10'        `l`.`veiculo' +
+        '_id` AS `veiculo_id`,'#10'    '
+      
+        '    `l`.`cliente_id` AS `cliente_id`,'#10'        ((TO_DAYS(`l`.`dat' +
+        'a_retorno`) - TO_DAYS(`l`.`data_abertura`)) + 1) AS `qtde_dias`'#10 +
+        '    FROM'#10'        ((`tb_locacao` `l`'#10'        LEFT JOIN `tb_client' +
+        'es` `c` ON ((`l`'
       
         '.`cliente_id` = `c`.`id_cliente`)))'#10'        LEFT JOIN `tb_veicul' +
-        'os` `v` ON ((`l`.`veiculo_id` = `v`.`id_veiculo`)))')
+        'os` `v` ON ((`l`.`veiculo_id` = `v`.`id_veiculo`)))'
+      ''
+      'where `l`.`data_abertura` between :DT_INICIO_ and :DT_FINAL_'
+      ''
+      'order by `l`.`id_locacao` asc')
     Left = 460
     Top = 19
-    object qrLocacoesid_locacao: TFDAutoIncField
+    ParamData = <
+      item
+        Name = 'DT_INICIO_'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DT_FINAL_'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qrLocacoesid_locacao: TIntegerField
+      AutoGenerateValue = arDefault
       FieldName = 'id_locacao'
       Origin = 'id_locacao'
-      ReadOnly = True
     end
     object qrLocacoesdata_abertura: TDateField
       AutoGenerateValue = arDefault
@@ -504,18 +597,24 @@
       AutoGenerateValue = arDefault
       FieldName = 'placa'
       Origin = 'placa'
+      ProviderFlags = []
+      ReadOnly = True
       Size = 8
     end
     object qrLocacoesveiculo_descricao: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'veiculo_descricao'
-      Origin = 'veiculo_descricao'
+      Origin = 'descricao'
+      ProviderFlags = []
+      ReadOnly = True
       Size = 150
     end
     object qrLocacoescliente_nome: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'cliente_nome'
-      Origin = 'cliente_nome'
+      Origin = 'nome_razao'
+      ProviderFlags = []
+      ReadOnly = True
       Size = 120
     end
     object qrLocacoesveiculo_id: TIntegerField
@@ -528,12 +627,10 @@
       FieldName = 'cliente_id'
       Origin = 'cliente_id'
     end
-    object qrLocacoesqtde_dias: TLargeintField
-      AutoGenerateValue = arDefault
+    object qrLocacoesqtde_dias: TIntegerField
+      FieldKind = fkCalculated
       FieldName = 'qtde_dias'
-      Origin = 'qtde_dias'
-      ProviderFlags = []
-      ReadOnly = True
+      Calculated = True
     end
   end
   object dsLocacoes: TDataSource

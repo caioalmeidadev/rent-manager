@@ -110,6 +110,7 @@ object FrmCadCliente: TFrmCadCliente
         09780317BC94605C2D41B50000000049454E44AE426082}
       OptionsImage.Layout = blGlyphTop
       TabOrder = 2
+      OnClick = btnCancelarClick
     end
     object btnEditar: TcxButton
       Left = 254
@@ -171,6 +172,8 @@ object FrmCadCliente: TFrmCadCliente
           OptionsData.DeletingConfirmation = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
+          OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
+          OptionsView.GroupByBox = False
           object cxGrid1DBTableView1Column1: TcxGridDBColumn
             Caption = 'C'#243'digo'
             DataBinding.FieldName = 'id_cliente'
@@ -264,6 +267,7 @@ object FrmCadCliente: TFrmCadCliente
         DataBinding.DataSource = dsCliente
         Properties.CharCase = ecUpperCase
         TabOrder = 4
+        OnKeyPress = cxDBTextEdit3KeyPress
         Width = 137
       end
       object cxLabel4: TcxLabel
@@ -273,7 +277,7 @@ object FrmCadCliente: TFrmCadCliente
       end
       object cxPageControl2: TcxPageControl
         Left = 24
-        Top = 168
+        Top = 147
         Width = 619
         Height = 257
         TabOrder = 6
@@ -354,6 +358,7 @@ object FrmCadCliente: TFrmCadCliente
             DataBinding.DataSource = dsCliente
             Properties.CharCase = ecUpperCase
             TabOrder = 9
+            OnKeyPress = cxDBTextEdit13KeyPress
             Width = 81
           end
           object cxDBTextEdit19: TcxDBTextEdit
@@ -363,6 +368,7 @@ object FrmCadCliente: TFrmCadCliente
             DataBinding.DataSource = dsCliente
             Properties.CharCase = ecUpperCase
             TabOrder = 10
+            OnKeyPress = cxDBTextEdit19KeyPress
             Width = 81
           end
           object cxLabel20: TcxLabel
@@ -377,6 +383,7 @@ object FrmCadCliente: TFrmCadCliente
             DataBinding.DataSource = dsCliente
             Properties.CharCase = ecUpperCase
             TabOrder = 12
+            OnKeyPress = cxDBTextEdit20KeyPress
             Width = 115
           end
           object cxLabel21: TcxLabel
@@ -391,6 +398,7 @@ object FrmCadCliente: TFrmCadCliente
             DataBinding.DataSource = dsCliente
             Properties.CharCase = ecUpperCase
             TabOrder = 14
+            OnKeyPress = cxDBTextEdit21KeyPress
             Width = 115
           end
           object cxLabel22: TcxLabel
@@ -463,53 +471,6 @@ object FrmCadCliente: TFrmCadCliente
             Top = 53
             Caption = 'Bairro'
           end
-          object cxDBLookupComboBox1: TcxDBLookupComboBox
-            Left = 3
-            Top = 76
-            DataBinding.DataField = 'estado_id'
-            DataBinding.DataSource = dsCliente
-            Properties.KeyFieldNames = 'id_estado'
-            Properties.ListColumns = <
-              item
-                FieldName = 'nome'
-              end>
-            Properties.ListOptions.ShowHeader = False
-            Properties.ListSource = dsEstado
-            Properties.OnCloseUp = cxDBLookupComboBox1PropertiesCloseUp
-            TabOrder = 9
-            Width = 179
-          end
-          object cxDBLookupComboBox2: TcxDBLookupComboBox
-            Left = 188
-            Top = 76
-            DataBinding.DataField = 'municipio_id'
-            DataBinding.DataSource = dsCliente
-            Properties.KeyFieldNames = 'id_municipio'
-            Properties.ListColumns = <
-              item
-                FieldName = 'nome'
-              end>
-            Properties.ListOptions.ShowHeader = False
-            Properties.ListSource = dsMunicipio
-            Properties.OnCloseUp = cxDBLookupComboBox2PropertiesCloseUp
-            TabOrder = 10
-            Width = 179
-          end
-          object cxDBLookupComboBox3: TcxDBLookupComboBox
-            Left = 373
-            Top = 76
-            DataBinding.DataField = 'bairro_id'
-            DataBinding.DataSource = dsCliente
-            Properties.KeyFieldNames = 'id_bairro'
-            Properties.ListColumns = <
-              item
-                FieldName = 'nome'
-              end>
-            Properties.ListOptions.ShowHeader = False
-            Properties.ListSource = dsBairro
-            TabOrder = 11
-            Width = 179
-          end
           object cxLabel23: TcxLabel
             Left = 3
             Top = 103
@@ -519,6 +480,44 @@ object FrmCadCliente: TFrmCadCliente
             Left = 3
             Top = 153
             Caption = 'Obs'
+          end
+          object DBLookupComboBox1: TDBLookupComboBox
+            Left = 3
+            Top = 76
+            Width = 179
+            Height = 21
+            DataField = 'estado_id'
+            DataSource = dsCliente
+            KeyField = 'id_estado'
+            ListField = 'nome'
+            ListSource = dsEstado
+            TabOrder = 11
+            OnCloseUp = DBLookupComboBox1CloseUp
+          end
+          object DBLookupComboBox2: TDBLookupComboBox
+            Left = 188
+            Top = 76
+            Width = 179
+            Height = 21
+            DataField = 'municipio_id'
+            DataSource = dsCliente
+            KeyField = 'id_municipio'
+            ListField = 'nome'
+            ListSource = dsMunicipio
+            TabOrder = 12
+            OnCloseUp = DBLookupComboBox2CloseUp
+          end
+          object DBLookupComboBox3: TDBLookupComboBox
+            Left = 373
+            Top = 76
+            Width = 228
+            Height = 21
+            DataField = 'bairro_id'
+            DataSource = dsCliente
+            KeyField = 'id_bairro'
+            ListField = 'nome'
+            ListSource = dsBairro
+            TabOrder = 13
           end
         end
       end
@@ -574,6 +573,7 @@ object FrmCadCliente: TFrmCadCliente
         DataBinding.DataField = 'fl_status'
         DataBinding.DataSource = dsCliente
         Properties.ValueChecked = 'A'
+        Properties.ValueUnchecked = 'B'
         TabOrder = 12
       end
       object cxDBTextEdit16: TcxDBTextEdit

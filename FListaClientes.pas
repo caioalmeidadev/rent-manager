@@ -12,7 +12,8 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, cxContainer, cxLabel, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, cxGridLevel, cxClasses, cxGridCustomView,
-  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid;
+  cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, Vcl.Menus,
+  Vcl.StdCtrls, cxButtons, cxTextEdit, cxMaskEdit, cxDropDownEdit, Vcl.ExtCtrls;
 
 type
   TFrmListaClientes = class(TForm)
@@ -21,7 +22,6 @@ type
     cxGrid1: TcxGrid;
     qrClientes: TFDQuery;
     dsClientes: TDataSource;
-    cxLabel1: TcxLabel;
     cxGrid1DBTableView1Column1: TcxGridDBColumn;
     cxGrid1DBTableView1Column2: TcxGridDBColumn;
     cxGrid1DBTableView1Column3: TcxGridDBColumn;
@@ -50,6 +50,14 @@ type
     qrClientesmunicipio_id: TIntegerField;
     qrClientesbairro_id: TIntegerField;
     qrClientesinsc_est: TStringField;
+    Panel1: TPanel;
+    cxLabel1: TcxLabel;
+    Panel2: TPanel;
+    cxLabel2: TcxLabel;
+    cxLabel3: TcxLabel;
+    cxComboBox1: TcxComboBox;
+    cxTextEdit1: TcxTextEdit;
+    cxButton1: TcxButton;
     procedure FormShow(Sender: TObject);
     procedure cxGrid1DBTableView1DblClick(Sender: TObject);
     procedure cxGrid1DBTableView1KeyPress(Sender: TObject; var Key: Char);

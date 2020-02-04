@@ -56,6 +56,8 @@ uses App.FExtenso, App.Funcoes, FDM, FPrincipal;
 
 constructor TFrmRelRecibo.Create(AOwner: TComponent; xIdLocacao: Integer);
 begin
+  inherited Create(AOwner);
+
  if xIdLocacao > 0 then
  begin
   ed_cod_contrato.Text := IntToStr(xIdLocacao);

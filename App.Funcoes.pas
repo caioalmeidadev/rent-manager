@@ -14,8 +14,8 @@ function checkColuna(xTabela:string;xColuna:string):Boolean;
 var
 qryTmp:TFDQuery;
 begin
-  Result := simpleQuery('SELECT count(*) as coluna FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = ''vital-db'' ' +
-                        'AND TABLE_NAME = ''' + xTabela + ''' and COLUMN_NAME = ''' + xColuna + ''';') <> nil;
+  Result := simpleQuery('SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE ' +
+                        'TABLE_NAME = ''' + xTabela + ''' AND COLUMN_NAME = ''' + xColuna + ''';') = nil;
 end;
 
 function checkTabela(xBanco:string;xTabela:string):Boolean;

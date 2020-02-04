@@ -20,7 +20,7 @@ object FrmCadUsuario: TFrmCadUsuario
     Width = 505
     Height = 297
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet1
+    Properties.ActivePage = cxTabSheet2
     Properties.CustomButtons.Buttons = <>
     ClientRectBottom = 293
     ClientRectLeft = 4
@@ -46,6 +46,7 @@ object FrmCadUsuario: TFrmCadUsuario
           OptionsData.DeletingConfirmation = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
+          OptionsView.NoDataToDisplayInfoText = 'Sem registros a serem exibidos'
           OptionsView.GroupByBox = False
           object cxGridDBColumn1: TcxGridDBColumn
             Caption = 'C'#243'digo'
@@ -119,7 +120,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'nome_usuario'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 1
+        TabOrder = 2
         Width = 178
       end
       object cxDBTextEdit3: TcxDBTextEdit
@@ -129,7 +130,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
         Properties.EchoMode = eemPassword
-        TabOrder = 2
+        TabOrder = 7
         Width = 121
       end
       object cxDBTextEdit4: TcxDBTextEdit
@@ -138,7 +139,7 @@ object FrmCadUsuario: TFrmCadUsuario
         DataBinding.DataField = 'login'
         DataBinding.DataSource = dsUsuarios
         Properties.CharCase = ecUpperCase
-        TabOrder = 3
+        TabOrder = 5
         Width = 121
       end
       object cxLabel1: TcxLabel
@@ -174,7 +175,7 @@ object FrmCadUsuario: TFrmCadUsuario
           end>
         Properties.ListOptions.ShowHeader = False
         Properties.ListSource = dsAcesso
-        TabOrder = 8
+        TabOrder = 9
         Width = 248
       end
       object cxLabel6: TcxLabel
@@ -267,6 +268,7 @@ object FrmCadUsuario: TFrmCadUsuario
   end
   object dsUsuarios: TDataSource
     DataSet = qrUsuarios
+    OnStateChange = dsUsuariosStateChange
     Left = 464
     Top = 88
   end
@@ -290,5 +292,10 @@ object FrmCadUsuario: TFrmCadUsuario
     DataSet = qrAcesso
     Left = 252
     Top = 80
+  end
+  object ACBrEnterTab1: TACBrEnterTab
+    EnterAsTab = True
+    Left = 292
+    Top = 160
   end
 end

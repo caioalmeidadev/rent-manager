@@ -73,9 +73,6 @@ type
     cxLabel21: TcxLabel;
     cxDBTextEdit21: TcxDBTextEdit;
     cxLabel22: TcxLabel;
-    cxDBLookupComboBox1: TcxDBLookupComboBox;
-    cxDBLookupComboBox2: TcxDBLookupComboBox;
-    cxDBLookupComboBox3: TcxDBLookupComboBox;
     cxLabel23: TcxLabel;
     cxLabel24: TcxLabel;
     cxDBCheckBox1: TcxDBCheckBox;
@@ -133,13 +130,22 @@ type
     qrMunicipionome: TStringField;
     qrMunicipioestado_id: TIntegerField;
     qrMunicipiosigla: TStringField;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupComboBox3: TDBLookupComboBox;
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure bttnSalvarClick(Sender: TObject);
-    procedure cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
-    procedure cxDBLookupComboBox2PropertiesCloseUp(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure cxDBTextEdit20KeyPress(Sender: TObject; var Key: Char);
+    procedure cxDBTextEdit21KeyPress(Sender: TObject; var Key: Char);
+    procedure cxDBTextEdit13KeyPress(Sender: TObject; var Key: Char);
+    procedure cxDBTextEdit19KeyPress(Sender: TObject; var Key: Char);
+    procedure cxDBTextEdit3KeyPress(Sender: TObject; var Key: Char);
+    procedure DBLookupComboBox1CloseUp(Sender: TObject);
+    procedure DBLookupComboBox2CloseUp(Sender: TObject);
   private
     { Private declarations }
   public
@@ -154,6 +160,14 @@ implementation
 {$R *.dfm}
 
 uses FDM;
+
+procedure TFrmCadCliente.btnCancelarClick(Sender: TObject);
+begin
+ if qrCliente.State in [dsInsert,dsEdit] then
+  qrCliente.Cancel;
+ qrCliente.Refresh;
+ cxPageControl1.ActivePageIndex := 0;
+end;
 
 procedure TFrmCadCliente.btnEditarClick(Sender: TObject);
 begin
@@ -184,19 +198,54 @@ begin
  cxPageControl1.ActivePageIndex := 0;
 end;
 
-procedure TFrmCadCliente.cxDBLookupComboBox1PropertiesCloseUp(Sender: TObject);
+procedure TFrmCadCliente.cxDBTextEdit13KeyPress(Sender: TObject; var Key: Char);
 begin
- qrMunicipio.Close;
- qrMunicipio.ParamByName('id_estado').AsInteger := qrEstadoid_estado.AsInteger;
- qrMunicipio.Open;
+  if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+   Key := #0;
 end;
 
-procedure TFrmCadCliente.cxDBLookupComboBox2PropertiesCloseUp(Sender: TObject);
+procedure TFrmCadCliente.cxDBTextEdit19KeyPress(Sender: TObject; var Key: Char);
 begin
+  if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+   Key := #0;
+end;
+
+procedure TFrmCadCliente.cxDBTextEdit20KeyPress(Sender: TObject; var Key: Char);
+begin
+ if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+  Key := #0;
+end;
+
+procedure TFrmCadCliente.cxDBTextEdit21KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+   Key := #0;
+end;
+
+procedure TFrmCadCliente.cxDBTextEdit3KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key in ['A'..'Z']) or (Key in ['a'..'z'])  then
+   Key := #0;
+end;
+
+procedure TFrmCadCliente.DBLookupComboBox1CloseUp(Sender: TObject);
+begin
+  if qrCliente.State in [dsInsert,dsEdit] then
+ begin
+   qrMunicipio.Close;
+   qrMunicipio.ParamByName('id_estado').AsInteger := qrEstadoid_estado.AsInteger;
+   qrMunicipio.Open;
+ end;
+end;
+
+procedure TFrmCadCliente.DBLookupComboBox2CloseUp(Sender: TObject);
+begin
+  if qrCliente.State in [dsInsert,dsEdit] then
+ begin
   qrBairro.Close;
   qrBairro.ParamByName('id_municipio').AsInteger := qrMunicipioid_municipio.AsInteger;
   qrBairro.Open;
-
+ end;
 end;
 
 procedure TFrmCadCliente.FormCreate(Sender: TObject);

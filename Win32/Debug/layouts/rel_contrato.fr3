@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="6.3.1" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43546,3604550463" ReportOptions.Description.Text="" ReportOptions.LastChange="43591,6066316435" ScriptLanguage="PascalScript" ScriptText.Text="procedure Picture1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="frxdbContrato" DataSetName="frxdbContrato"/>
+    <item DataSet="DM.frxDBDsEmpresa" DataSetName="frxDBDsEmpresa"/>
+    <item DataSet="DM.frxDBDsParametros" DataSetName="frxDBDsParametros"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="83,14966" Left="0" Top="18,89765" Width="718,1107">
+      <TfrxMemoView Name="Memo2" Align="baWidth" AllowVectorExport="True" Left="98,26778" Top="11,33859" Width="619,84292" Height="37,7953" Font.Charset="1" Font.Color="0" Font.Height="-27" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="CONTRATO DE LOCAÇÃO DE VEICULO"/>
+      <TfrxPictureView Name="Picture1" AllowVectorExport="True" Left="0" Top="0" Width="98,26778" Height="71,81107" OnBeforePrint="Picture1OnBeforePrint" Center="True" DataField="img_locacao" DataSet="DM.frxDBDsParametros" DataSetName="frxDBDsParametros" Frame.Typ="0" HightQuality="False" Transparent="False" TransparentColor="16777215"/>
+      <TfrxLineView Name="Line1" Align="baWidth" AllowVectorExport="True" Left="0" Top="79,37013" Width="718,1107" Height="0" Color="0" Frame.Typ="0" Frame.Width="2" Diagonal="True"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="805,93977809" Left="0" Top="162,51979" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="frxdbContrato" DataSetName="frxdbContrato" RowCount="0">
+      <TfrxMemoView Name="Memo1" Align="baWidth" AllowVectorExport="True" Left="0" Top="510,23655" Width="718,1107" Height="90,70872" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Será efetuado à vista pelo locatário, de forma imediata no recebimento da veiculo e também assinará uma promissória ou cheque no valor do bem: ([&#60;frxdbContrato.&#34;valor_veiculo&#34;&#62;]), Valor do cheque ou promissória  [&#60;frxdbContrato.&#34;valor_veiculo&#34;&#62;] ([frxdbContrato.&#34;vl_extenso&#34;]), sendo que se o locatário desistir do presente contrato, não ficará obrigado o locador a devolver valores pagos pelo locatário. O veiculo tem que retornar com essas recomendações: [&#60;frxdbContrato.&#34;obs&#34;&#62;]">
+        <Formats>
+          <item DecimalSeparator="," FormatStr="%2.2m" Kind="fkNumeric"/>
+          <item DecimalSeparator="," FormatStr="%2.2m" Kind="fkNumeric"/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo4" Align="baWidth" AllowVectorExport="True" Left="0" Top="706,77211" Width="718,1107" Height="26,45671" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haRight" ParentFont="False" Text="[&#60;frxDBDsEmpresa.&#34;municipio&#34;&#62;]/[&#60;frxDBDsEmpresa.&#34;estado&#34;&#62;], [&#60;Date&#62;],[&#60;Time&#62;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item FormatStr="dd mmm yyyy" Kind="fkDateTime"/>
+          <item FormatStr="hh:mm" Kind="fkDateTime"/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo5" Align="baWidth" AllowVectorExport="True" Left="0" Top="3,77953" Width="718,1107" Height="79,37013" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="Locador: [frxDBDsEmpresa.&#34;razao_social&#34;], nesta cidade na [&#60;frxDBDsEmpresa.&#34;endereco&#34;&#62;], [&#60;frxDBDsEmpresa.&#34;nu_endereco&#34;&#62;] Bairro: [&#60;frxDBDsEmpresa.&#34;bairro&#34;&#62;], com o telefone: [&#60;frxDBDsEmpresa.&#34;telefone1&#34;&#62;]-[&#60;frxDBDsEmpresa.&#34;telefone2&#34;&#62;]. CNPJ:[&#60;frxDBDsEmpresa.&#34;cnpj&#34;&#62;]. Fantasia:[&#60;frxDBDsEmpresa.&#34;nome_fantasia&#34;&#62;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo6" Align="baWidth" AllowVectorExport="True" Left="0" Top="90,16543" Width="718,1107" Height="83,14966" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="Locatário: [&#60;frxdbContrato.&#34;nome_razao&#34;&#62;], maior, residente e domiciliado nesta cidade na [&#60;frxdbContrato.&#34;endereco&#34;&#62;],Nº [&#60;frxdbContrato.&#34;nu_endereco&#34;&#62;] - Bairro: [&#60;frxdbContrato.&#34;bairro&#34;&#62;]. Telefone: [&#60;frxdbContrato.&#34;telefone1&#34;&#62;] - [&#60;frxdbContrato.&#34;telefone2&#34;&#62;] RG: [&#60;frxdbContrato.&#34;rg&#34;&#62;], CPF/CNPJ: [&#60;frxdbContrato.&#34;cpf_cnpj&#34;&#62;], CNH: [&#60;frxdbContrato.&#34;cnh&#34;&#62;].">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo7" Align="baWidth" AllowVectorExport="True" Left="0" Top="181,41744" Width="718,1107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="Do Objeto de Locação"/>
+      <TfrxMemoView Name="Memo8" Align="baWidth" AllowVectorExport="True" Left="0" Top="211,65368" Width="718,1107" Height="68,03154" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="Placa: [&#60;frxdbContrato.&#34;placa&#34;&#62;] e Chassi: [&#60;frxdbContrato.&#34;chassis&#34;&#62;], sendo que sua finalidade é de uso exclusivo na área urbana no Município de [&#60;frxDBDsEmpresa.&#34;municipio&#34;&#62;]/[&#60;frxDBDsEmpresa.&#34;estado&#34;&#62;]. Sem restrição de dia e horário que o locatário não poderá ceder, alugar, emprestar a referente [&#60;frxdbContrato.&#34;fl_tipo_veiculo&#34;&#62;] a terceiros, o usoserá exclusivo do locatário.">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo9" Align="baWidth" AllowVectorExport="True" Left="0" Top="287,24428" Width="718,1107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="Da duração"/>
+      <TfrxMemoView Name="Memo10" Align="baWidth" AllowVectorExport="True" Left="0" Top="308,14193" Width="718,1107" Height="56,69295" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="O prazo de duração do presente contrato é do dia [&#60;frxdbContrato.&#34;data_abertura&#34;&#62;] - [&#60;frxdbContrato.&#34;hora_retirada&#34;&#62;], até o dia [&#60;frxdbContrato.&#34;data_retorno&#34;&#62;] - [&#60;frxdbContrato.&#34;hora_entrega&#34;&#62;]. Caso o locatário ultrapassar essa data terá que pagar a diaria decorrente e a renovação do contrato.">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo11" Align="baWidth" AllowVectorExport="True" Left="0" Top="377,953" Width="718,1107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="Da Manutenção e Conservação"/>
+      <TfrxMemoView Name="Memo12" AllowVectorExport="True" Left="0" Top="404,40971" Width="718,1107" Height="71,81107" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="O locador entrega a referida veículo em condições normais de uso ao locatário, por sua vez, será obrigado a devolver a mesa na preza estipulação pelo contrato, nas mesmas condições de uso em que se encontrava o bem, assumindo total responsabilidade de eventuais danificações de acidentes com outros tipos de veículos e pessoais, inclusive de terceiros, multas de trânsito, bem como assumindo total responsabilidade civil e criminal."/>
+      <TfrxMemoView Name="Memo13" Align="baWidth" AllowVectorExport="True" Left="0" Top="487,55937" Width="718,1107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="Do Pagamento"/>
+      <TfrxMemoView Name="Memo14" Align="baWidth" AllowVectorExport="True" Left="0" Top="612,28386" Width="718,1107" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" Text="Considerações Finais"/>
+      <TfrxMemoView Name="Memo15" Align="baWidth" AllowVectorExport="True" Left="0" Top="634,96104" Width="718,1107" Height="64,25201" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="O veículo tem que retornar com essas recomendações: [&#60;frxdbContrato.&#34;obs&#34;&#62;].&#13;&#10;O presente contrato passa a vigorar a partir da assinatura do mesmo por ambas as partes.&#13;&#10;Fica eleito o Foto da Comarca de [&#60;frxDBDsEmpresa.&#34;municipio&#34;&#62;]/[&#60;frxDBDsEmpresa.&#34;estado&#34;&#62;] para diminuir eventuais dúvidas que por ventura venha surgir com relação ao presente contrato.">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo16" Align="baWidth" AllowVectorExport="True" Left="0" Top="758,96561952" Width="718,1107" Height="43,19462857" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="____________________                                          _______________________&#13;&#10;                     Locador                                                                                                  Locatário"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="15,11812" Left="0" Top="1028,03216" Width="718,1107">
+      <TfrxLineView Name="Line2" Align="baWidth" AllowVectorExport="True" Left="0" Top="0" Width="718,1107" Height="0" Color="0" Frame.Typ="0" Diagonal="True"/>
+      <TfrxMemoView Name="Memo17" AllowVectorExport="True" Left="259,34663" Top="-0,519686670000056" Width="192,75603" Height="18,17773952" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Vital Rent Manager - Vital Solutions"/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+</TfrxReport>
