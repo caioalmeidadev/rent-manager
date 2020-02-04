@@ -59,13 +59,13 @@ begin
    Exit;
  end;
 
- if cb_empresa.Text = '***' then
- begin
-   ShowMessage('Sistema sem cadatro de empresa, por favor entre em contato com o suporte.');
-   Exit;
- end;
+// if cb_empresa.Text = '***' then
+// begin
+//   ShowMessage('Sistema sem cadatro de empresa, por favor entre em contato com o suporte.');
+//   Exit;
+// end;
 
- if DM.login(ed_usuario.Text,ed_senha.Text,copy(cb_empresa.Text,0,2)) then
+ if DM.login(ed_usuario.Text,ed_senha.Text,'01') then
  begin
    FrmPrincipal.USUARIO_LOGADO := True;
    Close;

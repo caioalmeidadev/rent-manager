@@ -1,4 +1,4 @@
-program vital_rent_manager;
+program rent_manager;
 
 uses
   Vcl.Forms,

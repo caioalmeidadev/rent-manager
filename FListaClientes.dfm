@@ -22,10 +22,6 @@ object FrmListaClientes: TFrmListaClientes
     Height = 408
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 48
-    ExplicitTop = 221
-    ExplicitWidth = 818
-    ExplicitHeight = 310
     object cxGrid1DBTableView1: TcxGridDBTableView
       OnDblClick = cxGrid1DBTableView1DblClick
       OnKeyPress = cxGrid1DBTableView1KeyPress
@@ -97,7 +93,6 @@ object FrmListaClientes: TFrmListaClientes
       Height = 82
       Align = alClient
       TabOrder = 1
-      ExplicitHeight = 59
       object cxLabel2: TcxLabel
         Left = 16
         Top = 6
@@ -108,31 +103,35 @@ object FrmListaClientes: TFrmListaClientes
         Top = 6
         Caption = 'Tipo de Busca'
       end
-      object cxComboBox1: TcxComboBox
+      object cb_tipo_pesquisa: TcxComboBox
         Left = 16
         Top = 29
         Properties.DropDownListStyle = lsFixedList
         Properties.Items.Strings = (
-          'CPF'
           'CODIGO'
-          'NOME')
+          'NOME'
+          'CPF/CNPJ')
         TabOrder = 2
+        Text = 'CODIGO'
+        OnKeyPress = cb_tipo_pesquisaKeyPress
         Width = 121
       end
-      object cxTextEdit1: TcxTextEdit
+      object ed_pesquisa: TcxTextEdit
         Left = 184
         Top = 29
         TabOrder = 3
-        Text = 'cxTextEdit1'
+        Text = 'ed_pesquisa'
+        OnKeyPress = ed_pesquisaKeyPress
         Width = 593
       end
-      object cxButton1: TcxButton
-        Left = 790
+      object btn_pesquisa: TcxButton
+        Left = 783
         Top = 27
         Width = 75
         Height = 25
-        Caption = 'cxButton1'
+        Caption = 'Pesquisar'
         TabOrder = 4
+        OnClick = btn_pesquisaClick
       end
     end
   end

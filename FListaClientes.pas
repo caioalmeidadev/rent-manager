@@ -55,12 +55,15 @@ type
     Panel2: TPanel;
     cxLabel2: TcxLabel;
     cxLabel3: TcxLabel;
-    cxComboBox1: TcxComboBox;
-    cxTextEdit1: TcxTextEdit;
-    cxButton1: TcxButton;
+    cb_tipo_pesquisa: TcxComboBox;
+    ed_pesquisa: TcxTextEdit;
+    btn_pesquisa: TcxButton;
     procedure FormShow(Sender: TObject);
     procedure cxGrid1DBTableView1DblClick(Sender: TObject);
     procedure cxGrid1DBTableView1KeyPress(Sender: TObject; var Key: Char);
+    procedure btn_pesquisaClick(Sender: TObject);
+    procedure cb_tipo_pesquisaKeyPress(Sender: TObject; var Key: Char);
+    procedure ed_pesquisaKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -77,6 +80,37 @@ implementation
 
 uses FDM;
 
+procedure TFrmListaClientes.cb_tipo_pesquisaKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+ if Key = Char(VK_RETURN) then
+  ed_pesquisa.setFocus;
+
+ if Key = Char(VK_ESCAPE) then
+  Close;
+end;
+
+procedure TFrmListaClientes.btn_pesquisaClick(Sender: TObject);
+var
+ xSQL : String;
+begin
+  xSQL := 'select * from tb_clientes';
+  if ed_pesquisa.Text <> '' then
+  begin
+    case cb_tipo_pesquisa.ItemIndex of
+     0 : xSQL := xSQL + ' where id_cliente = ' + Trim(ed_pesquisa.Text);
+     1 : xSQL := xSQL + ' where apelido_fantasia like ' + QuotedStr('%'+ed_pesquisa.Text+'%');
+     2 : xSQL := xSQL + ' where cpf_cnpj = ' + Trim(ed_pesquisa.Text);
+    end;
+  end;
+   xSQL := xSQL + ' order by id_cliente asc;';
+
+  qrClientes.Close;
+  qrClientes.SQL.Clear;
+  qrClientes.SQL.Add(xSQL);
+  qrClientes.Open;
+end;
+
 procedure TFrmListaClientes.cxGrid1DBTableView1DblClick(Sender: TObject);
 begin
   xIdCliente := qrClientesid_cliente.AsInteger;
@@ -91,6 +125,17 @@ begin
    xIdCliente := qrClientesid_cliente.AsInteger;
    Close;
  end;
+end;
+
+procedure TFrmListaClientes.ed_pesquisaKeyPress(Sender: TObject; var Key: Char);
+begin
+ if Key = Char(VK_RETURN) then
+   if ed_pesquisa.Text <> '' then
+    btn_pesquisaClick(Self);
+
+ if Key = Char(VK_ESCAPE) then
+  Close;
+
 end;
 
 procedure TFrmListaClientes.FormShow(Sender: TObject);

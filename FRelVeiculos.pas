@@ -86,11 +86,13 @@ begin
 
   case cb_tp_situacao.ItemIndex of
     0 : xSQL := xSQL + '';
-    1 : xSQL := xSQL + ' and fl_status_veiculo=''NOVO''';
-    2 : xSQL := xSQL + ' and fl_status_veiculo=''SEMINOVO''';
-    3 : xSQL := xSQL + ' and fl_status_veiculo=''USADO''';
-    4 : xSQL := xSQL + ' and fl_status_veiculo=''SUCATA''';
-    5 : xSQL := xSQL + ' and fl_status_veiculo=''VENDIDO''';
+    1 : xSQL := xSQL + ' and fl_status_veiculo = ''NOVO''';
+    2 : xSQL := xSQL + ' and fl_status_veiculo = ''SEMINOVO''';
+    3 : xSQL := xSQL + ' and fl_status_veiculo = ''USADO''';
+    4 : xSQL := xSQL + ' and fl_status_veiculo = ''SUCATA''';
+    5 : xSQL := xSQL + ' and fl_status_veiculo = ''VENDIDO''';
+    6 : xSQL := xSQL + ' and fl_status_veiculo <> ''INATIVO''';
+    7 : xSQL := xSQL + ' and fl_status_veiculo = ''INATIVO''';
   end;
 
   xSQL := xSQL + ' order by id_veiculo asc;';

@@ -4,8 +4,8 @@ interface
 
 Const
 
- SYSTEM_NAME           = 'VITAL RENT MANAGER';
- SYSTEM_VERSION        = '1.9';
+ SYSTEM_NAME           = 'RENT MANAGER - AlmeidaTECH';
+ SYSTEM_VERSION        = '2.0.1';
  DB_NAME               = 'sisloc';
  DB_HOST               = 'localhost';
  DB_USER               = 'vital';

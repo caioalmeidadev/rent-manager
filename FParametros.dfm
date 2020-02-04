@@ -3,7 +3,7 @@ object FrmParametros: TFrmParametros
   Top = 0
   Caption = 'Parametros do Sistema'
   ClientHeight = 407
-  ClientWidth = 955
+  ClientWidth = 502
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,7 +12,7 @@ object FrmParametros: TFrmParametros
   Font.Style = []
   OldCreateOrder = False
   DesignSize = (
-    955
+    502
     407)
   PixelsPerInch = 96
   TextHeight = 13

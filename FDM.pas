@@ -139,6 +139,16 @@ begin
     end;
  end;
 
+ if checkColuna('tb_usuario_acesso','rel_locacoes') then
+ begin
+    try
+     Conn.ExecSQL('ALTER TABLE `tb_usuario_acesso`'+
+                  ' ADD COLUMN `rel_locacoes` CHAR(1) NULL DEFAULT ''N''');
+    except
+     raise Exception.Create('Ocorreu um erro ao atualizar. Entre em contato com o suporte.');
+    end;
+ end;
+
 end;
 procedure TDM.checkEmpresa;
 begin
@@ -221,8 +231,8 @@ arqIni:TIniFile;
 begin
 
   try
-    if FileExists(ExtractFilePath(Application.exename) + '\vital_rent_manager.ini') then
-      arqIni := TIniFile.Create(ExtractFilePath(Application.exename) + '\vital_rent_manager.ini');
+    if FileExists(ExtractFilePath(Application.exename) + '\config.ini') then
+      arqIni := TIniFile.Create(ExtractFilePath(Application.exename) + '\config.ini');
     Result := arqIni.ReadString(xSecao,xChave,xPadrao);
   finally
     FreeAndNil(arqIni);

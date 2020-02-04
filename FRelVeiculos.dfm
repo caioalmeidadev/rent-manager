@@ -3,8 +3,8 @@ object FrmRelVeiculo: TFrmRelVeiculo
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Relat'#243'rio de Ve'#237'culos'
-  ClientHeight = 201
-  ClientWidth = 731
+  ClientHeight = 330
+  ClientWidth = 259
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object FrmRelVeiculo: TFrmRelVeiculo
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 731
+    Width = 259
     Height = 65
     Align = alTop
     TabOrder = 0
@@ -30,13 +30,15 @@ object FrmRelVeiculo: TFrmRelVeiculo
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
       Style.Font.Color = clWindowText
-      Style.Font.Height = -32
+      Style.Font.Height = -27
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = []
       Style.IsFontAssigned = True
       Properties.Alignment.Horz = taCenter
       Properties.Alignment.Vert = taVCenter
-      AnchorX = 366
+      Properties.WordWrap = True
+      Width = 257
+      AnchorX = 130
       AnchorY = 33
     end
   end
@@ -61,8 +63,8 @@ object FrmRelVeiculo: TFrmRelVeiculo
     end
   end
   object cxGroupBox2: TcxGroupBox
-    Left = 484
-    Top = 71
+    Left = 8
+    Top = 183
     Caption = 'Situa'#231#227'o do Ve'#237'culo'
     TabOrder = 2
     Height = 50
@@ -77,15 +79,17 @@ object FrmRelVeiculo: TFrmRelVeiculo
         'SEMINOVO'
         'USADO'
         'SUCATA'
-        'VENDIDO')
+        'VENDIDO'
+        'SOMENTE ATIVOS'
+        'SOMENTE INATIVOS')
       TabOrder = 0
       Text = 'TODOS'
       Width = 214
     end
   end
   object cxGroupBox3: TcxGroupBox
-    Left = 247
-    Top = 71
+    Left = 8
+    Top = 127
     Caption = 'Status do Ve'#237'culo'
     TabOrder = 3
     Height = 50
@@ -104,8 +108,8 @@ object FrmRelVeiculo: TFrmRelVeiculo
     end
   end
   object btn_imprimir: TcxButton
-    Left = 545
-    Top = 127
+    Left = 33
+    Top = 239
     Width = 88
     Height = 65
     Caption = 'Imprimir'
@@ -115,8 +119,8 @@ object FrmRelVeiculo: TFrmRelVeiculo
     OnClick = btn_imprimirClick
   end
   object btn_cancelar: TcxButton
-    Left = 633
-    Top = 127
+    Left = 121
+    Top = 239
     Width = 88
     Height = 65
     Caption = 'Cancelar'
@@ -129,8 +133,8 @@ object FrmRelVeiculo: TFrmRelVeiculo
     Connection = DM.Conn
     SQL.Strings = (
       'select * from tb_veiculos')
-    Left = 80
-    Top = 144
+    Left = 312
+    Top = 176
     object qrVeiculosid_veiculo: TFDAutoIncField
       FieldName = 'id_veiculo'
       Origin = 'id_veiculo'
@@ -238,22 +242,22 @@ object FrmRelVeiculo: TFrmRelVeiculo
   end
   object dsVeiculos: TDataSource
     DataSet = qrVeiculos
-    Left = 120
-    Top = 144
+    Left = 352
+    Top = 176
   end
   object frxDBVeiculos: TfrxDBDataset
     UserName = 'frxDBVeiculos'
     CloseDataSource = False
     DataSource = dsVeiculos
     BCDToCurrency = False
-    Left = 160
-    Top = 144
+    Left = 392
+    Top = 176
   end
   object frxReport1: TfrxReport
-    Version = '6.3.8'
+    Version = '6.3.1'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
-    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
     PreviewOptions.Zoom = 1.000000000000000000
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
@@ -264,8 +268,8 @@ object FrmRelVeiculo: TFrmRelVeiculo
       'begin'
       ''
       'end.')
-    Left = 200
-    Top = 144
+    Left = 432
+    Top = 176
     Datasets = <
       item
         DataSet = frxDBVeiculos

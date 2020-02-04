@@ -47,7 +47,7 @@ object FrmCadVeiculo: TFrmCadVeiculo
     Height = 487
     Align = alClient
     TabOrder = 1
-    Properties.ActivePage = cxTabSheet1
+    Properties.ActivePage = cxTabSheet2
     Properties.CustomButtons.Buttons = <>
     ClientRectBottom = 483
     ClientRectLeft = 4
