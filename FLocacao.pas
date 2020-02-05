@@ -11,7 +11,7 @@ uses
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, cxMemo, cxDropDownEdit, cxCalendar,
   cxCurrencyEdit, cxTextEdit, cxLabel, cxMaskEdit, cxButtonEdit, Vcl.StdCtrls,
-  cxButtons, cxGroupBox,DateUtils;
+  cxButtons, cxGroupBox,DateUtils, dxSkinsDefaultPainters;
 
 type
   TFrmLocacao = class(TForm)

@@ -13,7 +13,8 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, cxContainer, cxLabel, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, Vcl.Menus,
-  Vcl.StdCtrls, cxButtons, cxTextEdit, cxMaskEdit, cxDropDownEdit, Vcl.ExtCtrls;
+  Vcl.StdCtrls, cxButtons, cxTextEdit, cxMaskEdit, cxDropDownEdit, Vcl.ExtCtrls,
+  dxSkinsDefaultPainters;
 
 type
   TFrmListaClientes = class(TForm)
@@ -100,7 +101,7 @@ begin
     case cb_tipo_pesquisa.ItemIndex of
      0 : xSQL := xSQL + ' where id_cliente = ' + Trim(ed_pesquisa.Text);
      1 : xSQL := xSQL + ' where apelido_fantasia like ' + QuotedStr('%'+ed_pesquisa.Text+'%');
-     2 : xSQL := xSQL + ' where cpf_cnpj = ' + Trim(ed_pesquisa.Text);
+     2 : xSQL := xSQL + ' where cpf_cnpj like ' + QuotedStr('%'+Trim(ed_pesquisa.Text)+'%');
     end;
   end;
    xSQL := xSQL + ' order by id_cliente asc;';
@@ -109,6 +110,7 @@ begin
   qrClientes.SQL.Clear;
   qrClientes.SQL.Add(xSQL);
   qrClientes.Open;
+  cxGrid1.setFocus;
 end;
 
 procedure TFrmListaClientes.cxGrid1DBTableView1DblClick(Sender: TObject);

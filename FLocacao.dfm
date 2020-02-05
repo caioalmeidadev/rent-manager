@@ -17,7 +17,7 @@ object FrmLocacao: TFrmLocacao
     832
     513)
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 14
   object Cliente: TcxGroupBox
     Left = 6
     Top = 72
@@ -272,7 +272,7 @@ object FrmLocacao: TFrmLocacao
       Width = 82
     end
     object ed_vl_diaria: TcxCurrencyEdit
-      Left = 283
+      Left = 272
       Top = 89
       ParentFont = False
       Properties.Alignment.Horz = taRightJustify
@@ -289,7 +289,7 @@ object FrmLocacao: TFrmLocacao
       Width = 70
     end
     object cxLabel10: TcxLabel
-      Left = 283
+      Left = 272
       Top = 66
       Caption = 'Valor da Di'#225'ria'
       ParentFont = False

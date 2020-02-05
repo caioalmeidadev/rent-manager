@@ -9,7 +9,7 @@ uses
   dxSkinsForm, System.ImageList, Vcl.ImgList, cxImageList, dxBar, cxClasses,
   System.Actions, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan,
   dxStatusBar,TDI, dxRibbon,dxSkinOffice2013White, Vcl.ExtCtrls,
-  dxGDIPlusClasses;
+  dxGDIPlusClasses, dxSkinsDefaultPainters;
 
 type
   TFrmPrincipal = class(TForm)
