@@ -15,7 +15,8 @@ uses
   cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, cxPC, cxLabel, Vcl.StdCtrls,
   cxButtons, Vcl.ExtCtrls, cxCheckBox, cxDBEdit, cxMaskEdit, cxDropDownEdit,
-  cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, Vcl.DBCtrls, cxTextEdit;
+  cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox, Vcl.DBCtrls, cxTextEdit,
+  dxSkinsDefaultPainters;
 
 type
   TFrmCadCliente = class(TForm)
@@ -133,6 +134,7 @@ type
     DBLookupComboBox1: TDBLookupComboBox;
     DBLookupComboBox2: TDBLookupComboBox;
     DBLookupComboBox3: TDBLookupComboBox;
+    btn_pesquisar: TcxButton;
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -146,6 +148,7 @@ type
     procedure cxDBTextEdit3KeyPress(Sender: TObject; var Key: Char);
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
     procedure DBLookupComboBox2CloseUp(Sender: TObject);
+    procedure btn_pesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -159,7 +162,7 @@ implementation
 
 {$R *.dfm}
 
-uses FDM;
+uses FDM, FListaClientes;
 
 procedure TFrmCadCliente.btnCancelarClick(Sender: TObject);
 begin
@@ -189,6 +192,16 @@ begin
  qrEstado.Open;
 
  cxPageControl1.ActivePageIndex := 1;
+end;
+
+procedure TFrmCadCliente.btn_pesquisarClick(Sender: TObject);
+begin
+if not Assigned(FrmListaClientes) then
+  FrmListaClientes := TFrmListaClientes.Create(nil);
+ FrmListaClientes.ShowModal;
+ if not qrCliente.Locate('id_cliente',FrmListaClientes.xIdCliente,[]) then
+  ShowMessage('Cadastro não localizado');
+ FreeAndNil(FrmListaClientes);
 end;
 
 procedure TFrmCadCliente.bttnSalvarClick(Sender: TObject);

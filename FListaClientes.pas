@@ -95,6 +95,7 @@ procedure TFrmListaClientes.btn_pesquisaClick(Sender: TObject);
 var
  xSQL : String;
 begin
+  xSQL := '';
   xSQL := 'select * from tb_clientes';
   if ed_pesquisa.Text <> '' then
   begin
@@ -131,6 +132,14 @@ end;
 
 procedure TFrmListaClientes.ed_pesquisaKeyPress(Sender: TObject; var Key: Char);
 begin
+ if Key = Char(VK_F3) then
+ begin
+   if cb_tipo_pesquisa.ItemIndex > 2 then
+    cb_tipo_pesquisa.ItemIndex := 0
+   else
+    cb_tipo_pesquisa.ItemIndex := cb_tipo_pesquisa.ItemIndex + 1;
+ end;
+
  if Key = Char(VK_RETURN) then
    if ed_pesquisa.Text <> '' then
     btn_pesquisaClick(Self);

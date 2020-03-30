@@ -119,8 +119,10 @@ object FrmListaClientes: TFrmListaClientes
       object ed_pesquisa: TcxTextEdit
         Left = 184
         Top = 29
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 3
-        Text = 'ed_pesquisa'
+        TextHint = 'Pressiona F3 para alterar o tipo de pesquisa...'
         OnKeyPress = ed_pesquisaKeyPress
         Width = 593
       end
