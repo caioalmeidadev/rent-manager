@@ -49,9 +49,6 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
     Height = 384
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 134
-    ExplicitWidth = 737
-    ExplicitHeight = 426
     object cxGrid1DBTableView1: TcxGridDBTableView
       OnKeyPress = cxGrid1DBTableView1KeyPress
       Navigator.Buttons.CustomButtons = <>
@@ -172,8 +169,9 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
       Top = 24
       Width = 561
       Height = 21
+      CharCase = ecUpperCase
       TabOrder = 1
-      OnChange = edt_pesquisaChange
+      OnKeyPress = edt_pesquisaKeyPress
     end
   end
   object qrVeiculosDisponiveis: TFDQuery

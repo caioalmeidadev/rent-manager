@@ -59,6 +59,7 @@ object FrmPrincipal: TFrmPrincipal
     TabOrder = 0
     TabStop = False
     object dxRibbon1Tab1: TdxRibbonTab
+      Active = True
       Caption = 'Principal'
       Groups = <
         item
@@ -74,7 +75,6 @@ object FrmPrincipal: TFrmPrincipal
       Index = 0
     end
     object dxRibbon1Tab3: TdxRibbonTab
-      Active = True
       Caption = 'Relat'#243'rios'
       Groups = <
         item

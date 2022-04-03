@@ -46,10 +46,11 @@ type
     edt_pesquisa: TEdit;
     procedure FormShow(Sender: TObject);
     procedure cxGrid1DBTableView1KeyPress(Sender: TObject; var Key: Char);
-    procedure edt_pesquisaChange(Sender: TObject);
     procedure cxGrid1DBTableView2DblClick(Sender: TObject);
+    procedure edt_pesquisaKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
+    procedure loc_veiculo(xTipoPesquisa:Integer;xParam:String);
   public
     { Public declarations }
     xIdVeiculo : Integer;
@@ -80,34 +81,43 @@ begin
  Close;
 end;
 
-procedure TFrmVeiculoDisponivel.edt_pesquisaChange(Sender: TObject);
+procedure TFrmVeiculoDisponivel.edt_pesquisaKeyPress(Sender: TObject;
+  var Key: Char);
 begin
- if edt_pesquisa.Text <> '' then
+ if Key = Char(VK_RETURN) then
  begin
-   case cb_tp_pesquisa.ItemIndex of
-    0 : //PLACA
-      begin
-        if not qrVeiculosDisponiveis.Locate('placa',edt_pesquisa.Text,[loCaseInsensitive]) then
-         ShowMessage('Veículo não localizado.');
-      end;
-    1 : //DESCRICAO
-      begin
-        if not qrVeiculosDisponiveis.Locate('descricao',edt_pesquisa.Text,[loCaseInsensitive]) then
-         ShowMessage('Veículo não localizado.');
-      end;
-    2 : //TIPO
-      begin
-        if not qrVeiculosDisponiveis.Locate('tipo',edt_pesquisa.Text,[loCaseInsensitive]) then
-         ShowMessage('Veículo não localizado.');
-      end;
-
-   end;
+   loc_veiculo(cb_tp_pesquisa.ItemIndex,edt_pesquisa.Text);
  end;
+
 end;
 
 procedure TFrmVeiculoDisponivel.FormShow(Sender: TObject);
 begin
  qrVeiculosDisponiveis.Open;
+end;
+
+procedure TFrmVeiculoDisponivel.loc_veiculo(xTipoPesquisa: Integer;
+  xParam: String);
+begin
+ with qrVeiculosDisponiveis do
+ begin
+   Close;
+   SQL.Clear;
+   SQL.Add('select * from tb_veiculos where fl_locacao = ''N'' and fl_status_veiculo <> ''INATIVO''');
+   if(xParam <> '') then
+   begin
+     case xTipoPesquisa of
+      0 : SQL.Add(' and placa like ' + QuotedStr('%'+xParam+'%')); //placa
+      1 : SQL.Add(' and descricao like ' + QuotedStr('%'+xParam+'%')); //descrição
+      2 : SQL.Add(' and fl_tipo_veiculo like ' + QuotedStr('%'+xParam+'%')); //tipo
+     end;
+   end;
+   Open;
+   if RecordCount > 0  then
+    cxGrid1.SetFocus
+   else
+    ShowMessage('Nenhum Registro encontrado!');
+ end;
 end;
 
 end.
