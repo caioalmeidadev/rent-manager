@@ -11,7 +11,8 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, frxClass,
   frxExportBaseDialog, frxExportPDF, frxDBSet, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.StdCtrls, cxButtons, cxCalendar,DateUtils;
+  FireDAC.Comp.Client, Vcl.StdCtrls, cxButtons, cxCalendar,DateUtils,
+  dxSkinsDefaultPainters;
 
 type
   TFrmRelLocacoes = class(TForm)

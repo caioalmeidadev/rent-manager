@@ -15,7 +15,8 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, cxGridLevel, cxClasses,
   cxGridCustomView, cxGrid, cxPC, cxLabel, Vcl.ExtCtrls, cxTextEdit, cxMemo,
   cxDBEdit, cxCurrencyEdit, cxCalendar,DateUtils, Vcl.Menus, Vcl.StdCtrls,
-  cxButtons, Vcl.ComCtrls, dxCore, cxDateUtils, cxGroupBox;
+  cxButtons, Vcl.ComCtrls, dxCore, cxDateUtils, cxGroupBox,
+  dxSkinsDefaultPainters;
 
 type
   TFrmRetorno = class(TForm)
@@ -170,22 +171,33 @@ begin
  try
    with DM do
    begin
-    sp_finaliza_locacao.Prepare;
-    sp_finaliza_locacao.ParamByName('vl_total_').AsBCD  := qrLocacoesvl_total.AsFloat;
-    sp_finaliza_locacao.ParamByName('vl_pago').AsBCD    := qrLocacoesvl_total.AsFloat;
-    sp_finaliza_locacao.ParamByName('id_loc').AsInteger := qrLocacoesid_locacao.AsInteger;
-    sp_finaliza_locacao.ExecProc;
 
-    sp_altera_status_veiculo.Prepare;
-    sp_altera_status_veiculo.ParamByName('id_veiculo_att').AsInteger := qrLocacoesveiculo_id.AsInteger;
-    sp_altera_status_veiculo.ParamByName('fl_loc').AsString          := 'N';
-    sp_altera_status_veiculo.ExecProc;
 
-    sp_atualiza_km.Prepare;
-    sp_atualiza_km.ParamByName('id_veiculo_att').AsInteger := qrLocacoesveiculo_id.AsInteger;
-    sp_atualiza_km.ParamByName('km_novo').AsString         := ed_km_retorno.Text;
-    sp_atualiza_km.ExecProc;
+    qrTemp.Close;
+    qrTemp.SQL.Clear;
+    qrTemp.SQL.Add('update tb_locacao set fl_situacao = 2 where id_locacao = :id');
+    qrTemp.ParamByName('id').AsInteger := qrLocacoesid_locacao.AsInteger;
+    qrTemp.ExecSQL;
 
+    qrTemp.Close;
+    qrTemp.SQL.Clear;
+    qrTemp.SQL.Add('update tb_veiculos set fl_locacao = :fl_loc, km_atual = :km where id_veiculo = :id');
+    qrTemp.ParamByName('id').AsInteger    := qrLocacoesveiculo_id.AsInteger;
+    qrTemp.ParamByName('km').AsString     := Trim(ed_km_retorno.Text);
+    qrTemp.ParamByName('fl_loc').AsString := 'N';
+    qrTemp.ExecSQL;
+
+
+    qrTemp.Close;
+    qrTemp.SQL.Clear;
+    qrTemp.SQL.Add('insert into tb_contas_receber (vl_total,vl_recebido,dt_pagamento,id_locacao)values(:total,:recebido,:pgto,:id)');
+    qrTemp.ParamByName('id').AsInteger        := qrLocacoesid_locacao.AsInteger;
+    qrTemp.ParamByName('total').AsFloat       := qrLocacoesvl_total.AsFloat;
+    qrTemp.ParamByName('recebido').AsFloat    := qrLocacoesvl_total.AsFloat;
+    qrTemp.ParamByName('pgto').AsDate         := Now;
+    qrTemp.ExecSQL;
+
+    qrTemp.Close;
    end;
 
    ShowMessage('Locação finalizada com sucesso!');

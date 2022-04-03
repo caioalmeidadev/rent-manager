@@ -15,7 +15,7 @@ uses
   cxClasses, cxGridCustomView, cxGrid, cxGroupBox, dxBarBuiltInMenu,
   cxDBLookupComboBox, Vcl.Menus, Vcl.StdCtrls, cxButtons, Vcl.ExtCtrls,
   cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxLabel, cxTextEdit,
-  cxDBEdit, cxPC, ACBrBase, ACBrEnterTab;
+  cxDBEdit, cxPC, ACBrBase, ACBrEnterTab, dxSkinsDefaultPainters;
 
 type
   TFrmCadUsuario = class(TForm)
@@ -126,6 +126,7 @@ begin
   qrUsuarios.Open;
   qrAcesso.Open;
   cxPageControl1.Properties.HideTabs := True;
+  cxPageControl1.ActivePageIndex := 0;
 end;
 
 procedure TFrmCadUsuario.qrUsuariosAfterScroll(DataSet: TDataSet);

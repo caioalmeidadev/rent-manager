@@ -9,7 +9,8 @@ uses
   Vcl.StdCtrls, cxButtons, cxTextEdit, cxLabel, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  Data.DB, FireDAC.Comp.DataSet, frxClass, frxDBSet, FireDAC.Comp.Client;
+  Data.DB, FireDAC.Comp.DataSet, frxClass, frxDBSet, FireDAC.Comp.Client,
+  dxSkinsDefaultPainters;
 
 type
   TFrmRelRecibo = class(TForm)
@@ -22,16 +23,13 @@ type
     dsLocacao: TDataSource;
     frxDBLocacao: TfrxDBDataset;
     frxReport1: TfrxReport;
+    qrLocacaovl_extenso: TStringField;
     qrLocacaonome_razao: TStringField;
     qrLocacaoendereco: TStringField;
     qrLocacaonu_endereco: TStringField;
     qrLocacaovl_total: TBCDField;
     qrLocacaoplaca: TStringField;
     qrLocacaochassis: TStringField;
-    qrLocacaoid_locacao: TFDAutoIncField;
-    qrLocacaocliente_id: TIntegerField;
-    qrLocacaoveiculo_id: TIntegerField;
-    qrLocacaovl_extenso: TStringField;
     procedure cxButton1Click(Sender: TObject);
     procedure cxButton2Click(Sender: TObject);
     procedure qrLocacaoCalcFields(DataSet: TDataSet);

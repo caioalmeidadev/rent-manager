@@ -85,6 +85,7 @@ type
     procedure btnSalvarEnter(Sender: TObject);
     procedure ed_vl_sub_totalPropertiesChange(Sender: TObject);
     procedure ed_vl_sub_totalPropertiesEditValueChanged(Sender: TObject);
+
   private
     { Private declarations }
     bDesconto,bAltera_Valor_Diaria    : Boolean;
@@ -165,10 +166,8 @@ begin
     iLocacao := qrLocacao.FieldByName('id_locacao').AsInteger;
 
 
-    DM.sp_altera_status_veiculo.Prepare;
-    DM.sp_altera_status_veiculo.ParamByName('id_veiculo_att').AsInteger := iVeiculo;
-    DM.sp_altera_status_veiculo.ParamByName('fl_loc').AsString  := 'S';
-    DM.sp_altera_status_veiculo.ExecProc;
+    DM.Conn.ExecSQL('update tb_veiculos set fl_locacao=''S'' where id_veiculo = ' + IntToStr(iVeiculo ));
+
 
     limparControles;
 

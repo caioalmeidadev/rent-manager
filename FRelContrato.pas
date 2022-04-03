@@ -10,7 +10,8 @@ uses
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, dxSkinsCore,
   Vcl.Menus, Vcl.StdCtrls, cxButtons, cxMaskEdit, cxSpinEdit, cxTimeEdit,
   cxTextEdit, cxLabel, Data.DB, FireDAC.Comp.DataSet, frxClass, frxDBSet,
-  FireDAC.Comp.Client, frxExportBaseDialog, frxExportPDF, frxDesgn;
+  FireDAC.Comp.Client, frxExportBaseDialog, frxExportPDF, frxDesgn,
+  dxSkinsDefaultPainters;
 
 type
   TFrmRelContrato = class(TForm)

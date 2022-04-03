@@ -269,7 +269,7 @@ object FrmRelLocacoes: TFrmRelLocacoes
     Top = 224
   end
   object frxReport1: TfrxReport
-    Version = '6.3.8'
+    Version = '6.7.6'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.AllowEdit = False

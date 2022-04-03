@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Vcl.Menus, Vcl.StdCtrls, cxButtons, cxMemo,
-  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, dxSkinsDefaultPainters;
 
 type
   TFrmDevolucao = class(TForm)
@@ -117,16 +117,19 @@ begin
   with DM do
   begin
 
-    sp_devolucao.Prepare;
-    sp_devolucao.ParamByName('id_loc').AsInteger           := qrCancelarid_locacao.AsInteger;
-    sp_devolucao.ParamByName('mot_cancelamento').AsString  :=  qrCancelarobs.AsString + 'MOTIVO DE CANCELAMENTO: ' + ed_motivo_dev.Text;
-    sp_devolucao.ExecProc;
+    qrTemp.Close;
+    qrTemp.SQL.Clear;
+    qrTemp.SQL.Add('update tb_locacao set fl_situacao = 1 where id_locacao = :id');
+    qrTemp.ParamByName('id').AsInteger := qrCancelarid_locacao.AsInteger;
+    qrTemp.ExecSQL;
 
-    sp_altera_status_veiculo.Prepare;
-    sp_altera_status_veiculo.ParamByName('id_veiculo_att').AsInteger := qrCancelarveiculo_id.AsInteger;
-    sp_altera_status_veiculo.ParamByName('fl_loc').AsString          := 'N';
-    sp_altera_status_veiculo.ExecProc;
+    qrTemp.Close;
+    qrTemp.SQL.Clear;
+    qrTemp.SQL.Add('update tb_veiculo set fl_locacao = ''N'' where id_veiculo = :id');
+    qrTemp.ParamByName('id').AsInteger := qrCancelarveiculo_id.AsInteger;
+    qrTemp.ExecSQL;
 
+    qrTemp.Close
   end;
 
   ShowMessage('Devolução realizada com sucesso!');

@@ -5,17 +5,18 @@ object DM: TDM
   Width = 525
   object Conn: TFDConnection
     Params.Strings = (
-      'Database=sisloc'
-      'User_Name=vital'
-      'Password=vital123'
+      'Database=vando'
+      'User_Name=root'
+      'Password=masterkey'
       'Server=localhost'
+      'Port=3307'
       'DriverID=MySQL')
     LoginPrompt = False
     Left = 32
     Top = 32
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    VendorLib = 'C:\Program Files (x86)\MySQL\MySQL Server 5.7\lib\libmysql.dll'
+    VendorLib = 'libmysql.dll'
     Left = 32
     Top = 80
   end
@@ -23,66 +24,6 @@ object DM: TDM
     Provider = 'Forms'
     Left = 32
     Top = 128
-  end
-  object sp_atualiza_km: TFDStoredProc
-    Connection = Conn
-    StoredProcName = 'sisloc.sp_atualiza_km'
-    Left = 264
-    Top = 32
-    ParamData = <
-      item
-        Position = 1
-        Name = 'id_veiculo_att'
-        DataType = ftInteger
-        ParamType = ptInput
-      end
-      item
-        Position = 2
-        Name = 'km_novo'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 45
-      end>
-  end
-  object sp_altera_status_veiculo: TFDStoredProc
-    Connection = Conn
-    StoredProcName = 'sisloc.sp_altera_status_veiculo'
-    Left = 200
-    Top = 32
-    ParamData = <
-      item
-        Position = 1
-        Name = 'id_veiculo_att'
-        DataType = ftInteger
-        ParamType = ptInput
-      end
-      item
-        Position = 2
-        Name = 'fl_loc'
-        DataType = ftFixedChar
-        ParamType = ptInput
-        Size = 1
-      end>
-  end
-  object sp_devolucao: TFDStoredProc
-    Connection = Conn
-    StoredProcName = 'sisloc.sp_devolucao'
-    Left = 232
-    Top = 32
-    ParamData = <
-      item
-        Position = 1
-        Name = 'id_loc'
-        DataType = ftInteger
-        ParamType = ptInput
-      end
-      item
-        Position = 2
-        Name = 'mot_cancelamento'
-        DataType = ftString
-        ParamType = ptInput
-        Size = 120
-      end>
   end
   object qrEmpresa: TFDQuery
     Connection = Conn
@@ -403,35 +344,6 @@ object DM: TDM
     Left = 216
     Top = 200
   end
-  object sp_finaliza_locacao: TFDStoredProc
-    Connection = Conn
-    StoredProcName = 'sisloc.sp_finaliza_locacao'
-    Left = 296
-    Top = 32
-    ParamData = <
-      item
-        Position = 1
-        Name = 'vl_total_'
-        DataType = ftBCD
-        Precision = 10
-        NumericScale = 2
-        ParamType = ptInput
-      end
-      item
-        Position = 2
-        Name = 'id_loc'
-        DataType = ftInteger
-        ParamType = ptInput
-      end
-      item
-        Position = 3
-        Name = 'vl_pago'
-        DataType = ftBCD
-        Precision = 10
-        NumericScale = 2
-        ParamType = ptInput
-      end>
-  end
   object qrParametros: TFDQuery
     Connection = Conn
     SQL.Strings = (
@@ -466,5 +378,10 @@ object DM: TDM
     BCDToCurrency = False
     Left = 280
     Top = 96
+  end
+  object qrTemp: TFDQuery
+    Connection = Conn
+    Left = 200
+    Top = 48
   end
 end

@@ -3,8 +3,8 @@ object FrmRelRecibo: TFrmRelRecibo
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Imprimir Recibos'
-  ClientHeight = 141
-  ClientWidth = 367
+  ClientHeight = 146
+  ClientWidth = 344
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -78,9 +78,17 @@ object FrmRelRecibo: TFrmRelRecibo
     OnCalcFields = qrLocacaoCalcFields
     Connection = DM.Conn
     SQL.Strings = (
-      'select *  from vw_recibo where id_locacao = :ID_')
-    Left = 16
-    Top = 136
+      
+        'SELECT c.nome_razao, c.endereco, c.nu_endereco, l.vl_total, v.pl' +
+        'aca, v.chassis FROM'
+      
+        'tb_locacao AS l INNER JOIN tb_clientes AS c ON (c.id_cliente = l' +
+        '.cliente_id)'
+      
+        'INNER JOIN tb_veiculos AS v ON (v.id_veiculo = l.veiculo_id) WHE' +
+        'RE l.id_locacao = :ID_')
+    Left = 88
+    Top = 144
     ParamData = <
       item
         Name = 'ID_'
@@ -88,6 +96,12 @@ object FrmRelRecibo: TFrmRelRecibo
         ParamType = ptInput
         Value = Null
       end>
+    object qrLocacaovl_extenso: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'vl_extenso'
+      Size = 250
+      Calculated = True
+    end
     object qrLocacaonome_razao: TStringField
       AutoGenerateValue = arDefault
       FieldName = 'nome_razao'
@@ -125,32 +139,11 @@ object FrmRelRecibo: TFrmRelRecibo
       Origin = 'chassis'
       Size = 45
     end
-    object qrLocacaoid_locacao: TFDAutoIncField
-      FieldName = 'id_locacao'
-      Origin = 'id_locacao'
-      ReadOnly = True
-    end
-    object qrLocacaocliente_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'cliente_id'
-      Origin = 'cliente_id'
-    end
-    object qrLocacaoveiculo_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'veiculo_id'
-      Origin = 'veiculo_id'
-    end
-    object qrLocacaovl_extenso: TStringField
-      FieldKind = fkCalculated
-      FieldName = 'vl_extenso'
-      Size = 250
-      Calculated = True
-    end
   end
   object dsLocacao: TDataSource
     DataSet = qrLocacao
-    Left = 48
-    Top = 136
+    Left = 120
+    Top = 144
   end
   object frxDBLocacao: TfrxDBDataset
     UserName = 'frxDBLocacao'
@@ -168,11 +161,11 @@ object FrmRelRecibo: TFrmRelRecibo
       'vl_extenso=vl_extenso')
     DataSource = dsLocacao
     BCDToCurrency = False
-    Left = 80
-    Top = 136
+    Left = 152
+    Top = 144
   end
   object frxReport1: TfrxReport
-    Version = '6.3.1'
+    Version = '6.7.6'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
@@ -186,8 +179,8 @@ object FrmRelRecibo: TFrmRelRecibo
       'begin'
       ''
       'end.')
-    Left = 112
-    Top = 136
+    Left = 184
+    Top = 144
     Datasets = <
       item
         DataSet = DM.frxDBDsEmpresa
@@ -231,7 +224,7 @@ object FrmRelRecibo: TFrmRelRecibo
           AllowVectorExport = True
           Left = 124.724490000000000000
           Top = 3.779530000000000000
-          Width = 593.386209999999900000
+          Width = 593.386210000000000000
           Height = 52.913420000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -356,7 +349,7 @@ object FrmRelRecibo: TFrmRelRecibo
           AllowVectorExport = True
           Left = 124.724490000000000000
           Top = 3.779530000000022000
-          Width = 593.386209999999900000
+          Width = 593.386210000000000000
           Height = 86.929190000000010000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack

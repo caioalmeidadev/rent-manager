@@ -23,7 +23,6 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
     Height = 57
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 866
     object cxLabel1: TcxLabel
       Left = 1
       Top = 1
@@ -39,17 +38,20 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
       Style.IsFontAssigned = True
       Properties.Alignment.Horz = taCenter
       Properties.Alignment.Vert = taVCenter
-      ExplicitWidth = 864
       AnchorX = 377
       AnchorY = 29
     end
   end
   object cxGrid1: TcxGrid
-    Left = 8
-    Top = 62
-    Width = 737
-    Height = 426
+    Left = 0
+    Top = 113
+    Width = 753
+    Height = 384
+    Align = alClient
     TabOrder = 1
+    ExplicitTop = 134
+    ExplicitWidth = 737
+    ExplicitHeight = 426
     object cxGrid1DBTableView1: TcxGridDBTableView
       OnKeyPress = cxGrid1DBTableView1KeyPress
       Navigator.Buttons.CustomButtons = <>
@@ -97,6 +99,7 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
       end
     end
     object cxGrid1DBTableView2: TcxGridDBTableView
+      OnDblClick = cxGrid1DBTableView2DblClick
       Navigator.Buttons.CustomButtons = <>
       FindPanel.InfoText = 'Info Text'
       DataController.DataSource = dsVeiculosDisponiveis
@@ -111,30 +114,66 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
       OptionsData.Editing = False
       OptionsData.Inserting = False
       OptionsView.NoDataToDisplayInfoText = 'Vital Solutions'
+      OptionsView.GroupByBox = False
       object cxGrid1DBTableView2Column1: TcxGridDBColumn
+        Caption = 'ID'
         DataBinding.FieldName = 'id_veiculo'
       end
       object cxGrid1DBTableView2Column2: TcxGridDBColumn
+        Caption = 'TIPO'
         DataBinding.FieldName = 'fl_tipo_veiculo'
         Width = 110
       end
       object cxGrid1DBTableView2Column3: TcxGridDBColumn
+        Caption = 'DESCRI'#199#195'O'
         DataBinding.FieldName = 'descricao'
         Width = 236
       end
       object cxGrid1DBTableView2Column4: TcxGridDBColumn
       end
       object cxGrid1DBTableView2Column5: TcxGridDBColumn
+        Caption = 'PLACA'
         DataBinding.FieldName = 'placa'
         Width = 69
       end
       object cxGrid1DBTableView2Column6: TcxGridDBColumn
+        Caption = 'KM ATUAL'
         DataBinding.FieldName = 'km_atual'
         Width = 113
       end
     end
     object cxGrid1Level1: TcxGridLevel
       GridView = cxGrid1DBTableView2
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 57
+    Width = 753
+    Height = 56
+    Align = alTop
+    TabOrder = 2
+    object cb_tp_pesquisa: TComboBox
+      Left = 8
+      Top = 24
+      Width = 145
+      Height = 21
+      Style = csDropDownList
+      ItemIndex = 0
+      TabOrder = 0
+      Text = 'Placa'
+      Items.Strings = (
+        'Placa'
+        'Descri'#231#227'o'
+        'Tipo')
+    end
+    object edt_pesquisa: TEdit
+      Left = 168
+      Top = 24
+      Width = 561
+      Height = 21
+      TabOrder = 1
+      OnChange = edt_pesquisaChange
     end
   end
   object qrVeiculosDisponiveis: TFDQuery

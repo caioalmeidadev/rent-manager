@@ -176,8 +176,6 @@ object FrmCadCliente: TFrmCadCliente
     object cxTabSheet1: TcxTabSheet
       Caption = 'Lista'
       ImageIndex = 0
-      ExplicitLeft = 3
-      ExplicitTop = 48
       DesignSize = (
         883
         478)
@@ -220,7 +218,7 @@ object FrmCadCliente: TFrmCadCliente
             DataBinding.FieldName = 'apelido_fantasia'
             PropertiesClassName = 'TcxTextEditProperties'
             HeaderAlignmentHorz = taCenter
-            Width = 163
+            Width = 164
           end
           object cxGrid1DBTableView1Column4: TcxGridDBColumn
             Caption = 'CPF  / CNPJ'

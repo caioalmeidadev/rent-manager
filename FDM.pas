@@ -15,9 +15,6 @@ type
     Conn: TFDConnection;
     FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
-    sp_atualiza_km: TFDStoredProc;
-    sp_altera_status_veiculo: TFDStoredProc;
-    sp_devolucao: TFDStoredProc;
     qrEmpresa: TFDQuery;
     dsEmpresa: TDataSource;
     qrEmpresaid_empresa: TFDAutoIncField;
@@ -56,7 +53,6 @@ type
     qrUsuarioAcessorel_contrato: TStringField;
     qrUsuarioAcessoconfig: TStringField;
     dsUsuario: TDataSource;
-    sp_finaliza_locacao: TFDStoredProc;
     qrParametros: TFDQuery;
     dsParametros: TDataSource;
     qrUsuarioAcessocad_empresa: TStringField;
@@ -70,6 +66,7 @@ type
     qrUsuarioAcessoprc_desconto_locacao: TBCDField;
     qrUsuarioAcessoaltera_vl_diaria: TStringField;
     qrUsuarioempresa_id: TStringField;
+    qrTemp: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
     function readIni(xSecao:string; xChave:string; xPadrao:string):string;
   private
@@ -171,7 +168,8 @@ begin
   Conn.Close;
   try
    Conn.Params.Values['Server']   := readIni('CONEXAO','SERVER','localhost');
-   Conn.Params.Values['Database'] := readIni('CONEXAO','DATABASE','sisloc');
+   Conn.Params.Values['Database'] := readIni('CONEXAO','DATABASE','rent');
+   Conn.Params.Values['Port']     := readIni('CONEXAO','PORT','3306');
    Conn.Connected                 := True;
 
   finally

@@ -12,7 +12,8 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   cxLabel, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGridLevel, cxClasses, cxGridCustomView, cxGrid, Vcl.ExtCtrls;
+  cxGridLevel, cxClasses, cxGridCustomView, cxGrid, Vcl.ExtCtrls,
+  dxSkinsDefaultPainters, Vcl.StdCtrls;
 
 type
   TFrmVeiculoDisponivel = class(TForm)
@@ -40,8 +41,13 @@ type
     cxGrid1DBTableView2Column4: TcxGridDBColumn;
     cxGrid1DBTableView2Column5: TcxGridDBColumn;
     cxGrid1DBTableView2Column6: TcxGridDBColumn;
+    Panel2: TPanel;
+    cb_tp_pesquisa: TComboBox;
+    edt_pesquisa: TEdit;
     procedure FormShow(Sender: TObject);
     procedure cxGrid1DBTableView1KeyPress(Sender: TObject; var Key: Char);
+    procedure edt_pesquisaChange(Sender: TObject);
+    procedure cxGrid1DBTableView2DblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,6 +71,37 @@ begin
  begin
   xIdVeiculo := qrVeiculosDisponiveisid_veiculo.AsInteger;
   Close;
+ end;
+end;
+
+procedure TFrmVeiculoDisponivel.cxGrid1DBTableView2DblClick(Sender: TObject);
+begin
+ xIdVeiculo := qrVeiculosDisponiveisid_veiculo.AsInteger;
+ Close;
+end;
+
+procedure TFrmVeiculoDisponivel.edt_pesquisaChange(Sender: TObject);
+begin
+ if edt_pesquisa.Text <> '' then
+ begin
+   case cb_tp_pesquisa.ItemIndex of
+    0 : //PLACA
+      begin
+        if not qrVeiculosDisponiveis.Locate('placa',edt_pesquisa.Text,[loCaseInsensitive]) then
+         ShowMessage('Veículo não localizado.');
+      end;
+    1 : //DESCRICAO
+      begin
+        if not qrVeiculosDisponiveis.Locate('descricao',edt_pesquisa.Text,[loCaseInsensitive]) then
+         ShowMessage('Veículo não localizado.');
+      end;
+    2 : //TIPO
+      begin
+        if not qrVeiculosDisponiveis.Locate('tipo',edt_pesquisa.Text,[loCaseInsensitive]) then
+         ShowMessage('Veículo não localizado.');
+      end;
+
+   end;
  end;
 end;
 

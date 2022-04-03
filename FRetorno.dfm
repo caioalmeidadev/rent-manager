@@ -21,7 +21,7 @@
     Height = 412
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = cxTabSheet1
+    Properties.ActivePage = cxTabSheet2
     Properties.CustomButtons.Buttons = <>
     ClientRectBottom = 408
     ClientRectLeft = 4

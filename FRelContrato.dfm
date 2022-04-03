@@ -134,6 +134,7 @@ object FrmRelContrato: TFrmRelContrato
     OnClick = cxButton2Click
   end
   object qrContrato: TFDQuery
+    Active = True
     OnCalcFields = qrContratoCalcFields
     Connection = DM.Conn
     SQL.Strings = (
@@ -373,7 +374,7 @@ object FrmRelContrato: TFrmRelContrato
     Top = 120
   end
   object frxReport1: TfrxReport
-    Version = '6.3.8'
+    Version = '6.7.6'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick, pbCopy, pbSelection]
@@ -381,7 +382,7 @@ object FrmRelContrato: TFrmRelContrato
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43546.360455046300000000
-    ReportOptions.LastChange = 43592.634864363430000000
+    ReportOptions.LastChange = 44654.643143344910000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'procedure Picture1OnBeforePrint(Sender: TfrxComponent);'
@@ -475,7 +476,7 @@ object FrmRelContrato: TFrmRelContrato
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 805.939778090000000000
+        Height = 829.336868570000000000
         Top = 162.519790000000000000
         Width = 718.110700000000000000
         DataSet = frxdbContrato
@@ -540,7 +541,7 @@ object FrmRelContrato: TFrmRelContrato
           Font.Name = 'Arial'
           Font.Style = []
           Frame.Typ = []
-          HAlign = haRight
+          HAlign = haCenter
           Memo.UTF8W = (
             
               '[<frxDBDsEmpresa."municipio">]/[<frxDBDsEmpresa."estado">], [<Da' +
@@ -842,11 +843,11 @@ object FrmRelContrato: TFrmRelContrato
             end>
         end
         object Memo16: TfrxMemoView
-          Align = baWidth
           AllowVectorExport = True
-          Top = 758.965619520000000000
-          Width = 718.110700000000000000
-          Height = 43.194628570000000000
+          Left = 295.787570000000000000
+          Top = 762.745149520000000000
+          Width = 86.929190000000000000
+          Height = 28.076508570000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -854,21 +855,47 @@ object FrmRelContrato: TFrmRelContrato
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
-            
-              '____________________                                          __' +
-              '_____________________'
-            
-              '                     Locador                                    ' +
-              '                                                              Lo' +
-              'cat'#225'rio')
+            'LOCADOR')
           ParentFont = False
+        end
+        object Memo18: TfrxMemoView
+          AllowVectorExport = True
+          Left = 292.008040000000000000
+          Top = 797.480830000000000000
+          Width = 86.929190000000000000
+          Height = 28.076508570000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = '@Arial Unicode MS'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'LOCAT'#193'RIO')
+          ParentFont = False
+        end
+        object Line3: TfrxLineView
+          AllowVectorExport = True
+          Left = 155.944960000000000000
+          Top = 797.480830000000000000
+          Width = 366.614410000000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
+        end
+        object Line4: TfrxLineView
+          AllowVectorExport = True
+          Left = 155.944960000000000000
+          Top = 763.465060000000000000
+          Width = 366.614410000000000000
+          Color = clBlack
+          Frame.Typ = [ftTop]
         end
       end
       object PageFooter1: TfrxPageFooter
         FillType = ftBrush
         Frame.Typ = []
         Height = 15.118120000000000000
-        Top = 1028.032160000000000000
+        Top = 1050.709340000000000000
         Width = 718.110700000000000000
         object Line2: TfrxLineView
           Align = baWidth
@@ -891,7 +918,7 @@ object FrmRelContrato: TFrmRelContrato
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            'Vital Rent Manager - Vital Solutions')
+            'Rent Manager - AlmeidaTECH')
           ParentFont = False
         end
       end
