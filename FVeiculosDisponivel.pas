@@ -48,6 +48,7 @@ type
     procedure cxGrid1DBTableView1KeyPress(Sender: TObject; var Key: Char);
     procedure cxGrid1DBTableView2DblClick(Sender: TObject);
     procedure edt_pesquisaKeyPress(Sender: TObject; var Key: Char);
+    procedure cxGrid1DBTableView2KeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     procedure loc_veiculo(xTipoPesquisa:Integer;xParam:String);
@@ -79,6 +80,16 @@ procedure TFrmVeiculoDisponivel.cxGrid1DBTableView2DblClick(Sender: TObject);
 begin
  xIdVeiculo := qrVeiculosDisponiveisid_veiculo.AsInteger;
  Close;
+end;
+
+procedure TFrmVeiculoDisponivel.cxGrid1DBTableView2KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+    if Key = Char(VK_RETURN) then
+ begin
+   xIdVeiculo := qrVeiculosDisponiveisid_veiculo.AsInteger;
+   Close;
+ end;
 end;
 
 procedure TFrmVeiculoDisponivel.edt_pesquisaKeyPress(Sender: TObject;

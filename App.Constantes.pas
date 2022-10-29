@@ -5,7 +5,7 @@ interface
 Const
 
  SYSTEM_NAME           = 'RENT MANAGER - AlmeidaTECH';
- SYSTEM_VERSION        = '3.2';
+ SYSTEM_VERSION        = '3.3';
  DB_NAME               = 'rent';
  DB_HOST               = 'localhost';
  DB_USER               = 'root';

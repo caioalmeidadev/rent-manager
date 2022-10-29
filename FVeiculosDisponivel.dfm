@@ -97,6 +97,7 @@ object FrmVeiculoDisponivel: TFrmVeiculoDisponivel
     end
     object cxGrid1DBTableView2: TcxGridDBTableView
       OnDblClick = cxGrid1DBTableView2DblClick
+      OnKeyPress = cxGrid1DBTableView2KeyPress
       Navigator.Buttons.CustomButtons = <>
       FindPanel.InfoText = 'Info Text'
       DataController.DataSource = dsVeiculosDisponiveis

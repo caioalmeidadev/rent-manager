@@ -125,7 +125,7 @@ begin
 
     qrTemp.Close;
     qrTemp.SQL.Clear;
-    qrTemp.SQL.Add('update tb_veiculo set fl_locacao = ''N'' where id_veiculo = :id');
+    qrTemp.SQL.Add('update tb_veiculos set fl_locacao = ''N'' where id_veiculo = :id');
     qrTemp.ParamByName('id').AsInteger := qrCancelarveiculo_id.AsInteger;
     qrTemp.ExecSQL;
 

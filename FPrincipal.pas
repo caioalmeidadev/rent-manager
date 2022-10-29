@@ -201,7 +201,6 @@ end;
 procedure TFrmPrincipal.devolver_veiculoExecute(Sender: TObject);
 begin
   if not Assigned(FrmDevolucao) then
-
    FrmDevolucao := TFrmDevolucao.Create(Self,-1);
  FrmDevolucao.ShowModal;
  FreeAndNil(FrmDevolucao);
