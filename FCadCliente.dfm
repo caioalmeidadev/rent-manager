@@ -307,7 +307,7 @@ object FrmCadCliente: TFrmCadCliente
         Width = 619
         Height = 257
         TabOrder = 6
-        Properties.ActivePage = cxTabSheet4
+        Properties.ActivePage = cxTabSheet3
         Properties.CustomButtons.Buttons = <>
         ClientRectBottom = 253
         ClientRectLeft = 4
