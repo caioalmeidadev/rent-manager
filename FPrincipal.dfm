@@ -13878,8 +13878,8 @@ object FrmPrincipal: TFrmPrincipal
       end>
   end
   object dxSkinController1: TdxSkinController
-    Left = 16
-    Top = 168
+    Left = 760
+    Top = 312
   end
   object cxLookAndFeelController1: TcxLookAndFeelController
     Left = 280

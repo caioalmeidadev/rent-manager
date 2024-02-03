@@ -69,6 +69,7 @@ type
     qrTemp: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
     function readIni(xSecao:string; xChave:string; xPadrao:string):string;
+    procedure ConnBeforeConnect(Sender: TObject);
   private
     { Private declarations }
   public
@@ -162,6 +163,11 @@ begin
  end;
 end;
 
+procedure TDM.ConnBeforeConnect(Sender: TObject);
+begin
+ FDPhysMySQLDriverLink1.VendorLib :=  ExtractFilePath(Application.exename) + 'libmysql.dll';
+end;
+
 procedure TDM.DataModuleCreate(Sender: TObject);
 begin
 
@@ -170,6 +176,8 @@ begin
    Conn.Params.Values['Server']   := readIni('CONEXAO','SERVER','localhost');
    Conn.Params.Values['Database'] := readIni('CONEXAO','DATABASE','rent');
    Conn.Params.Values['Port']     := readIni('CONEXAO','PORT','3306');
+   Conn.Params.UserName           := readIni('CONEXAO','USERNAME','root');
+   Conn.Params.Password           := readIni('CONEXAO','PASSWORD','masterkey');
    Conn.Connected                 := True;
 
   finally

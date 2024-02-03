@@ -9,9 +9,9 @@ object DM: TDM
       'User_Name=root'
       'Password=masterkey'
       'Server=localhost'
-      'Port=3307'
       'DriverID=MySQL')
     LoginPrompt = False
+    BeforeConnect = ConnBeforeConnect
     Left = 32
     Top = 32
   end

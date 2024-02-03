@@ -134,7 +134,6 @@ object FrmRelContrato: TFrmRelContrato
     OnClick = cxButton2Click
   end
   object qrContrato: TFDQuery
-    Active = True
     OnCalcFields = qrContratoCalcFields
     Connection = DM.Conn
     SQL.Strings = (
@@ -161,7 +160,7 @@ object FrmRelContrato: TFrmRelContrato
         Name = 'ID_'
         DataType = ftString
         ParamType = ptInput
-        Value = Null
+        Value = '9'
       end>
     object qrContratovl_extenso: TStringField
       FieldKind = fkCalculated
@@ -382,7 +381,7 @@ object FrmRelContrato: TFrmRelContrato
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 43546.360455046300000000
-    ReportOptions.LastChange = 44654.643143344910000000
+    ReportOptions.LastChange = 45028.495676145830000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'procedure Picture1OnBeforePrint(Sender: TfrxComponent);'
@@ -476,7 +475,7 @@ object FrmRelContrato: TFrmRelContrato
       object MasterData1: TfrxMasterData
         FillType = ftBrush
         Frame.Typ = []
-        Height = 829.336868570000000000
+        Height = 870.911698570000000000
         Top = 162.519790000000000000
         Width = 718.110700000000000000
         DataSet = frxdbContrato
@@ -845,9 +844,9 @@ object FrmRelContrato: TFrmRelContrato
         object Memo16: TfrxMemoView
           AllowVectorExport = True
           Left = 295.787570000000000000
-          Top = 762.745149520000000000
+          Top = 783.745149520000000000
           Width = 86.929190000000000000
-          Height = 28.076508570000000000
+          Height = 20.517448570000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -861,9 +860,9 @@ object FrmRelContrato: TFrmRelContrato
         object Memo18: TfrxMemoView
           AllowVectorExport = True
           Left = 292.008040000000000000
-          Top = 797.480830000000000000
+          Top = 844.937540000000000000
           Width = 86.929190000000000000
-          Height = 28.076508570000000000
+          Height = 16.737918570000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -877,7 +876,7 @@ object FrmRelContrato: TFrmRelContrato
         object Line3: TfrxLineView
           AllowVectorExport = True
           Left = 155.944960000000000000
-          Top = 797.480830000000000000
+          Top = 846.937540000000000000
           Width = 366.614410000000000000
           Color = clBlack
           Frame.Typ = [ftTop]
@@ -885,7 +884,7 @@ object FrmRelContrato: TFrmRelContrato
         object Line4: TfrxLineView
           AllowVectorExport = True
           Left = 155.944960000000000000
-          Top = 763.465060000000000000
+          Top = 784.465060000000000000
           Width = 366.614410000000000000
           Color = clBlack
           Frame.Typ = [ftTop]
@@ -895,7 +894,7 @@ object FrmRelContrato: TFrmRelContrato
         FillType = ftBrush
         Frame.Typ = []
         Height = 15.118120000000000000
-        Top = 1050.709340000000000000
+        Top = 1092.284170000000000000
         Width = 718.110700000000000000
         object Line2: TfrxLineView
           Align = baWidth

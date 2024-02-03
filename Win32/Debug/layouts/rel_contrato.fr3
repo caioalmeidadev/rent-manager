@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<TfrxReport Version="6.7.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43546,3604550463" ReportOptions.Description.Text="" ReportOptions.LastChange="44654,6431433449" ScriptLanguage="PascalScript" ScriptText.Text="procedure Picture1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end.">
+<TfrxReport Version="6.7.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43546,3604550463" ReportOptions.Description.Text="" ReportOptions.LastChange="45028,4956761458" ScriptLanguage="PascalScript" ScriptText.Text="procedure Picture1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end.">
   <Datasets>
     <item DataSet="frxdbContrato" DataSetName="frxdbContrato"/>
     <item DataSet="DM.frxDBDsEmpresa" DataSetName="frxDBDsEmpresa"/>
@@ -12,7 +12,7 @@
       <TfrxPictureView Name="Picture1" AllowVectorExport="True" Left="0" Top="0" Width="98,26778" Height="71,81107" OnBeforePrint="Picture1OnBeforePrint" Center="True" DataField="img_locacao" DataSet="DM.frxDBDsParametros" DataSetName="frxDBDsParametros" Frame.Typ="0" HightQuality="False" Transparent="False" TransparentColor="16777215"/>
       <TfrxLineView Name="Line1" Align="baWidth" AllowVectorExport="True" Left="0" Top="79,37013" Width="718,1107" Height="0" Color="0" Frame.Typ="0" Frame.Width="2" Diagonal="True"/>
     </TfrxReportTitle>
-    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="829,33686857" Left="0" Top="162,51979" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="frxdbContrato" DataSetName="frxdbContrato" RowCount="0">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="870,91169857" Left="0" Top="162,51979" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="frxdbContrato" DataSetName="frxdbContrato" RowCount="0">
       <TfrxMemoView Name="Memo1" Align="baWidth" AllowVectorExport="True" Left="0" Top="510,23655" Width="718,1107" Height="117,16543" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="Será efetuado à vista pelo locatário, de forma imediata no recebimento da veiculo com o valor de pagamento [&#60;frxdbContrato.&#34;vl_total&#34;&#62;], considerando a diária [&#60;frxdbContrato.&#34;vl_diaria&#34;&#62;] e o periodo de locação de [&#60;frxdbContrato.&#34;qtde_dias&#34;&#62;] dias e também assinará uma promissória ou cheque no valor do bem, o valor do cheque ou promissória  [&#60;frxdbContrato.&#34;valor_veiculo&#34;&#62;] ([frxdbContrato.&#34;vl_extenso&#34;]), sendo que se o locatário desistir do presente contrato, não ficará obrigado o locador a devolver valores pagos pelo locatário. O veiculo tem que retornar com essas recomendações: [&#60;frxdbContrato.&#34;obs&#34;&#62;]">
         <Formats>
           <item DecimalSeparator="," FormatStr="%2.2m" Kind="fkNumeric"/>
@@ -86,12 +86,12 @@
           <item/>
         </Formats>
       </TfrxMemoView>
-      <TfrxMemoView Name="Memo16" AllowVectorExport="True" Left="295,78757" Top="762,74514952" Width="86,92919" Height="28,07650857" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="LOCADOR"/>
-      <TfrxMemoView Name="Memo18" AllowVectorExport="True" Left="292,00804" Top="797,48083" Width="86,92919" Height="28,07650857" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="LOCATÁRIO"/>
-      <TfrxLineView Name="Line3" AllowVectorExport="True" Left="155,94496" Top="797,48083" Width="366,61441" Height="0" Color="0" Frame.Typ="4"/>
-      <TfrxLineView Name="Line4" AllowVectorExport="True" Left="155,94496" Top="763,46506" Width="366,61441" Height="0" Color="0" Frame.Typ="4"/>
+      <TfrxMemoView Name="Memo16" AllowVectorExport="True" Left="295,78757" Top="783,74514952" Width="86,92919" Height="20,51744857" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="LOCADOR"/>
+      <TfrxMemoView Name="Memo18" AllowVectorExport="True" Left="292,00804" Top="844,93754" Width="86,92919" Height="16,73791857" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="@Arial Unicode MS" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="LOCATÁRIO"/>
+      <TfrxLineView Name="Line3" AllowVectorExport="True" Left="155,94496" Top="846,93754" Width="366,61441" Height="0" Color="0" Frame.Typ="4"/>
+      <TfrxLineView Name="Line4" AllowVectorExport="True" Left="155,94496" Top="784,46506" Width="366,61441" Height="0" Color="0" Frame.Typ="4"/>
     </TfrxMasterData>
-    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="15,11812" Left="0" Top="1050,70934" Width="718,1107">
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="15,11812" Left="0" Top="1092,28417" Width="718,1107">
       <TfrxLineView Name="Line2" Align="baWidth" AllowVectorExport="True" Left="0" Top="0" Width="718,1107" Height="0" Color="0" Frame.Typ="0" Diagonal="True"/>
       <TfrxMemoView Name="Memo17" AllowVectorExport="True" Left="259,34663" Top="-0,519686670000056" Width="192,75603" Height="18,17773952" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Rent Manager - AlmeidaTECH"/>
     </TfrxPageFooter>
