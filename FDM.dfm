@@ -5,10 +5,11 @@ object DM: TDM
   Width = 525
   object Conn: TFDConnection
     Params.Strings = (
-      'Database=vando'
+      'Database=rent'
       'User_Name=root'
       'Password=masterkey'
       'Server=localhost'
+      'Compress=False'
       'DriverID=MySQL')
     LoginPrompt = False
     BeforeConnect = ConnBeforeConnect
@@ -16,7 +17,7 @@ object DM: TDM
     Top = 32
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    VendorLib = 'libmysql.dll'
+    VendorLib = 'D:\Projetos\rent-manager\Win32\Debug\libmysql.dll'
     Left = 32
     Top = 80
   end

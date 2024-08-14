@@ -135,7 +135,6 @@ type
     DBLookupComboBox2: TDBLookupComboBox;
     DBLookupComboBox3: TDBLookupComboBox;
     btn_pesquisar: TcxButton;
-    cxDBMaskEdit1: TcxDBMaskEdit;
     procedure FormCreate(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -150,8 +149,6 @@ type
     procedure DBLookupComboBox1CloseUp(Sender: TObject);
     procedure DBLookupComboBox2CloseUp(Sender: TObject);
     procedure btn_pesquisarClick(Sender: TObject);
-    procedure qrClientecpf_cnpjGetText(Sender: TField; var Text: string;
-      DisplayText: Boolean);
   private
     { Private declarations }
   public
@@ -271,21 +268,16 @@ begin
   qrEstado.Close;
   qrCliente.Close;
 
-  qrCliente.Open;
+
   qrEstado.Open;
   qrMunicipio.Open;
   qrBairro.Open;
+  qrCliente.Open;
 end;
 
 procedure TFrmCadCliente.FormShow(Sender: TObject);
 begin
  cxPageControl1.Properties.HideTabs := True;
-end;
-
-procedure TFrmCadCliente.qrClientecpf_cnpjGetText(Sender: TField;
-  var Text: string; DisplayText: Boolean);
-begin
- Sender.EditMask := '999.999.999-99;1;'
 end;
 
 end.

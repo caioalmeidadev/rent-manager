@@ -167,7 +167,7 @@ object FrmCadCliente: TFrmCadCliente
     Height = 506
     Align = alClient
     TabOrder = 2
-    Properties.ActivePage = cxTabSheet2
+    Properties.ActivePage = cxTabSheet1
     Properties.CustomButtons.Buttons = <>
     ClientRectBottom = 502
     ClientRectLeft = 4
@@ -630,14 +630,6 @@ object FrmCadCliente: TFrmCadCliente
         Top = 95
         Caption = 'UF'
       end
-      object cxDBMaskEdit1: TcxDBMaskEdit
-        Left = 712
-        Top = 264
-        DataBinding.DataField = 'cpf_cnpj'
-        DataBinding.DataSource = dsCliente
-        TabOrder = 17
-        Width = 121
-      end
     end
   end
   object qrCliente: TFDQuery
@@ -680,7 +672,6 @@ object FrmCadCliente: TFrmCadCliente
       AutoGenerateValue = arDefault
       FieldName = 'cpf_cnpj'
       Origin = 'cpf_cnpj'
-      OnGetText = qrClientecpf_cnpjGetText
       Size = 14
     end
     object qrClientefl_tipo_pessoa: TStringField

@@ -173,11 +173,15 @@ begin
 
   Conn.Close;
   try
-   Conn.Params.Values['Server']   := readIni('CONEXAO','SERVER','localhost');
-   Conn.Params.Values['Database'] := readIni('CONEXAO','DATABASE','rent');
-   Conn.Params.Values['Port']     := readIni('CONEXAO','PORT','3306');
-   Conn.Params.UserName           := readIni('CONEXAO','USERNAME','root');
-   Conn.Params.Password           := readIni('CONEXAO','PASSWORD','masterkey');
+
+   Conn.Params.Clear;
+   Conn.Params.Add('DriverID=MySQL');
+   Conn.Params.Add('Database=' + readIni('CONEXAO','DATABASE','rent'));
+   Conn.Params.Add('Port=' + readIni('CONEXAO','PORT','3306'));
+   Conn.Params.Add('User_Name=' + readIni('CONEXAO','USERNAME','root'));
+   Conn.Params.Add('Password=' + readIni('CONEXAO','PASSWORD','masterkey'));
+   Conn.Params.Add('Server=' + readIni('CONEXAO','SERVER','localhost'));
+
    Conn.Connected                 := True;
 
   finally
